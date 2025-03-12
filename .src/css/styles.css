@@ -1,0 +1,8 @@
+
+
+
+
+
+input:invalid,
+textarea:invalid { background-color: white;
+outline: 2px solid red;}
