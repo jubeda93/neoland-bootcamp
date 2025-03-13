@@ -15,7 +15,16 @@
       border-top: solid black;
 
     }
-
+    main {
+      background-color: rgb(173, 206, 201);
+      font-weight: 600;
+      font-optical-sizing: auto;
+      font-size: 20px;
+      font-style: normal;
+      letter-spacing: -1px;
+      border-bottom: solid black;
+      border-top: solid black;
+    }
     menu {
       background-color: solid white;
       border-top: solid black;
@@ -28,11 +37,12 @@
     }
 
     body {
+      padding: 10%;
       font-family: "Nunito", sans-serif;
       font-optical-sizing: auto;
       font-weight: 400;
       font-style: normal;
-      background-color: burlywood;
+      background-color: white
     }
 
     h1 {
@@ -59,9 +69,26 @@
       font-size: 0.83em;
     }
 
+    table {
+      border: 3px solid black;
+      width:80%;
+      vertical-align: middle ;
+      padding: 30%;
+    }
+      
+    th {
+      border:3px solid #000000;
+      vertical-align: middle ;
+      text-align: center;
+    }
 
+    td{
+      border:3px solid #000000;
+      vertical-align: middle ;
+      text-align: center;
+   }
 
-
+   
 
 
 
