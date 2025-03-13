@@ -1,8 +1,154 @@
+    /** HOJAS DE ESTILO GENERAL DE LA PAGINA    
+    -TIPOGRAFIA
+    -COLORES*/
+
+    header {
+      font-family: "Oswald", sans-serif;
+      background-color: red;
+      background: content-box radial-gradient(#e70505, #dfe4e6);
+      font-weight: 400;
+      font-optical-sizing: auto;
+      font-size: 24px;
+      font-style: normal;
+      letter-spacing: -1px;
+      border-bottom: solid black;
+      border-top: solid black;
+
+    }
+
+    menu {
+      background-color: solid white;
+      border-top: solid black;
+      padding: 20px 0 20px 0;
+    }
+
+    nav {
+      background-color: white;
+      font-weight: 300;
+    }
+
+    body {
+      font-family: "Nunito", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      background-color: burlywood;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    h2 {
+      font-size: 2em;
+    }
+
+    h3 {
+      font-size: 1.5em;
+    }
+
+    h4 {
+      font-size: 1.17em;
+    }
+
+    h5 {
+      font-size: 1em;
+    }
+
+    h6 {
+      font-size: 0.83em;
+    }
 
 
 
 
 
-input:invalid,
-textarea:invalid { background-color: white;
-outline: 2px solid red;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /** 
+    h1 { font-weight: bold;
+    }    
+    
+    
+    table {
+    background-color: aqua;
+    th {
+      text-transform: uppercase;
+    }
+    img {
+      width: 100%;
+    }
+    thead {
+      background-color: chartreuse;
+    }
+    tbody {
+      background-color: burlywood;
+    }
+    tfoot {
+      background-color: coral;
+    }
+  }
+  
+
+  input:invalid,
+  textarea:invalid {
+    background-color: ivory;
+    outline: 2px solid red;
+  }
+  textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+  } */
