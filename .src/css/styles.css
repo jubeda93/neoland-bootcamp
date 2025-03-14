@@ -77,7 +77,13 @@
           margin: 10px 10px;
           padding: 15px;
           height:5px;
+          resize: none;
+        }
 
+        &.buzon {
+          textarea {
+            height: 100px;
+          }
         }
 
         border: 2px solid black;
@@ -127,8 +133,10 @@
       justify-content: space-around;
     }
 
-    textarea {
-      height: 250px;
+    .buzon { 
+      height: 150px;
+     
+    
     }
 
     .sexo {
