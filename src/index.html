@@ -4,74 +4,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crossfit News: Inicio</title>
+  <title>Practica Pokedex</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&display=swap"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/styles copy.css">
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/styles.mobile.css">
   <link rel="stylesheet" href="css/styles.desktop.css">
 </head>
 
 <body>
   <header>
-    <h1>Noticias Crossfit</h1>
-    <p>Toda la informacion relacionada que buscas de los Open Crossfit 2025</p>
-
     <nav>
-      <menu class="menu-horizontal">
-        <li><a href="25-1.html">25.1</a></li>
-        <li><a href="25-2.html">25.2</a></li>
-        <li><a href="25-3.html">25.3</a></li>
-        <li><a href="formulario.html">Newsletter</a></li>
+      <menu class="menu-inicio">
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Pokedex</a></li>
+        <li><a href="">Videojuegos y aplicaciones</a></li>
+        <li><a href="">Juego de Cartas coleccionables </a></li>
+        <li><a href="">Dibujos animados</a></li>
+        <li><a href="">Eventos de Play! Pokemon </a></li>
+        <li><a href="">Noticias</a></li>
       </menu>
     </nav>
   </header>
 
-  <article>
-    <h1>¿Qué es el CrossFit Open?</h1>
-    <p>El CrossFit Open es el evento deportivo con mayor participación a nivel mundial. Consiste en tres eventos que se
-      celebran a lo largo de tres semanas, donde los atletas deben completar un WOD y enviar su puntuación dentro de un
-      plazo de 4 a 5 días</p>
-    <figure>
-      <img src="img/CrossFit-Games-running.webp" alt="img" title="crossit-runnig" class="foto1" />
-      <figcaption> Altelas Games 2024 </figcaption>
-    </figure>
-    <h1>¿Cómo apuntarse y cuál es la fecha del CrossFit Open 2025? </h1>
-    <p>Para registrarte en el Open, simplemente visita la página y completa el proceso de
-      inscripción. Las inscripciones ya están abiertas
-      El Open de CrossFit comenzará el 27 de febrero de 2025 y se llevará a cabo durante 3 semanas. Los anuncios se
-      realizarán los jueves a las 12:00 p.m. PST, que corresponde a las 21:00 en horario español.
-    </p>
+  <main>
+    <h1> Pokédex</h1>
+    <form>
+      <label for="nombre"> Nombre o Numero</label>
+      <input data-type="name" type="text" class="buscador-pokemon">
+      <p>Busca un Pokemon por su nombre o usando su numero de Pokedex Nacional.</p>
+      <input type="submit" class="buscar">
+      <p class="info-buscador"> ¡Usa la búsqueda avanzada para encontrar Pokémon por su tipo, debilidad, habilidad y
+        demás datos!</p>
+    </form>
 
-    <h2>Categorías</h2>
-    <p>El atleta debe inscribirse a la categoría en la que cumple los requisitos y quiere participar. La edad mínima
-      para
-      inscribirse en el Open es de 14 años.
-
-    <h3>Individual RX</h3>
-    <p>La que escogen los profesionales y aquellas personas que saben hacer todos los ejercicios.</p>
-
-    <h3>Individual scaled</h3>
-    <p>Aquellas personas que necesitan hacer adaptaciones de los ejercicios en su versión más difícil. Esta categoría no
-      tiene opciones de seguir avanzando en la clasificación para los Games.</p>
-
-    <h3>Aged groups</h3>
-    <p>Divididos en diferentes intervalos de edad por debajo de los 18 años (Teens) y por encima de los 35 (Master).</p>
-
-    <h3>Adaptive</h3>
-    <p>Personas con limitaciones. Dentro de esta categoría hay muchas divisiones en función de la limitación del atleta,
-      ejemplo en extremidad superior, o inferior, o diferentes variantes neurocerebrales.</p>
-  </article>
-  <footer>
+    <ul class="lista-pokemon">
+      <li class="fichapokemon">
+        <a href="fichapokemonX">
+          <img src="imagenes/001.png"></a>
+          <p class="numeropokemon">Numero Pokemon</p>
+          <p class="tag"></p>
+      </li>
+      <div class="pokemoninfo"> </div>
+      
+    </ul>
+  </main>
 
 
-  </footer>
-
-  </figure>
 </body>
-
-</html>

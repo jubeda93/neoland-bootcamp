@@ -1,0 +1,295 @@
+    /** HOJAS DE ESTILO GENERAL DE LA PAGINA    
+    -TIPOGRAFIA
+    -COLORES*/
+
+    html {
+      background: radial-gradient(rgb(0, 0, 0), rgb(224, 229, 231));
+
+    }
+
+    header {
+      p {
+        font-style: italic;
+        font-weight: 200;
+      }
+
+      font-family: "Oswald",
+      sans-serif;
+      font-weight: 400;
+      font-optical-sizing: auto;
+      font-size: 24px;
+      font-style: normal;
+      letter-spacing: -1px;
+      border-bottom: solid rgb(0, 0, 0);
+      text-align: center;
+    }
+
+    main {
+      padding: 20px 200px;
+      h1 {
+        text-align: center;
+        font-size: 48px;
+      }
+
+      h2 {
+        padding: 20px 0px 0px 20px;
+      }
+
+      h4 {
+        padding: 0px 0px 0px 20px;
+      }
+
+
+      form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        .botonera {
+          display: flex;
+          justify-content: center;
+          padding: 10px;
+          gap: 10px;
+        }
+      }
+
+      button {
+        font-size: medium;
+        font-weight: 700;
+        padding: 5px;
+
+
+
+      }
+
+      fieldset {
+
+        input:not([type="radio"]):not([type="tel"]),
+        textarea {
+          display: block;
+          display: flex;
+          justify-content: center;
+          box-sizing: border-box;
+          width: calc(100% - 20px);
+          margin: 10px 10px;
+          padding: 15px;
+          height:5px;
+          resize: none;
+        }
+
+        &.buzon {
+          textarea {
+            height: 100px;
+          }
+        }
+
+        border: 2px solid black;
+        margin: 10px;
+        padding: 10px;
+        background-color: rgb(194, 124, 139);
+      }
+
+    }
+    menu {
+      border-top: solid rgb(0, 0, 0);
+      padding: 20px 0;
+    }
+
+    .menu-horizontal {
+      li {
+        padding: 0px 10px;
+        display: inline;
+      }
+    }
+
+    nav {
+      font-weight: 300;
+      padding: 10px 0px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-horizontal a {
+      padding: 5px;
+      background-size: 200%;
+      background-color: rgb(252, 252, 252);
+      border-radius: 10px;
+      color: rgb(255, 0, 0);
+
+      &:hover {
+        color: rgb(160, 4, 4);
+      }
+
+    }
+
+    .telefonos {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .buzon { 
+      height: 150px;
+     
+    
+    }
+
+    .sexo {
+      display: flex;
+      justify-content: space-around;
+      
+
+    }
+
+    body {
+      font-family: "Nunito", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+
+    }
+
+
+
+
+    h1 {
+      font-size: 3em;
+    }
+
+    h2 {
+      font-size: 100%;
+    }
+
+    h3 {
+      font-size: 1.5em;
+    }
+
+    h4 {
+      font-size: 75%;
+    }
+
+    h5 {
+      font-size: 1em;
+    }
+
+    h6 {
+      font-size: 0.83em;
+    }
+
+    table {
+      border: 3px solid black;
+      width: 80%;
+      vertical-align: middle;
+      margin: 2em auto;
+    }
+
+    th {
+      border: 3px solid #000000;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    td {
+      &:has(img) {
+        text-align: left;
+
+        img {
+          vertical-align: middle;
+        }
+      }
+
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /** 
+    h1 { font-weight: bold;
+    }    
+    
+    
+    table {
+    background-color: aqua;
+    th {
+      text-transform: uppercase;
+    }
+    img {
+      width: 100%;
+    }
+    thead {
+      background-color: chartreuse;
+    }
+    tbody {
+      background-color: burlywood;
+    }
+    tfoot {
+      background-color: coral;
+    }
+  }
+  
+
+  input:invalid,
+  textarea:invalid {
+    background-color: ivory;
+    outline: 2px solid red;
+  }
+  textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+  } */
