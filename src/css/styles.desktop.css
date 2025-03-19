@@ -60,6 +60,8 @@ body {
         margin: 0 -112px;
         /* compenso con un padding el margen negativo, y devuelvo a su sitio la capa */
         padding: 20px 112px;
+        align-items: center;
+        text-align: center;
   
         p {
           padding: 10px;
@@ -86,7 +88,7 @@ body {
     }
   
     /* Están por fuera del main porque se pueden reutilizar en cualquier elemento */
-    .tipos {
+    .clases {
       display: flex;
       column-gap: 10px;
   

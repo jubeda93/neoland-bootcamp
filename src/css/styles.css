@@ -9,13 +9,13 @@ html {
   font-family: sans-serif;
   font-size: 18px;
   background-color: #444444;
-
   body {
-    background-color: #cccccc;
+    background-color: #ffffff;
+    min-height: 100vh;
     
     header,
     main {
-      background-color: #cccccc;
+      background-color: #676b6b;
     }
 
     header {
@@ -26,6 +26,11 @@ html {
         a {
           border-bottom: 4px solid #ff0000;
           color: #000000;
+          text-decoration: none;
+          &:hover {
+            background-color:rgb(132, 174, 177);
+           
+          }
         }
       }
     }
@@ -43,17 +48,17 @@ html {
 
       .lista-pokemon {
         .pokemon {
-          background-color: white;
+          background-color: rgb(255, 255, 255);
           border-radius: 5px;
 
           figcaption {
-            color: #a8a8a8;
+            color: #555555;
           }
         }
       }
     }
 
-    .tipos {
+    .clases {
       .tag {
         &.grass {
           background-color: #9bcc50;
@@ -123,45 +128,6 @@ html {
       }
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

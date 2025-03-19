@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/styles.mobile.css" media="screen and (max-width: 480px)">
-    <link rel="stylesheet" href="/css/styles.desktop.css" media="screen and (min-width: 481px)">
-    <script src="/js/pokemon.js" type="module" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokedex</title>
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/styles.mobile.css" media="screen and (max-width: 480px)">
+  <link rel="stylesheet" href="/css/styles.desktop.css" media="screen and (min-width: 481px)">
+ <!--<script src="/js/pokemon.js" type="module" defer></script>--> 
 </head>
 
 <body>
@@ -25,10 +25,10 @@
         <li><a href="">Noticias</a></li>
       </menu>
     </nav>
+    <h1> Pokédex</h1>
   </header>
 
   <main>
-    <h1> Pokédex</h1>
     <form>
       <label for="nombre"> Nombre o Numero</label>
       <input data-type="name" type="text" class="buscador-pokemon">
@@ -38,21 +38,19 @@
         demás datos!</p>
     </form>
 
-    <ul class="lista-pokemon">
+    <ol class="lista-pokemon">
       <li>
-        <figure>
+        <figure class="pokemon">
           <img src="/img/120x120.svg">
           <figcaption class="numeropokemon">Nº 0001</figcaption>
-          <p class="nombrepokemon">Numero Pokemon</p>
+          <p class="nombrepokemon">Nombre Pokemon</p>
           <p class="clases">
-          <p>Veneno</p>
-          <p>Planta</p> <!-- porque esa span?-->
+          <span class="tag poison">Veneno</span>
+          <span class="tag grass">Planta</span> 
           </p>
         </figure>
       </li>
-    
-
-    </ul>
+    </ol>
   </main>
 
 

@@ -43,10 +43,25 @@ DO-WHILE / REPEAT-UNTIL: realiza una acción, y luego continúa haciéndolo mien
 function onDOMContentLoaded() {
     let listaPokemon = document.getElementsByClassName('lista-pokemon')[0]
     console.log('Ya esta disponible la pagina',listaPokemon);
-    for (let i = 0; i < 10; i++) {
+    
+    for (let i = 0; i < 10; i++) { //ToDo: 1.añadir parrafo. 2.añadir InnerText 3.añadir parrafo al elemento de lista
+        let nuevoPokemon = document.createElement('li');
+       // nuevoPokemon.innerText = pokedex[i].name.english;
         console.log(pokedex[i].name.english);
-    }
+       
 
+       let nombrePokemon = document.createElement('p');
+       nombrePokemon.innerText = pokedex[i].name.english;
+       nombrePokemon.classList.add('nombrepokemon');
+       nuevoPokemon.appendChild(nombrePokemon);
+        listaPokemon.appendChild(nuevoPokemon);
+
+        let numeroPokemon = document.createElement('figcaption');
+        numeroPokemon.innerText = pokedex[i].id;
+        numeroPôkemon.classList.add('numeropokemon');
+        nuevoPokemon.appendChild(numeroPokemon);
+
+    }
 
 
     /* buscarPokemon('Pikachu', 1993, ['fuego', 'agua', 'veneno'])*/
