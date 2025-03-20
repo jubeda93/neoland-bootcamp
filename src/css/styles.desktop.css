@@ -4,110 +4,129 @@
  */
 
 body {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  max-width: 1024px;
+  margin: 0 auto;
+
+  header,
+  main {
+    width: 100%;
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  header {
     display: flex;
     flex-direction: column;
-  
-    justify-content: space-between;
-    max-width: 1024px;
-    margin: 0 auto;
-  
-    header,
-    main {
+    row-gap: 10px;
+
+    nav,
+    h1 {
       width: 100%;
-      display: flex;
-      max-width: 800px;
-      margin: 0 auto;
     }
-  
-    header {
+
+    .menu-inicio {
       display: flex;
-      flex-direction: column;
-      row-gap: 10px;
-      nav,
-      h1 {
-        width: 100%;
-      }
-      
-      .menu-inicio {
+      height: 90px;
+
+      li {
         display: flex;
-        height: 90px;
-  
-        li {
-          display: flex;
+        justify-content: center;
+        width: calc(100% / 5);
+
+        a {
+          display: inline-flex;
+          height: 100%;
+          width: 100%;
           justify-content: center;
-          width: calc(100% / 5);
-  
-          a {
-            display: inline-flex;
-            height: 100%;
-            width: 100%;
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-          }
+          text-align: center;
+          align-items: center;
         }
-  
       }
+
     }
-    main {
-      display: flex;
-      flex-direction: column;
-      form {
-        display: flex;
-        column-gap: 10px;
-        row-gap: 20px;
-        /* Uso un margen negativo para salirme del main */
-        margin: 0 -112px;
-        /* compenso con un padding el margen negativo, y devuelvo a su sitio la capa */
-        padding: 20px 112px;
-        align-items: center;
-        text-align: center;
-  
-        p {
-          padding: 10px;
-        }
-      }
-  
-      .lista-pokemon {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        padding: 10px;
-  
-        li {
-          width: 25%;
-  
-          .pokemon {
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            row-gap: 5px;
-          }
-        }
-      }
-    }
-  
-    /* Están por fuera del main porque se pueden reutilizar en cualquier elemento */
-    .clases {
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+
+    form {
       display: flex;
       column-gap: 10px;
-  
-      .tag {
-        border-radius: 5px;
-        line-height: 2em;
-        text-align: center;
-        padding: 0 1em;
-  
-        /**
-        selector es:
-        <element class="tag">
-        <element class="tag">
-        */
-        &:has(+ .tag),
-        &+.tag {
-          flex-grow: 1;
-          padding: 0;
+      row-gap: 20px;
+      /* Uso un margen negativo para salirme del main */
+      margin: 0 -112px;
+      /* compenso con un padding el margen negativo, y devuelvo a su sitio la capa */
+      padding: 20px 112px;
+      align-items: center;
+      text-align: center;
+
+
+
+      p {
+        padding: 10px;
+      }
+    }
+
+    li {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(255, 255, 255);
+      border-radius: 5px;
+      margin: 5px auto;
+    }
+
+    img {
+      max-height: 120px;
+      min-height: 160px;
+    }
+
+    .lista-pokemon {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 10px;
+
+      li {
+        width: 25%;
+
+        .pokemon {
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          row-gap: 5px;
+           &:hover {
+            scale: 1.13;
+            border: 2px solid rgb(208, 255, 0);
+            animation: bounce;
+            animation-duration: 2s;
+           }
         }
       }
     }
   }
+
+  /* Están por fuera del main porque se pueden reutilizar en cualquier elemento */
+  .clases {
+    display: flex;
+    column-gap: 10px;
+
+    .tag {
+      border-radius: 5px;
+      line-height: 2em;
+      text-align: center;
+      padding: 0 1em;
+      &:has(+ .tag),
+      &+.tag {
+        flex-grow: 1;
+        padding: 0;
+      }
+    }
+  }
+}
