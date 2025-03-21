@@ -30,13 +30,12 @@
   </header>
 
   <main>
-    <form>
+    <form id="formulario">
       <label for="nombre"> Nombre o Numero</label>
-      <input data-type="name" type="text" class="buscador-pokemon">
-      <p>Busca un Pokemon por su nombre o usando su numero de Pokedex Nacional.</p>
-      <input type="submit" class="buscar">
-      <p class="info-buscador"> ¡Usa la búsqueda avanzada para encontrar Pokémon por su tipo, debilidad, habilidad y
-        demás datos!</p>
+      <input data-type="name" type="text" id="busqueda">
+      <p> Busca un Pokemon por su nombre o usando su numero.</p>
+      <button type="submit" id="botonBuscar">Buscar</button>
+      <p class="info-buscador"> ¡Usa la búsqueda avanzada para encontrar Pokémon por su tipo, debilidad, habilidad..</p>
     </form>
 
     <ol class="lista-pokemon">
