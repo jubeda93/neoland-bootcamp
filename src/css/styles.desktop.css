@@ -95,17 +95,19 @@ body {
 
       li {
         width: 25%;
+        &:hover {
+          animation: bounce;
+          animation-duration: 2s;
+          border: 2px solid rgb(208, 255, 0);
+         }
+        
 
         .pokemon {
           padding: 10px;
           display: flex;
           flex-direction: column;
           row-gap: 5px;
-           &:hover {
-            scale: 1.13;
-            border: 2px solid rgb(208, 255, 0);
-            animation: bounce;
-            animation-duration: 2s;
+          
            }
         }
       }
@@ -129,4 +131,3 @@ body {
       }
     }
   }
-}

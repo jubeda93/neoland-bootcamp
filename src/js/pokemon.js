@@ -1,10 +1,12 @@
-import pokedex from '../pokedex/pokedex.json' with { type: "json" }
+import pokedexjson from '../pokedex/pokedex.json' with { type: "json" }
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 function onDOMContentLoaded() {
     
+    let formulario = document.getElementById('formulario')
+    
+    formulario.addEventListener('submit', buscarPokemon)
 
-    leerListaPokemons(12)
-
+    leerListaPokemons(9)
 }
 
 function leerListaPokemons(maxPokemons = 9) {
@@ -15,20 +17,68 @@ function leerListaPokemons(maxPokemons = 9) {
     }
 
     for (let i = 0; i < maxPokemons; i++) {
-        addPokemonToList(pokedex[i])
+        addPokemonToList(pokedexjson[i])
     }
 
 }
 
+function buscarPokemon (event) { 
+    event.preventDefault()
+    let listaPokemons = document.getElementsByClassName('lista-pokemon')[0]
+    let campoBusqueda = document.getElementById('busqueda')
+    let resultadosBusqueda = []
+
+    if (campoBusqueda.value === '') {
+        leerListaPokemons (9)
+        return
+    }
+
+    if (Number.isInteger(Number(campoBusqueda.value))) {
+        resultadosBusqueda = pokedexjson.filter ((pokemon) => pokemon.id === Number(campoBusqueda.value))
+    }
+   
+    else {
+        resultadosBusqueda = pokedexjson.filter ((pokemon) => pokemon.name.english.toLowerCase().includes(campoBusqueda.value.toLowerCase()))
+    }
+
+    if (resultadosBusqueda.length === 0) {
+
+    }
+
+    
+     console.log(resultadosBusqueda);
+
+
+    for (let i = 0; i < resultadosBusqueda.length; i++) {
+        addPokemonToList(resultadosBusqueda[i])
+    }
+
+    while (listaPokemons.firstChild) {
+        listaPokemons.removeChild(listaPokemons.firstChild)
+    }
+
+    for (let i = 0; i < resultadosBusqueda.length; i++) {
+        addPokemonToList(resultadosBusqueda[i])
+      }
+      
+}
+
+
+
+
 
 
     function addPokemonToList(pokemon) {
+ 
+
     let listaPokemons = document.getElementsByClassName('lista-pokemon')[0]
     let nuevoPokemon = document.createElement('li');
     let fichaPokemon = document.createElement('figure');
     fichaPokemon.classList.add('pokemon');
 
 
+
+    
     //  //Creo el elemento para cargar la imagen:
     let imagenPokemon = document.createElement('img')
     let idPokemon = String(pokemon.id);
@@ -64,11 +114,12 @@ function leerListaPokemons(maxPokemons = 9) {
     }
 
     fichaPokemon.appendChild(imagenPokemon);
-    fichaPokemon.appendChild(nombrePokemon);
-    fichaPokemon.appendChild(tiposPokemon)
-    nuevoPokemon.appendChild(fichaPokemon)
-    listaPokemons.appendChild(nuevoPokemon);
     fichaPokemon.appendChild(numSerie); 
+    fichaPokemon.appendChild(nombrePokemon);
+    fichaPokemon.appendChild(tiposPokemon);
+    nuevoPokemon.appendChild(fichaPokemon);
+    listaPokemons.appendChild(nuevoPokemon);
+    
 }
 
 
