@@ -6,10 +6,11 @@ function onDOMContentLoaded() {
     
     formulario.addEventListener('submit', buscarPokemon)
 
-    leerListaPokemons(9)
+    leerListaPokemons(12)
+    
 }
 
-function leerListaPokemons(maxPokemons = 9) {
+function leerListaPokemons(maxPokemons = 12) {
     let listaPokemons = document.getElementsByClassName('lista-pokemon')[0]
 
     while (listaPokemons.firstChild) {
@@ -22,11 +23,16 @@ function leerListaPokemons(maxPokemons = 9) {
 
 }
 
+
+    
+//Buscador
 function buscarPokemon (event) { 
     event.preventDefault()
     let listaPokemons = document.getElementsByClassName('lista-pokemon')[0]
     let campoBusqueda = document.getElementById('busqueda')
     let resultadosBusqueda = []
+    
+   // let errorBusqueda = document.getElementsByClassName('errorbusqueda')[0]
 
     if (campoBusqueda.value === '') {
         leerListaPokemons (9)
@@ -42,16 +48,12 @@ function buscarPokemon (event) {
     }
 
     if (resultadosBusqueda.length === 0) {
-
+    
+        console.log('No se ha encontrado ningún pokemon')
     }
 
-    
      console.log(resultadosBusqueda);
 
-
-    for (let i = 0; i < resultadosBusqueda.length; i++) {
-        addPokemonToList(resultadosBusqueda[i])
-    }
 
     while (listaPokemons.firstChild) {
         listaPokemons.removeChild(listaPokemons.firstChild)
@@ -60,24 +62,23 @@ function buscarPokemon (event) {
     for (let i = 0; i < resultadosBusqueda.length; i++) {
         addPokemonToList(resultadosBusqueda[i])
       }
-      
+
+
 }
 
-
-
-
+  
 
 
     function addPokemonToList(pokemon) {
- 
-
+    
     let listaPokemons = document.getElementsByClassName('lista-pokemon')[0]
     let nuevoPokemon = document.createElement('li');
     let fichaPokemon = document.createElement('figure');
+    
     fichaPokemon.classList.add('pokemon');
+    
 
-
-
+    
     
     //  //Creo el elemento para cargar la imagen:
     let imagenPokemon = document.createElement('img')
@@ -119,6 +120,7 @@ function buscarPokemon (event) {
     fichaPokemon.appendChild(tiposPokemon);
     nuevoPokemon.appendChild(fichaPokemon);
     listaPokemons.appendChild(nuevoPokemon);
+    
     
 }
 
