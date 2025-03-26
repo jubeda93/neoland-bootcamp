@@ -30,13 +30,21 @@
   </header>
 
   <main>
-    <form id="formulario">
+    <form id="formulario" action="">
       <label for="nombre"> Nombre o Numero</label>
       <input data-type="name" type="text" id="busqueda">
       <p> Busca un Pokemon por su nombre o usando su numero.</p>
       <button type="submit" id="botonBuscar">Buscar</button>
-      <p class="info-buscador"> ¡Usa la búsqueda avanzada para encontrar Pokémon por su tipo, debilidad, habilidad..</p>
-    </form>
+      </form>
+
+    <div class="favoritos">
+    <p>Favoritos:</p>
+    <ul id= "listaFavoritos"></ul>
+  </div>
+  <div class="generacion">
+    <p>Generación</p>
+    <ul id= "listaGeneracion"></ul>
+  </div>
     <h1 class="errorbusqueda">No se ha encontrado ningun Pokemon...</h1>
     <ol class="lista-pokemon">
       

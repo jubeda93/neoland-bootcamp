@@ -53,6 +53,38 @@ body {
     display: flex;
     flex-direction: column;
 
+    .familia {
+      display: none;
+
+      &.visible {
+        display: flex;
+      }
+    }
+
+     .generacion {
+      display: none;
+
+      &.visible {
+        display: flex;
+      }
+      ul {
+        display: flex;
+        gap: 5px;
+      }
+    }
+    
+    .favoritos {
+      display: none;
+
+      &.visible {
+        display: flex;
+      }
+      ul {
+        display: flex;
+        gap: 5px;
+      }
+    }
+
     .errorbusqueda {
       display: none;
 
@@ -60,6 +92,7 @@ body {
         display: block;
       }
 
+    
     }
 
     form {
@@ -90,8 +123,11 @@ body {
 
       &.favorite {
         border: 5px solid rgb(151, 153, 41);
-        animation: shakeX;
+        animation: flip;
         animation-duration: 0.8s;
+
+        
+        
         
       }
 
@@ -112,9 +148,7 @@ body {
 
       li {
         width: 25%;
-
         &:hover {
-          
           border: 5px solid rgb(62, 180, 8);
         }
 
