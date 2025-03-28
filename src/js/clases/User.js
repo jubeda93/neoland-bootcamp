@@ -4,17 +4,21 @@ export class User {  // clase padre
     /**
      * Constructor de la clase User
      * @param {string} name - nombre del usuario
-     * @param {string} surname - apellido del usuario
      * @param {string} email - email del usuario
+     * @param {string} surname - apellido del usuario
      * @param {string} phone - telefono del usuario
      */
-    constructor(name, surname, email, phone) {
+    constructor(name, email, surname, phone) {
         this.name = name
-        this.surname = surname
         this.email = email
+        this.surname = surname
         this.phone = phone 
     }
 }
+
+
+//=============== HERENCIA DE CLASES ========================//
+
 
 export class UserDatos extends User {
 /**

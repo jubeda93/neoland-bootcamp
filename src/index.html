@@ -3,21 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.desktop.css">
+    <link rel="stylesheet" href="css/styles.mobile.css">
     <title>Proyecto App Crossfit</title>
+    <script type="module" src="./js/index.js"></script>
 </head>
 <body>
     <header>
         App Crossfit Registro
     </header>
     <main>
-        <form id="singIn">
-            <input type="text" id="name" placeholder="User Name" required>
+        
+        <form id="signIn">
+            <h1>Registrate!</h1>
+            <input type="text" id="name" placeholder="Nombre" required>
             <input type="email"  id="email" placeholder="Correo electronico" required>
-            <button type="submit">Iniciar Sesion</button>
-
+            <button type="submit">Registrarse</button>
         </form>
+        <form id="logIn">
+            <h1>Log In</h1>
+            <input type="text" id="logName" placeholder="Nombre" required>
+            <input type="email"  id="logEmail" placeholder="Correo electronico" required>
+            <button type="submit">Iniciar Sesion</button>
+        </form>
+        <p id="signInOk" class="hidden">Te has registrado correctamente!</p>
+        <p id="logInOk" class="hidden">Has iniciado Sension correctamente!</p>
+        <p id="logInFail" class="hidden">El usuario no existe!</p>
+
+
 
     </main>
-    
+
 </body>
 </html>
