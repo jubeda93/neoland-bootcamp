@@ -13,10 +13,10 @@ function onDOMContentLoaded () {
     let signOut = document.getElementById('signOut')
 
 
-    signIn.addEventListener('submit', onSignIn)
-    logIn.addEventListener('submit', onlogIn)
-    logOut.addEventListener('submit', onLogOut)
-    signOut.addEventListener('submit', onSignOut)
+    signIn?.addEventListener('submit', onSignIn)
+    logIn?.addEventListener('submit', onlogIn)
+    logOut?.addEventListener('submit', onLogOut)
+    signOut?.addEventListener('submit', onSignOut)
 
 
     readUserDB()
@@ -69,7 +69,7 @@ function onlogIn(event) {    //  INICIAR SESION
 
 
     //INFORMAR QUE SE HA ENCONTRADO EL USUARIO
-    if (userRegistred === 0) {  //hacemos visible el parrafo de error de logIn
+    if (userRegistred >= 0) {  //hacemos visible el parrafo de error de logIn
         sessionStorage.setItem('user', JSON.stringify(USER_DB.get()[userRegistred]))
         document.getElementById('logInOk').classList.remove('hidden')
         setTimeout(() => { 
@@ -78,8 +78,8 @@ function onlogIn(event) {    //  INICIAR SESION
        document.getElementById('signInForm').classList.add('hidden')
        document.getElementById('logInForm').classList.add('hidden')
        document.getElementById('logOut').classList.remove('hidden')
-       document.getElementById('welcome').classList.remove('hidden')
        document.getElementById('myAccount').classList.remove('hidden')
+       
         
     } else { 
         document.getElementById('logInFail').classList.remove('hidden')
@@ -97,12 +97,12 @@ function onLogOut(event) {
     // Eliminar la sesión del usuario
     sessionStorage.removeItem('user')
     //Volvemos a ocular opciones de usuario, y sacamos formulario de registro "landing page"
-    document.getElementById('logOut').classList.add('hidden')
-    document.getElementById('welcome').classList.add('hidden')
-    document.getElementById('signInForm').classList.remove('hidden')
-    document.getElementById('logInForm').classList.remove('hidden')
-    
-    
+    document.getElementById('signInForm')?.classList.remove('hidden')
+    document.getElementById('logInForm')?.classList.remove('hidden')
+    document.getElementById('logOut')?.classList.add('hidden')
+    document.getElementById('myAccount')?.classList.add('hidden')
+    location.href = '/index.html'
+
 }
 
 //BORRAR USUARIO
@@ -112,10 +112,10 @@ function onLogOut(event) {
      localStorage.removeItem('USER_DB')
      sessionStorage.removeItem('user')
 
-    document.getElementById('logOut').classList.add('hidden')
-    document.getElementById('welcome').classList.add('hidden')
-    document.getElementById('signInForm').classList.remove('hidden')
-    document.getElementById('logInForm').classList.remove('hidden')
+    document.getElementById('logOut')?.classList.add('hidden')
+    document.getElementById('signInForm')?.classList.remove('hidden')
+    document.getElementById('logInForm')?.classList.remove('hidden')
+    location.href = '/index.html'
     
 
     
