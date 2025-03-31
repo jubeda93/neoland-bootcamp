@@ -12,25 +12,42 @@
 </head>
 <body>
     <header>
-        App Crossfit Registro
+        <p id="logInOk" class="hidden">Has iniciado Sension correctamente!</p>
+        <p id="signInOk" class="hidden">Te has registrado correctamente!</p>
+        <p id="logInFail" class="hidden">El usuario no existe!</p>
+        <p id="signInFail" class="hidden">Este e-mail ya esta registrado!</p>
+
     </header>
     <main>
-        
-        <form id="signIn">
-            <h1>Registrate!</h1>
+
+        <form id="myAccount" class="hidden">
+            <h1 id="welcome" class="hidden">Bienvenido</h1>
+            <button><a href="user.html">Ir a mi cuenta </a></button>
+        </form>
+
+        <form id="logOut" class="hidden">
+        <button type="submit">Cerrar sesion</button>
+        </form>
+
+        <form id="signOut" class="hidden">
+            <button type="submit">Borrar usuario</button>
+        </form>
+
+
+        <form id="signInForm">
+            <h1>Registrate</h1>
             <input type="text" id="name" placeholder="Nombre" required>
             <input type="email"  id="email" placeholder="Correo electronico" required>
             <button type="submit">Registrarse</button>
         </form>
-        <form id="logIn">
-            <h1>Log In</h1>
+        <form id="logInForm">
+            <h1>Iniciar Sesion</h1>
             <input type="text" id="logName" placeholder="Nombre" required>
             <input type="email"  id="logEmail" placeholder="Correo electronico" required>
             <button type="submit">Iniciar Sesion</button>
         </form>
-        <p id="signInOk" class="hidden">Te has registrado correctamente!</p>
-        <p id="logInOk" class="hidden">Has iniciado Sension correctamente!</p>
-        <p id="logInFail" class="hidden">El usuario no existe!</p>
+        
+        
 
 
 
