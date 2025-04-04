@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/styles.desktop.css">
     <link rel="stylesheet" href="css/styles.mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <title>Proyecto App Crossfit</title>
     <script type="module" src="./js/index.js"></script>
 </head>
+
 <body>
     <header>
         <p id="logInOk" class="hidden">Has iniciado Sension correctamente!</p>
@@ -20,13 +22,13 @@
     </header>
     <main>
 
-        <form id="myAccount" class="hidden">
+        <form id="my-account" class="hidden">
             <h1>Bienvenido</h1>
-            <button><a href="user.html">Ir a mi cuenta </a></button>
+            <button><a href="profile.html">Ir a mi cuenta </a></button>
         </form>
 
         <form id="logOut" class="hidden">
-        <button type="submit">Cerrar sesion</button>
+            <button type="submit">Cerrar sesion</button>
         </form>
 
         <form id="signOut" class="hidden">
@@ -37,21 +39,35 @@
         <form id="signInForm">
             <h1>Registrate</h1>
             <input type="text" id="name" placeholder="Nombre" required>
-            <input type="email"  id="email" placeholder="Correo electronico" required>
+            <input type="email" id="email" placeholder="Correo electronico" required>
             <button type="submit">Registrarse</button>
         </form>
         <form id="logInForm">
             <h1>Iniciar Sesion</h1>
             <input type="text" id="logName" placeholder="Nombre" required>
-            <input type="email"  id="logEmail" placeholder="Correo electronico" required>
-            <button type="submit">Iniciar Sesion</button>
+            <input type="email" id="logEmail" placeholder="Correo electronico" required>
+            <button type="submit" >Iniciar Sesion</button>
         </form>
-        
-        
+
+        <h1>Marcas Personales</h1>
+        <form id="saveResults">
+            <input type="text" id="benchpress" placeholder="Press banca">
+            <input type="text" id="deadlift" placeholder="Peso Muerto">
+            <input type="text" id="backsquat" placeholder="Back Squat">
+            <input type="text" id="frontsquat" placeholder="frontsquat">
+            <input type="text" id="snatch" placeholder="Snatch">
+            <input type="text" id="cleanjerk" placeholder="cleanjerk">
+            <input type="text" id="powerclean" placeholder="powerclean">
+            <input type="text" id="squatclean" placeholder="squatclean">
+            <input type="text" id="shpress" placeholder="shpress">
+            <input type="text" id="pushpress" placeholder="pushpress">
+            <button type="submit">Guardar datos</button>
+        </form>
 
 
 
     </main>
 
 </body>
+
 </html>

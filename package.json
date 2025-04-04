@@ -1,0 +1,38 @@
+{
+  "name": "neoland-bootcamp",
+  "version": "1.0.0",
+  "description": "proyecto de practicas Neoland",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "docs": "jsdoc ./src -r"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jubeda93/neoland-bootcamp.git"
+  },
+  "keywords": [
+    "js",
+    "css",
+    "html"
+  ],
+  "author": "@javi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jubeda93/neoland-bootcamp/issues"
+  },
+  "homepage": "https://github.com/jubeda93/neoland-bootcamp#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@eslint/js": "^9.23.0",
+    "commitlint": "^19.8.0",
+    "eslint": "^9.23.0",
+    "globals": "^16.0.0",
+    "jsdoc": "^4.0.4",
+    "stylelint": "^16.17.0",
+    "stylelint-config-standard": "^37.0.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.29.0"
+  }
+}

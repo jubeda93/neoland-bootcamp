@@ -1,4 +1,11 @@
-# neoland-bootcamp
+# COMANDOS DEL PROYECTO
 
-**Hola mundo**
-***Hola mundo***
+```bash
+npm run test
+```
+
+## EJECUTAR JS DOC
+
+```bash
+npm run docs
+```
