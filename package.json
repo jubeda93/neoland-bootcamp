@@ -2,7 +2,7 @@
   "name": "neoland-bootcamp",
   "version": "1.0.0",
   "description": "proyecto de practicas Neoland",
-  "main": "index.js",
+  "main": "logIn.js",
   "scripts": {
     "test": "test",
     "docs": "jsdoc ./src -r"

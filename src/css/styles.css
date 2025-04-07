@@ -1,7 +1,75 @@
 
-
+/** ESTILOS LETRAS, COLORES, FONDOS  */
 
 html{ 
-    background-color: rgb(83 76 67);
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(22 43 49);
+
+    .hidden {
+      display: none;
+}
+}
+
+header {
+   color: rgb(233 157 15);
+   
+   &#topper {
+      background-color: rgb(233 234 235);
+      
+   
+   }
+
+   p {
+      border-bottom: 2px solid;
+      width: 100%
+   }
+}
+
+a { 
+   color: black;
+}
+
+button {
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   background-color: rgb(255 172 17);
+   border-radius: 6px;  
+   font-weight: bold; 
+}
+
+
+#register-form{
+   border: 2px black solid;
+
+   input{
+      border-style:double;
+      border-color: grey;
+      border-radius: 6px;
+   }
+
+   /* button {
+      background-color: rgb(255 172 17);
+      border-radius: 6px;   
+   } */
+}
+
+#saveResults {
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   border: 2px black solid;
+
+   input{
+      border-style:double;
+      border-color: grey;
+      border-radius: 6px;
+   
+   }
+
+   /* button {
+      background-color: rgb(255 172 17);
+      border-radius: 6px;   
+   } */
 
 }
+
+
+
+

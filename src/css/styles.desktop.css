@@ -1,1 +1,91 @@
 /** */
+
+
+header {
+    width: 440px; 
+
+    &#topper {
+        width:100% ;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center; 
+
+        h2{
+            padding: 10px;
+        }
+        
+     }
+}
+
+body {
+    text-align: center;
+    justify-items: center;
+    
+    &#imgFondo{
+        width: 100%;
+    }
+}
+
+button {
+    height: 2.3em;
+    width: 12em;
+    margin: 0.5em;
+}
+
+#register-form {
+    padding: 20px;
+    background-color: rgb(246 248 247);
+    width: 25em;
+    line-height: 1.5em;
+    text-align: center;
+    justify-items: center;
+
+    
+
+    #signIn {
+        align-items: center;
+        width: 20em;
+
+        input {
+            width: 20em;
+            margin: 0.2em;
+            height: 2em;
+            text-align: center;
+        }
+    }
+
+    #logIn {
+        align-items: center;
+        width: 20em;
+
+        input {
+            width: 20em;
+            margin: 0.2em;
+            height: 2em;
+            text-align: center;
+
+        }
+    }
+
+
+}
+
+#saveResults{
+    padding: 20px;
+    background-color: rgb(246 248 247);
+    width: 25em;
+    line-height: 1.5em;
+    text-align: center;
+
+    input {
+        text-align: center;
+        margin: 0.2em;
+    }
+
+    button {
+        height: 2em;
+        width: 12em;
+        margin: 0.5em;
+    }
+
+}
