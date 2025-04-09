@@ -32,6 +32,24 @@ button {
     margin: 0.5em;
 }
 
+#userDataForm {
+    padding: 20px;
+    background-color: rgb(246 248 247);
+    width: 25em;
+    line-height: 1.5em;
+    text-align: center;
+    justify-items: center;
+
+    input {
+        width: 12em;
+            margin: 0.2em;
+            height: 2em;
+            text-align: center;
+    }
+
+}
+
+
 #register-form {
     padding: 20px;
     background-color: rgb(246 248 247);

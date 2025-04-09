@@ -1,6 +1,5 @@
 //@ts-check
-
-// import { User } from "./classes/User.js"
+//import { User } from "./classes/User.js"
 import { store } from "./store/redux.js"
 import { DataProfile } from "./classes/DataProfile.js"
 
@@ -10,7 +9,7 @@ function onDOMContentLoaded() {
 
     let changeUserEmail = document.getElementById('changeEmail')
     let changeUserPass = document.getElementById('changePass')
-    let saveData = document.getElementById('updateProfile')
+    let saveData = document.getElementById('userDataForm')
 
     changeUserEmail?.addEventListener('submit', changeEmail)
     changeUserPass?.addEventListener('submit', changePass)
@@ -20,48 +19,7 @@ function onDOMContentLoaded() {
 
 }
 
-function changeEmail(event) {
-    event.preventDefault()
-
-    let userLogged = JSON.parse(/** @type {string} */(sessionStorage.getItem('user')))
-
-    let emailOldDoc = document.getElementById('emailUserOld')
-    let emailOld = /**@type {HTMLInputElement} */ (emailOldDoc)?.value
-    if (userLogged.email === emailOld) {
-        let emailNewDoc = document.getElementById('emailUserNew')
-        let emailNew = /**@type {HTMLInputElement} */ (emailNewDoc)?.value
-        userLogged.email = emailNew
-        sessionStorage.setItem('user', JSON.stringify(userLogged))
-        store.user.update(userLogged)
-        alert('Email modificado correctamente!')
-        updateUserDB()
-    } else {
-        alert('Este Email no coincide con el del usuario..')
-    }
-
-}
-function changePass(event) {
-    event.preventDefault()
-
-    let userLogged = JSON.parse(/** @type {string} */(sessionStorage.getItem('user')))
-    let passOldDoc = document.getElementById('passwordOld')
-    let passOld = /**@type {HTMLInputElement} */ (passOldDoc)?.value
-    if (userLogged.password === passOld) {
-        let passwordNewDoc = document.getElementById('passwordNew')
-        let passNew = /**@type {HTMLInputElement} */ (passwordNewDoc)?.value
-        userLogged.password = passNew
-        sessionStorage.setItem('user', JSON.stringify(userLogged))
-        store.user.update(userLogged)
-        updateUserDB()
-        alert('Contraseña modificada correctamente!')
-    } else {
-        alert('La contraseña no coincide con la actual')
-    }
-
-}
-
 //======= FUNCION DONDE ACTUALIZAMOS LOS DATOS DE PERFIL DEL USUARIO =======//
-
 
 function saveDataProfile(event) {
     event.preventDefault()
@@ -98,6 +56,49 @@ function saveDataProfile(event) {
     updateUserDB()
 
 }
+
+
+
+function changeEmail(event) {
+    event.preventDefault()
+
+    let userLogged = JSON.parse(/** @type {string} */(sessionStorage.getItem('user')))
+    let emailOldDoc = document.getElementById('emailUserOld')
+    let emailOld = /**@type {HTMLInputElement} */ (emailOldDoc)?.value
+    if (userLogged.email === emailOld) {
+        let emailNewDoc = document.getElementById('emailUserNew')
+        let emailNew = /**@type {HTMLInputElement} */ (emailNewDoc)?.value
+        userLogged.email = emailNew
+        sessionStorage.setItem('user', JSON.stringify(userLogged))
+        store.user.update(userLogged)
+        alert('Email modificado correctamente!')
+        updateUserDB()
+    } else {
+        alert('Este Email no coincide con el del usuario..')
+    }
+
+}
+function changePass(event) {
+    event.preventDefault()
+
+    let userLogged = JSON.parse(/** @type {string} */(sessionStorage.getItem('user')))
+    let passOldDoc = document.getElementById('passwordOld')
+    let passOld = /**@type {HTMLInputElement} */ (passOldDoc)?.value
+    if (userLogged.password === passOld) {
+        let passwordNewDoc = document.getElementById('passwordNew')
+        let passNew = /**@type {HTMLInputElement} */ (passwordNewDoc)?.value
+        userLogged.password = passNew
+        sessionStorage.setItem('user', JSON.stringify(userLogged))
+        store.user.update(userLogged)
+        updateUserDB()
+        alert('Contraseña modificada correctamente!')
+    } else {
+        alert('La contraseña no coincide con la actual')
+    }
+
+}
+
+
 
 function updateUserDB() {
     let localStoredString = localStorage.getItem('REDUX_DB')

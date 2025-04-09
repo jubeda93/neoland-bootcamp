@@ -1,6 +1,6 @@
 // @ts-check
-/** @import { User } from '../User.js' */
-/** @import { Results } from '../Results.js' */
+/** @import { User } from '../classes/User.js' */
+/** @import { Results } from '../classes/Results.js'* /
 
 
 /**

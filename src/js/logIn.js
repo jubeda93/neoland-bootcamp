@@ -1,8 +1,8 @@
 //@ts-check
 
-import { User } from "./User.js"
+import { User } from "./classes/User.js"
 import { INITIAL_STATE, store } from "./store/redux.js"
-import { Results } from "./Results.js"
+import { Results } from "./classes/Results.js"
 
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 
@@ -43,7 +43,7 @@ function funSignIn(event) {
     let email = /**@type {HTMLInputElement} */(emailElement)?.value
     let passwordElement = document.getElementById('signInPassword')
     let password = /**@type {HTMLInputElement} */(passwordElement)?.value
-    let newUser = new User(name, email, undefined ,undefined ,password,undefined)
+    let newUser = new User(email,password,undefined, undefined ,undefined ,undefined)
     // console.log('busco en la BBDD el email ' + email, store.user.getByEmail?.(email))
     if (store.user.getByEmail?.(email) !== undefined) {
         document.getElementById('signInFail')?.classList.remove('hidden')
@@ -86,20 +86,20 @@ function funLogIn(event) {
 
     // Buscamos si el usuario ya existe en la DDBB  (se podria hacer con _id?!?!)
     // buscamos por .find no .findIndex
-    let userRegistred = store.user.getAll().find(( /** @type User */user) => user.name === name && user.email === email && user.password === password)
+    let userRegistred = store.user.getAll().find(( /** @type User */user) => user.email === email && user.password === password)
     console.log('Ha iniciado session: ', userRegistred, name, email,password)
 
     if (userRegistred !== undefined) {
         console.log('Inicio sesion User ID:', userRegistred._id)
         let userFromREDUX = store.user.getById?.(userRegistred._id)
         sessionStorage.setItem('user', JSON.stringify(userFromREDUX))
-
         document.getElementById('logInOk')?.classList.remove('hidden')
         document.getElementById('signIn')?.classList.add('hidden')
         document.getElementById('logIn')?.classList.add('hidden')
         document.getElementById('saveResults')?.classList.remove('hidden')
         document.getElementById('register-form')?.classList.add('hidden')
         document.getElementById('myAccount')?.classList.remove('hidden')
+        location.href = "./mainMenu.html"
         setTimeout(() => {
             document.getElementById('logInOk')?.classList.add('hidden')
         }, 4000)
@@ -120,7 +120,6 @@ function funLogIn(event) {
  */
 function funLogOut(event) {
     event.preventDefault()
-
     sessionStorage.removeItem('user')
     location.href = "./logIn.html"
 }
@@ -155,9 +154,9 @@ function checkLogIn() {
         document.getElementById('saveResults')?.classList.remove('hidden')
         document.getElementById('register-form')?.classList.add('hidden')
         document.getElementById('myAccount')?.classList.remove('hidden')
-    } else if (location.pathname !== '/logIn.html') {
+    } else if (location.pathname !== '/mainMenu.html') {
         // Redirigimos a la home si el usuario no está identificado
-        location.href = '/logIn.html'
+        
     }
 
 }
@@ -214,7 +213,6 @@ function saveResults(event) {
     updateUserDB()
 }
 
-//console.log('Guardando marcas',userRegistred)
 
 /**
  * Updates the local storage with the latest state of the store's User array.

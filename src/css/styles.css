@@ -36,6 +36,16 @@ button {
    font-weight: bold; 
 }
 
+#userDataForm {
+   border: 2px black solid;
+
+   input{
+      border-style:double;
+      border-color: grey;
+      border-radius: 6px;
+   }
+}
+   
 
 #register-form{
    border: 2px black solid;
