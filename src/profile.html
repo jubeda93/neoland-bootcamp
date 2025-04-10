@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/styles.desktop.css">
     <link rel="stylesheet" href="css/styles.mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
     <title>My Perfil</title>
     <script type="module" src="./js/logIn.js"></script>
     <script type="module" src="./js/profile.js"></script>
@@ -15,11 +18,19 @@
 
 <body>
     <header>
-        <h1>NOMBRE DE LA WEB</h1>
         <h1>NOMBRE DEL BOX</h1>
     </header>
 
-    <h1>WORK IN PROGRESS.....</h1>
+    <nav id="navMenu">
+        <menu id="menuHorizontal">
+            <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
+            <ul id="booking"><a href="booking.html">Reservar</a></ul>
+            <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
+            <ul id="results"><a href="results.html">My Results</a></ul>
+            <ul id="mensaje"><a href="mensajes.html">Mensajes</a></ul>
+            <ul id="pagos"><a href="payment.html">Pagos</a></li>
+        </menu>
+    </nav>
 
     <form id="userDataForm">
         <h1>Datos personales:</h1>
@@ -30,13 +41,14 @@
         <input type="text" id="adress" placeholder="Direccion">
         <input type="text" id="postalCode" placeholder="Codigo Postal">
         <input type="text" id="nameEmerg" placeholder="Numero de Emergencia">
-        <input type="text" id="phoneEmerg" placeholder="Contacto de Emergencia">
+        <input type="text" id="phoneEmerg" placeholder="Contacto de Emergencia"><br>
         <button type="submit">Guardar</button>
     </form>
 
-        <h1>Datos del usuario:</h1>
+    <div class="userChanges">
+    <h1>Panel control usuario:</h1>
     <form id="changeEmail">
-        <p>Estos cambios afectaran al inicio de sesion del usuario</p>
+        <p>Estos cambios pueden afectar al inicio de sesion.</p>
         <p>Cambiar Email:</p>
         <input type="email" id="emailUserOld" placeholder="Email actual">
         <input type="email" id="emailUserNew" placeholder="Nuevo email">
@@ -48,6 +60,12 @@
         <input type="password" id="passwordNew" placeholder="Nueva contraseña">
         <button type="submit" id="changePass">Cambiar Email</button>
     </form>
+
+    <form id="signOut">
+        <button type="submit">Borrar Usuario</button>
+    </form>
+    </div>
+
 
 
 

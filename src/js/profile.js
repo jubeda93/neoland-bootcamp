@@ -2,6 +2,7 @@
 //import { User } from "./classes/User.js"
 import { store } from "./store/redux.js"
 import { DataProfile } from "./classes/DataProfile.js"
+import { Metrics } from "./classes/Metrics.js"
 
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 
@@ -10,11 +11,13 @@ function onDOMContentLoaded() {
     let changeUserEmail = document.getElementById('changeEmail')
     let changeUserPass = document.getElementById('changePass')
     let saveData = document.getElementById('userDataForm')
+    let userMetricsForm = document.getElementById('userMetricsForm')
 
     changeUserEmail?.addEventListener('submit', changeEmail)
     changeUserPass?.addEventListener('submit', changePass)
     saveData?.addEventListener('submit', saveDataProfile)
-
+    userMetricsForm?.addEventListener('submit', saveMetrics)    
+    
     updateUserDB()
 
 }
@@ -95,6 +98,47 @@ function changePass(event) {
     } else {
         alert('La contraseña no coincide con la actual')
     }
+
+}
+
+function saveMetrics(event) {
+    event.preventDefault()
+    let dateSave = document.getElementById('date')
+    let date = /**@type {HTMLInputElement} */(dateSave)?.value
+    let pesoUser = document.getElementById('peso')
+    let peso = /**@type {HTMLInputElement} */(pesoUser)?.value
+    let imcUser = document.getElementById('imc')
+    let imc = /**@type {HTMLInputElement} */(imcUser)?.value
+    let grasaUser = document.getElementById('grasa')
+    let grasa = /**@type {HTMLInputElement} */(grasaUser)?.value
+    let liquidoUser = document.getElementById('liquido')
+    let liquido = /**@type {HTMLInputElement} */(liquidoUser)?.value
+    let gastokcalUser = document.getElementById('gastokcal')
+    let gastokcal = /**@type {HTMLInputElement} */(gastokcalUser)?.value   
+    let brazoDerUser = document.getElementById('brazoDer')
+    let brazoDer = /**@type {HTMLInputElement} */(brazoDerUser)?.value
+    let brazoIzqUser = document.getElementById('brazoIzq')
+    let brazoIzq = /**@type {HTMLInputElement} */(brazoIzqUser)?.value
+    let toraxUser = document.getElementById('torax')
+    let torax = /**@type {HTMLInputElement} */(toraxUser)?.value
+    let cinturaUser = document.getElementById('cintura')    
+    let cintura = /**@type {HTMLInputElement} */(cinturaUser)?.value
+    let cuadricepsUser = document.getElementById('cuadriceps')
+    let cuadriceps = /**@type {HTMLInputElement} */(cuadricepsUser)?.value
+    let freqMediaUser = document.getElementById('freqMedia')
+    let freqMedia = /**@type {HTMLInputElement} */(freqMediaUser)?.value    
+    let freqMaxUser = document.getElementById('freqMax')
+    let freqMax = /**@type {HTMLInputElement} */(freqMaxUser)?.value
+    let freqBasalUser = document.getElementById('freqBasal')
+    let freqBasal = /**@type {HTMLInputElement} */(freqBasalUser)?.value
+
+
+    let userLogged = JSON.parse(/** @type {string} */(sessionStorage.getItem('user')))
+    let newMetrics = new Metrics(peso,imc,grasa,liquido,gastokcal,brazoDer,brazoIzq,torax,cintura,cuadriceps,freqMedia,freqMax,freqBasal)
+    userLogged.metrics = newMetrics
+    sessionStorage.setItem('user', JSON.stringify(userLogged))
+    store.user.update(userLogged)
+    updateUserDB()
 
 }
 

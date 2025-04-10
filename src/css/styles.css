@@ -1,22 +1,27 @@
-
 /** ESTILOS LETRAS, COLORES, FONDOS  */
 
-html{ 
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(22 43 49);
+html {
+   font-family: montserrat;
+   background-color: rgb(22 43 49);
+  
 
-    .hidden {
+
+   .hidden {
       display: none;
-}
+   }
 }
 
 header {
    color: rgb(233 157 15);
-   
+
+   h1 {
+      font-size: 40px;
+   }
+
    &#topper {
       background-color: rgb(233 234 235);
-      
-   
+
+
    }
 
    p {
@@ -25,61 +30,54 @@ header {
    }
 }
 
-a { 
+a {
    color: black;
 }
 
 button {
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
    background-color: rgb(255 172 17);
-   border-radius: 6px;  
-   font-weight: bold; 
+   border-radius: 6px;
+   font-weight: bold;
 }
 
-#userDataForm {
-   border: 2px black solid;
+body {
 
-   input{
-      border-style:double;
-      border-color: grey;
-      border-radius: 6px;
-   }
-}
-   
-
-#register-form{
-   border: 2px black solid;
-
-   input{
-      border-style:double;
-      border-color: grey;
-      border-radius: 6px;
+   h1 {
+      font-size: 40px;
+      color: chocolate;
    }
 
-   /* button {
-      background-color: rgb(255 172 17);
-      border-radius: 6px;   
-   } */
-}
-
-#saveResults {
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-   border: 2px black solid;
-
-   input{
-      border-style:double;
-      border-color: grey;
-      border-radius: 6px;
-   
+   #menuHorizontal {
+      background-color: rgb(233 234 235);
    }
 
-   /* button {
-      background-color: rgb(255 172 17);
-      border-radius: 6px;   
-   } */
+   #navMenu{
 
+      #menuHorizontal{
+         border: 2px solid;
+         border-color: chocolate;
+         border-radius: 10px;
+      }
+
+   }
+
+   #userDataForm {
+      background-color: rgb(246 248 247);
+      
+   }
+
+   .userChanges {
+      background-color: rgb(233 234 235);
+
+   }
+
+   form {
+
+      input {
+         border-style: double;
+         border-color: grey;
+         border-radius: 6px;
+
+      }
+   }
 }
-
-
-
-

@@ -17,7 +17,7 @@ function onDOMContentLoaded() {
 
     signIn?.addEventListener('submit', funSignIn)
     logIn?.addEventListener('submit', funLogIn)
-    logOut?.addEventListener('submit', funLogOut)
+    logOut?.addEventListener('click', funLogOut)
     signOut?.addEventListener('submit', funSignOut)
     saveMarks?.addEventListener('submit', saveResults)
     readUserDB()
@@ -35,10 +35,6 @@ function onDOMContentLoaded() {
 function funSignIn(event) {
     event.preventDefault()
 
-    //TODO: AÑADIR CAMPO DE PASSWORD Y LO AÑADA AL NEW USER
-
-    let nameElement = document.getElementById('signInName')
-    let name = /**@type {HTMLInputElement} */(nameElement)?.value
     let emailElement = document.getElementById('signInEmail')
     let email = /**@type {HTMLInputElement} */(emailElement)?.value
     let passwordElement = document.getElementById('signInPassword')
@@ -61,7 +57,6 @@ function funSignIn(event) {
 
 }
 
-
 /**
  * Handles the login form submission, prevents the default form behavior,
  * retrieves user input values, checks if a user exists in the store,
@@ -72,23 +67,16 @@ function funSignIn(event) {
  */
 
 
-//TODO. AÑADIR CAMPO DE PASSWORD Y COMPROBAR QUE COINCIDE CON LOS DATOS DE LOS STORE
-
 
 function funLogIn(event) {
     event.preventDefault()
-    let nameElement = document.getElementById('logInName')
-    let name = /**@type {HTMLInputElement} */(nameElement)?.value
     let emailElement = document.getElementById('logInEmail')
     let email = /**@type {HTMLInputElement} */(emailElement)?.value
     let passwordElement = document.getElementById('logInPassword')
     let password = /**@type {HTMLInputElement} */(passwordElement)?.value
 
-    // Buscamos si el usuario ya existe en la DDBB  (se podria hacer con _id?!?!)
-    // buscamos por .find no .findIndex
     let userRegistred = store.user.getAll().find(( /** @type User */user) => user.email === email && user.password === password)
-    console.log('Ha iniciado session: ', userRegistred, name, email,password)
-
+    
     if (userRegistred !== undefined) {
         console.log('Inicio sesion User ID:', userRegistred._id)
         let userFromREDUX = store.user.getById?.(userRegistred._id)
@@ -121,7 +109,7 @@ function funLogIn(event) {
 function funLogOut(event) {
     event.preventDefault()
     sessionStorage.removeItem('user')
-    location.href = "./logIn.html"
+    location.href = "./index.html"
 }
 
 /**
@@ -142,7 +130,7 @@ function funSignOut(event) {
         console.log('Compruebo que esté borrado el usuario', store.user.getAll())
         sessionStorage.removeItem('user') // Eliminar del sessionStorage
         updateUserDB() // Actualizar la base de datos de usuarios en localStorage
-        location.href = "./login.html"
+        location.href = "./index.html"
     }
 }
 
@@ -153,7 +141,6 @@ function checkLogIn() {
         document.getElementById('logIn')?.classList.add('hidden')
         document.getElementById('saveResults')?.classList.remove('hidden')
         document.getElementById('register-form')?.classList.add('hidden')
-        document.getElementById('myAccount')?.classList.remove('hidden')
     } else if (location.pathname !== '/mainMenu.html') {
         // Redirigimos a la home si el usuario no está identificado
         
@@ -212,7 +199,6 @@ function saveResults(event) {
 
     updateUserDB()
 }
-
 
 /**
  * Updates the local storage with the latest state of the store's User array.

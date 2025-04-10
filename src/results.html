@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +5,27 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/styles.desktop.css">
     <link rel="stylesheet" href="css/styles.mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <title>My Perfil</title>
     <script type="module" src="./js/logIn.js"></script>
-    <title>My results</title>
+    <script type="module" src="./js/profile.js"></script>
 </head>
+
 <body>
+
+    <nav id="navMenu">
+        <menu id="menuHorizontal">
+            <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
+            <ul id="booking"><a href="booking.html">Reservar</a></ul>
+            <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
+            <ul id="results"><a href="results.html">My Results</a></ul>
+            <ul id="mensaje"><a href="mensajes.html">Mensajes</a></ul>
+            <ul id="pagos"><a href="payment.html">Pagos</a></li>
+        </menu>
+    </nav>
+    
     <form id="saveResults" >
         <h1>Marcas Personales</h1>
         <input type="text" id="benchpress" placeholder="Press banca">
