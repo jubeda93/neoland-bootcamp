@@ -4,6 +4,7 @@
   "description": "proyecto de practicas Neoland",
   "main": "logIn.js",
   "scripts": {
+    "server:basic:start" : "node --env-file=.env --watch server/index.js",
     "test": "test",
     "docs": "jsdoc ./src -r"
   },
