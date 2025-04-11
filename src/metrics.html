@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="css/styles.mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+        rel="stylesheet">
     <title>My Perfil</title>
     <script type="module" src="./js/logIn.js"></script>
     <script type="module" src="./js/profile.js"></script>
@@ -24,6 +26,7 @@
     <nav id="navMenu">
         <menu id="menuHorizontal">
             <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
+            <ul id="profile"><a href="profile.html">My perfil</a></ul>
             <ul id="booking"><a href="booking.html">Reservar</a></ul>
             <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
             <ul id="results"><a href="results.html">My Results</a></ul>
@@ -37,34 +40,61 @@
 
 <form id="userMetricsForm">
     <h1>Mis mediciones:</h1>
-    <h3>Fecha:</h3>
-    <input type="date">
-    <h3>Peso</h3>
-    <input type="text" id="peso" placeholder="Peso">
-    <h3>IMC</h3>
-    <input type="text" id="imc" placeholder="IMC">
-    <h3>% Grasa</h3>
-    <input type="text" id="grasa" placeholder="% Grasa">
-    <h3>% Liquido</h3>
-    <input type="text" id="liquido" placeholder="% Liquido">
-    <h3>Gasto calórico</h3>
-    <input type="text" id="gastoKcal" placeholder="Gasto kcal">
-    <h3>Brazo derecho</h3>
-    <input type="text" id="brazoder" placeholder="Brazo derecho">
-    <h3>Brazo izquierdo</h3>
-    <input type="text" id="brazoIzq" placeholder="Brazo izquierdo">
-    <h3>Tórax</h3>
-    <input type="text" id="torax" placeholder="Tórax">
-    <h3>Cintura</h3>
-    <input type="text" id="cintura" placeholder="Cintura">
-    <h3>Cuadriceps</h3>
-    <input type="text" id="cuadriceps" placeholder="Cuadriceps">
-    <h3>Freq. cardiaca media</h3>
-    <input type="text" id="freqMedia" placeholder="Freq. cardiaca media">
-    <h3>Freq. cardiaca maxima</h3>
-    <input type="text" id="freqMax" placeholder="Freq. cardiaca maxima">
-    <h3>Freq. cardiaca basal(reposo)</h3>
-    <input type="text" id="freqBasal" placeholder="Freq. cardiaca basal">
+    <!-- <h3>Fecha:</h3>
+    <input type="date"> -->
+    <section class="metrics">
+        <h3>Peso</h3>
+        <input type="text" id="peso" placeholder="Peso">
+    </section>
+    <section class="metrics">
+        <h3>IMC</h3>
+        <input type="text" id="imc" placeholder="IMC">
+    </section>
+    <section class="metrics">
+        <h3>% Grasa</h3>
+        <input type="text" id="grasa" placeholder="% Grasa">
+    </section>
+    <section class="metrics">
+        <h3>% Liquido</h3>
+        <input type="text" id="liquido" placeholder="% Liquido">
+    </section>
+    <section class="metrics">
+        <h3>Gasto calórico</h3>
+        <input type="text" id="gastoKcal" placeholder="Gasto kcal">
+    </section>
+    <section class="metrics">
+        <h3>Brazo derecho</h3>
+        <input type="text" id="brazoder" placeholder="Brazo derecho">
+    </section>
+    <section class="metrics">
+        <h3>Brazo izquierdo</h3>
+        <input type="text" id="brazoIzq" placeholder="Brazo izquierdo">
+    </section>
+    <section class="metrics">
+        <h3>Tórax</h3>
+        <input type="text" id="torax" placeholder="Tórax">
+    </section>
+    <section class="metrics">
+        <h3>Cintura</h3>
+        <input type="text" id="cintura" placeholder="Cintura">
+    </section>
+    <section class="metrics">
+        <h3>Cuadriceps</h3>
+        <input type="text" id="cuadriceps" placeholder="Cuadriceps">
+    </section>
+    <section class="metrics">
+        <h3>Freq. cardiaca media</h3>
+        <input type="text" id="freqMedia" placeholder="Freq. cardiaca media">
+    </section>
+    <section class="metrics">
+        <h3>Freq. cardiaca maxima</h3>
+        <input type="text" id="freqMax" placeholder="Freq. cardiaca maxima">
+    </section>
+    <section class="metrics">
+        <h3>Freq. cardiaca basal(reposo)</h3>
+        <input type="text" id="freqBasal" placeholder="Freq. cardiaca basal">
+    </section>
+
     <button type="submit">Guardar</button>
 </form>
 

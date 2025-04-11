@@ -2,9 +2,10 @@
   "name": "neoland-bootcamp",
   "version": "1.0.0",
   "description": "proyecto de practicas Neoland",
-  "main": "logIn.js",
+  "main": "server/server.basic.js",
+  "type": "module",
   "scripts": {
-    "server:basic:start" : "node --env-file=.env --watch server/index.js",
+    "server:basic:start" : "node --env-file=.env --watch server/server.basic.js",
     "test": "test",
     "docs": "jsdoc ./src -r"
   },

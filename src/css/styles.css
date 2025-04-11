@@ -58,7 +58,12 @@ body {
          border-color: chocolate;
          border-radius: 10px;
       }
+      
+   }
 
+   #userMetricsForm {
+      background-color: rgb(246 248 247);
+      
    }
 
    #userDataForm {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,79 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/styles.desktop.css">
     <link rel="stylesheet" href="css/styles.mobile.css">
-    <title>Pruebas LogIn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+        rel="stylesheet">
+    <title>My Perfil</title>
     <script type="module" src="./js/logIn.js"></script>
+    <script type="module" src="./js/profile.js"></script>
 </head>
+
 <body>
     <header>
-    <p id="signInOk" class="hidden">Te has registrado correctamente!</p>
-    <p id="signInFail" class="hidden">El usuario ya esta registrado!</p>
-    <p id="logInOk" class="hidden">Iniciando sesión...</p>
-    <p id="logInFail" class="hidden">El usuario no existe!</p>
+        <p id="signInOk" class="hidden">Te has registrado correctamente!</p>
+        <p id="signInFail" class="hidden">El usuario ya esta registrado!</p>
+        <p id="logInOk" class="hidden">Iniciando sesión...</p>
+        <p id="logInFail" class="hidden">El usuario no existe!</p>
     </header>
 
-<div id="register-form">
-    <form id="signIn">
-        <h1>Formulario registro:</h1>
-        <input type="email" id="signInEmail" placeholder="Email Usuario" required>
-        <input type="password" id="signInPassword" placeholder="Password" required>
-        <button type="submit"> Registrarse</button>
-    </form>
+    <section>
+        <p>! Si eres administrador de un centro, haz click aqui !</p>
+        <button id="panelAdmin">Panel administrador</button>
+    </section>
 
-    <form id="logIn">
-        <form id="LogIn">
-        <input type="email" id="logInEmail" placeholder="Email Usuario" required>
-        <input type="password" id="logInPassword" placeholder="Password" required>
-        <button type="submit"> Iniciar sesion</button>
-    </form>
-</div>
+    <section>
+        <p>! Si eres usuario de algunos de nuestros centros, haz click aqui !</p>
+        <button>Panel usuario</button>
+    </section>
+
+    <section  id="signInAdminForm" class="">
+        <form id="logIn">
+            <form id="LogIn">
+                <h1>Iniciar sesion como administrador:</h1>
+                <input type="email" id="logInEmail" placeholder="Email Usuario" required>
+                <input type="password" id="logInPassword" placeholder="Password" required>
+                <button type="submit"> Iniciar sesion</button>
+                <p>Todavia no tienes cuenta con nosotros?</p>
+                <button id="panelAdminLogIn">Registrarse</button>
+            </form>
+
+            <form id="signIn" class="">
+                <h1>Formulario registro administrador:</h1>
+                <p>Rellena los siguientes campos de datos para dar de alta tu centro:</p>
+                <input type="email" id="signInEmail" placeholder="Email" required>
+                <input type="password" id="signInPassword" placeholder="Password" required>
+                <input type="text" id="boxName" placeholder="Nombre del centro" required>
+                <input type="text" id="cif" placeholder="CIF/DNI" required>
+                <input type="text" id="socialAdress" placeholder="Domicilio Social" required>
+                <input type="text" id="boxPhone" placeholder="Numero de telefono" required>
+                <input type="text" id="municipio" placeholder="Municipio">
+                <input type="text" id="provincia" placeholder="Provincia">
+                <button type="submit"> Registrarse</button>
+            </form>
+
+    </section>
+
+
+    <section  id="signInUserForm" class="hidden">
+        <form id="signIn">
+            <h1>Formulario registro administrador:</h1>
+            <p>Rellena los siguientes campos de datos para dar de alta tu centro:</p>
+            <input type="email" id="signInEmail" placeholder="Email" required>
+            <input type="password" id="signInPassword" placeholder="Password" required>
+            <input type="text" id="boxCode" placeholder="Codigo Box" required>
+            <button type="submit"> Registrarse</button>
+        </form>
+
+        <form id="logIn">
+            <form id="LogIn">
+                <input type="email" id="logInEmail" placeholder="Email Usuario" required>
+                <input type="password" id="logInPassword" placeholder="Password" required>
+                <button type="submit"> Iniciar sesion</button>
+            </form>
+    </section>
 
     <form id="logOut" class="hidden">
         <button type="submit">Cerrar sesion</button>
@@ -45,4 +93,5 @@
     <button><a href="mainMenu.html">Menu de Inicio</a></button>
 
 </body>
+
 </html>

@@ -56,20 +56,10 @@ body {
             height: 2em;
             text-align: center;
         }
-
     }
-
-
 }
 
-
-button {
-    height: 2.3em;
-    width: 12em;
-    margin: 0.5em;
-}
-
-#userDataForm {
+#userMetricsForm {
     padding: 20px;
     margin: 60px 0px;
     width: 50%;
@@ -84,14 +74,72 @@ button {
         text-align: center;
     }
 
+
+}
+
+button {
+    height: 2.3em;
+    width: 12em;
+    margin: 0.5em;
+}
+
+#userDataForm {
+    padding: 20px;
+    margin: 60px 0px;
+    width: 50%;
+    text-align: center;
+    justify-items: center;
+
+    input {
+        width: 40%;
+        margin: 0.6em;
+        height: 2.5em;
+        text-align: center;
+    }
+
 }
 
 
-#register-form {
+#signInUserForm {
     padding: 20px;
     background-color: rgb(246 248 247);
     width: 25em;
-    line-height: 1.5em;
+    text-align: center;
+    justify-items: center;
+
+
+
+    #signIn {
+        align-items: center;
+        width: 20em;
+
+        input {
+            width: 20em;
+            margin: 0.2em;
+            height: 2em;
+            text-align: center;
+        }
+    }
+
+    #logIn {
+        align-items: center;
+        width: 20em;
+
+        input {
+            width: 20em;
+            margin: 0.2em;
+            height: 2em;
+            text-align: center;
+
+        }
+    }
+
+
+}
+#signInAdminForm {
+    padding: 20px;
+    background-color: rgb(246 248 247);
+    width: 25em;
     text-align: center;
     justify-items: center;
 

@@ -3,6 +3,7 @@
 import { User } from "./classes/User.js"
 import { INITIAL_STATE, store } from "./store/redux.js"
 import { Results } from "./classes/Results.js"
+import { Admin } from "./classes/Admin.js"
 
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 
@@ -13,6 +14,7 @@ function onDOMContentLoaded() {
     let logOut = document.getElementById('logOut')
     let signOut = document.getElementById('signOut')
     let saveMarks = document.getElementById('saveResults')
+    let showLogInAdmin = document.getElementById('panelAdmin')
 
 
     signIn?.addEventListener('submit', funSignIn)
@@ -20,6 +22,7 @@ function onDOMContentLoaded() {
     logOut?.addEventListener('click', funLogOut)
     signOut?.addEventListener('submit', funSignOut)
     saveMarks?.addEventListener('submit', saveResults)
+    showLogInAdmin?.addEventListener('click', showPanelAdmin)
     readUserDB()
     checkLogIn()
     console.log('UsuariosGuardados', store.getState())
@@ -32,6 +35,7 @@ function onDOMContentLoaded() {
  *
  * @param {Event} event - The event object associated with the form submission.
  */
+
 function funSignIn(event) {
     event.preventDefault()
 
@@ -85,7 +89,7 @@ function funLogIn(event) {
         document.getElementById('signIn')?.classList.add('hidden')
         document.getElementById('logIn')?.classList.add('hidden')
         document.getElementById('saveResults')?.classList.remove('hidden')
-        document.getElementById('register-form')?.classList.add('hidden')
+        document.getElementById('signInUserForm')?.classList.add('hidden')
         document.getElementById('myAccount')?.classList.remove('hidden')
         location.href = "./mainMenu.html"
         setTimeout(() => {
@@ -140,16 +144,19 @@ function checkLogIn() {
         document.getElementById('signIn')?.classList.add('hidden')
         document.getElementById('logIn')?.classList.add('hidden')
         document.getElementById('saveResults')?.classList.remove('hidden')
-        document.getElementById('register-form')?.classList.add('hidden')
+        document.getElementById('signInUserForm')?.classList.add('hidden')
     } else if (location.pathname !== '/mainMenu.html') {
         // Redirigimos a la home si el usuario no está identificado
         
     }
 
 }
-//     let storedUser = sessionStorage.getItem('user')
-//     console.log('Estaba iniciada la session:',store.user.getAll)
 
+function showPanelAdmin(event) {
+    event.preventDefault()
+    document.getElementById('signInAdminForm')?.classList.remove('hidden') 
+
+}
 
 
 /**
@@ -182,8 +189,6 @@ function saveResults(event) {
     let shpress = /**@type {HTMLInputElement} */(shpressElement)?.value
     let pushpressElement = document.getElementById('pushpress')
     let pushpress = /**@type {HTMLInputElement} */(pushpressElement)?.value
-
-
 
     if (sessionStorage.getItem('user')) {
         let userRegistred = sessionStorage.getItem('user')
