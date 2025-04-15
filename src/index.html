@@ -12,6 +12,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
     <title>My Perfil</title>
+    <script type="importmap">
+        {
+          "imports": {
+            "classes/User": "./js/classes/User.js",
+            "classes/Admin": "./js/classes/Admin.js",
+            "classes/HttpError": "./js/classes/HttpError.js",
+            "classes/SingletonDB": "./js/classes/SingletonDB.js",
+            "store/redux": "./js/store/redux.js",
+            "lib/simpleFetch": "./js/lib/simpleFetch.js"
+          }
+        }
+      </script>
     <script type="module" src="./js/logIn.js"></script>
     <script type="module" src="./js/profile.js"></script>
 </head>

@@ -1,8 +1,8 @@
 //@ts-check
-//import { User } from "./classes/User.js"
-import { store } from "./store/redux.js"
-import { DataProfile } from "./classes/DataProfile.js"
-import { Metrics } from "./classes/Metrics.js"
+import { User } from "classes/User"
+import { store } from "store/redux"
+import { DataProfile } from "classes/DataProfile"
+import { Metrics } from "classes/Metrics"
 
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 

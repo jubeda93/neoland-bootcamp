@@ -1,4 +1,4 @@
-// /server/index.js
+// /server/server.basic.js
 import * as http from "node:http";
 import * as url from "node:url";
 
@@ -54,13 +54,13 @@ const USUARIOJSON = [
 
 ]
 
-//Direccion solicitada desde del navegador 
+const usersDB = []
 
+//Direccion solicitada desde del navegador 
 http.createServer(function server_onRequest(request, response) {
     let pathname = url.parse(request.url).pathname;
     let direccion = new URL(`http://${process.env.IP ?? 'localhost'}:${process.env.PORT}${request.url}`)
     let responseJSON = {}
-
     const menuNav = `
     <menu>
         <ul><a href="/index">Home</a></ul>
@@ -69,7 +69,6 @@ http.createServer(function server_onRequest(request, response) {
         <ul><a href="/users">Ver usuarios</a></ul>
     </menu>
     `
-
     // Router
     switch (pathname) {
         case '/':
@@ -97,26 +96,24 @@ http.createServer(function server_onRequest(request, response) {
         case '/users.html':
             console.log / ("Ver usuarios solicitado")
             response.writeHead(200, { 'Content-Type': 'text/html' });
-            response.write(JSON.stringify(USUARIOJSON));
+            response.write(JSON.stringify(usersDB));
             break;
         case '/api/get/users':
             response.writeHead(200, { 'Content-Type': 'application/json' });
-            response.write(JSON.stringify(USUARIOJSON));
+            response.write(JSON.stringify(usersDB));
             break;
         case '/api/create/user':
             console.log(`API solicitado: crear usuario ${direccion.searchParams.get('name')}`);
             response.writeHead(200, { 'Content-Type': 'application/json' });
 
             // Simulamos la creacion en BBDD
-            USUARIOJSON.push({
+            usersDB.push({
                 name: direccion.searchParams.get('name'),
-                rol: direccion.searchParams.get('rol'),
-                box: direccion.searchParams.get('box'),
+                
             })
             responseJSON.user = {
                 name: direccion.searchParams.get('name'),
-                rol: direccion.searchParams.get('rol'),
-                box: direccion.searchParams.get('box')
+              
             }
             response.write(JSON.stringify(responseJSON));
             break;

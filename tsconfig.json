@@ -1,13 +1,13 @@
 {
- "include": ["srcOLD/js/**/*.js"],
+ "include": ["src/js/**/*.js"],
   "exclude": ["./**/_hidden/**/*"],
   "compilerOptions": {
     "paths":{
-      "utils/*": ["srcOLD/js/utils/*.js"],
-      "store/*": ["srcOLD/js/store/*.js"],
-      "decorators/*": ["srcOLD/js/decorators/*.js"],
-      "classes/*": ["srcOLD/js/classes/*.js"],
-      "lib/*": ["srcOLD/js/lib/*.js"],
+      "utils/*": ["./src/js/classes/*.js"],
+      "store/*": ["./src/js/store/*.js"],
+      "decorators/*": ["./src/js/decorators/*.js"],
+      "classes/*": ["./src/js/classes/*.js"],
+      "lib/*": ["./src/js/lib/*.js"],
     },
     /* Visit https://aka.ms/tsconfig to read more about this file */
 

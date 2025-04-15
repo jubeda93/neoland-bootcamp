@@ -1,3 +1,4 @@
+// @ts-check
 export class User {
     /** @import {Results} from './Results.js' */
     /** @import {DataProfile} from ./DataProfile.js */

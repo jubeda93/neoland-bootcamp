@@ -14,6 +14,20 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
         rel="stylesheet">
     <title>My Perfil</title>
+    <script type="importmap">
+        {
+          "imports": {
+            "classes/User": "./js/classes/User.js",
+            "classes/Admin": "./js/classes/Admin.js",
+            "classes/HttpError": "./js/classes/HttpError.js",
+            "classes/Results": "./js/classes/Results.js",
+            "classes/DataProfile": "./js/classes/DataProfile.js",
+            "classes/Metrics": "./js/classes/Metrics.js",
+            "store/redux": "./js/store/redux.js",
+            "lib/simpleFetch": "./js/lib/simpleFetch.js"
+          }
+        }
+      </script>
     <script type="module" src="./js/logIn.js"></script>
     <script type="module" src="./js/profile.js"></script>
 </head>
@@ -36,8 +50,8 @@
         <button>Panel usuario</button>
     </section>
 
-    <section  id="signInAdminForm" class="">
-        <form id="logIn">
+    <section id="signInAdminForm" class="">
+        <form>
             <form id="LogIn">
                 <h1>Iniciar sesion como administrador:</h1>
                 <input type="email" id="logInEmail" placeholder="Email Usuario" required>
@@ -52,10 +66,10 @@
                 <p>Rellena los siguientes campos de datos para dar de alta tu centro:</p>
                 <input type="email" id="signInEmail" placeholder="Email" required>
                 <input type="password" id="signInPassword" placeholder="Password" required>
-                <input type="text" id="boxName" placeholder="Nombre del centro" required>
-                <input type="text" id="cif" placeholder="CIF/DNI" required>
-                <input type="text" id="socialAdress" placeholder="Domicilio Social" required>
-                <input type="text" id="boxPhone" placeholder="Numero de telefono" required>
+                <input type="text" id="boxName" placeholder="Nombre del centro">
+                <input type="text" id="cif" placeholder="CIF/DNI">
+                <input type="text" id="socialAdress" placeholder="Domicilio Social">
+                <input type="text" id="boxPhone" placeholder="Numero de telefono">
                 <input type="text" id="municipio" placeholder="Municipio">
                 <input type="text" id="provincia" placeholder="Provincia">
                 <button type="submit"> Registrarse</button>
@@ -64,7 +78,7 @@
     </section>
 
 
-    <section  id="signInUserForm" class="hidden">
+    <!-- <section id="signInUserForm" class="hidden">
         <form id="signIn">
             <h1>Formulario registro administrador:</h1>
             <p>Rellena los siguientes campos de datos para dar de alta tu centro:</p>
@@ -74,13 +88,13 @@
             <button type="submit"> Registrarse</button>
         </form>
 
-        <form id="logIn">
-            <form id="LogIn">
-                <input type="email" id="logInEmail" placeholder="Email Usuario" required>
-                <input type="password" id="logInPassword" placeholder="Password" required>
-                <button type="submit"> Iniciar sesion</button>
-            </form>
-    </section>
+
+        <form id="LogIn">
+            <input type="email" id="logInEmail" placeholder="Email Usuario" required>
+            <input type="password" id="logInPassword" placeholder="Password" required>
+            <button type="submit"> Iniciar sesion</button>
+        </form>
+    </section> -->
 
     <form id="logOut" class="hidden">
         <button type="submit">Cerrar sesion</button>

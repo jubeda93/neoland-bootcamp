@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "server:basic:start" : "node --env-file=.env --watch server/server.basic.js",
+    "server:statics:start" : "node --env-file=.env --watch server/server.statics.js",
+    "server:api:start" : "node --env-file=.env --watch server/server.api.js",
     "test": "test",
     "docs": "jsdoc ./src -r"
   },
