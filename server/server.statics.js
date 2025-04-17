@@ -23,24 +23,25 @@ const toBool = [() => true, () => false];
 // Middleware
 async function prepareFile(url) {
   const paths = [STATIC_PATH, url];
+
   if (url.endsWith("/")) {
     paths.push("index.html");
   }
-   // Convierte todas las partes del array en una cadena de texto
+
+  // Convierte todas las partes del array en una cadena de texto
   const filePath = path.join(...paths);
   const pathTraversal = !filePath.startsWith(STATIC_PATH);
   const exists = await fs.promises.access(filePath).then(...toBool);
   const found = !pathTraversal && exists;
-
-    // Si no encuentra el archivo, devuelve un 404
+  // Si no encuentra el archivo, devuelve un 404
   const streamPath = found ? filePath : STATIC_PATH + "/404.html";
   const ext = path.extname(streamPath).substring(1).toLowerCase();
   const stream = fs.createReadStream(streamPath);
+
   return { found, ext, stream };
 };
 
 http.createServer(async (request, response) => {
-  
     const url = new URL(`http://${request.headers.host}${request.url}`);
     const file = await prepareFile(url.pathname);
     const statusCode = file.found ? 200 : 404;

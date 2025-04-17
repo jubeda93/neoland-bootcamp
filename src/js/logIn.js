@@ -3,12 +3,8 @@
 import { User } from "classes/User"
 import { INITIAL_STATE, store } from "./store/redux.js"
 import { Results } from "classes/Results"
-import { simpleFetch } from 'lib/simpleFetch'
-import { HttpError } from 'classes/HttpError'
 // import { Admin } from "./classes/Admin.js"
 
-const API_PORT = location.port ? `:${1999}` : ''
-const TIMEOUT = 10000
 
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 
@@ -26,7 +22,7 @@ function onDOMContentLoaded() {
     let logOut = document.getElementById('logOut')
     let signOut = document.getElementById('signOut')
     let saveMarks = document.getElementById('saveResults')
-    let showLogInAdmin = document.getElementById('panelAdmin')
+    // let showLogInAdmin = document.getElementById('panelAdmin')
 
 
     signIn?.addEventListener('submit', funSignIn)
@@ -34,10 +30,11 @@ function onDOMContentLoaded() {
     logOut?.addEventListener('click', funLogOut)
     signOut?.addEventListener('submit', funSignOut)
     saveMarks?.addEventListener('submit', saveResults)
-    showLogInAdmin?.addEventListener('click', showPanelAdmin)
     readUserDB()
     checkLogIn()
     console.log('UsuariosGuardados', store.getState())
+
+    
 }
 
 /**
@@ -48,44 +45,33 @@ function onDOMContentLoaded() {
  * @param {Event} event - The event object associated with the form submission.
  */
 
-async function funSignIn(event) {
-    event.preventDefault()
+function funSignIn(event) {
+  event.preventDefault()
 
-    let emailElement = document.getElementById('signInEmail')
-    let email = /**@type {HTMLInputElement} */(emailElement)?.value
-    let passwordElement = document.getElementById('signInPassword')
-    let password = /**@type {HTMLInputElement} */(passwordElement)?.value
-    let newUser = new User(email,password,undefined, undefined ,undefined ,undefined)
+  //TODO: AÑADIR CAMPO DE PASSWORD Y LO AÑADA AL NEW USER
 
-    const payload = new URLSearchParams(/** @type {any} */(newUser))
-
-    if (store.user.getByEmail?.(email) !== undefined) {
-        document.getElementById('signInFail')?.classList.remove('hidden')
-        return
-    }
-
-    // store.user.create(newUser)
-    // console.log(store.getState())
-
-    const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/create/users`, 'POST', payload)
-  if (!apiData) {
-    // Informo al usuario del resultado de la operación
-    document.getElementById('signInMessageKo')?.classList.remove('hidden')
-    setTimeout(() => {
-      document.getElementById('signInMessageKo')?.classList.add('hidden')
-    }, 1000)
-    console.error('Error al crear usuario', apiData)
-    return
+  let nameElement = document.getElementById('signInName')
+  let name = /**@type {HTMLInputElement} */(nameElement)?.value
+  let emailElement = document.getElementById('signInEmail')
+  let email = /**@type {HTMLInputElement} */(emailElement)?.value
+  let passwordElement = document.getElementById('signInPassword')
+  let password = /**@type {HTMLInputElement} */(passwordElement)?.value
+  let newUser = new User(email,password,undefined, undefined ,undefined ,undefined)
+  // console.log('busco en la BBDD el email ' + email, store.user.getByEmail?.(email))
+  if (store.user.getByEmail?.(email) !== undefined) {
+      document.getElementById('signInFail')?.classList.remove('hidden')
+      return
   }
-  console.log('Respuesta del servidor de APIs', apiData)
-  // store.user.create(newUser, () => {
-    updateUserDB()
-    // Informo al usuario del resultado de la operación
-    document.getElementById('signInMessageOk')?.classList.remove('hidden')
-    setTimeout(() => {
-      document.getElementById('signInMessageOk')?.classList.add('hidden')
-    }, 1000)
-  // })
+
+  store.user.create(newUser)
+  console.log(store.getState())
+  updateUserDB()
+  document.getElementById('signInOk')?.classList.remove('hidden')
+  document.getElementById('signInFail')?.classList.add('hidden')
+  setTimeout(() => {
+      document.getElementById('signInOk')?.classList.add('hidden')
+  }, 4000)
+
 }
 
 /**
@@ -110,7 +96,7 @@ function funLogIn(event) {
     
     if (userRegistred !== undefined) {
         console.log('Inicio sesion User ID:', userRegistred._id)
-        let userFromREDUX = store.user.getById?.(userRegistred._id)
+        let userFromREDUX = store.user.getByEmail?.(userRegistred._id)
         sessionStorage.setItem('user', JSON.stringify(userFromREDUX))
         document.getElementById('logInOk')?.classList.remove('hidden')
         document.getElementById('signIn')?.classList.add('hidden')
@@ -179,11 +165,7 @@ function checkLogIn() {
 
 }
 
-function showPanelAdmin(event) {
-    event.preventDefault()
-    document.getElementById('signInAdminForm')?.classList.remove('hidden') 
 
-}
 
 
 /**
@@ -250,7 +232,6 @@ function readUserDB() {
     let savedUsers = []
 
     if (localStorage.getItem('REDUX_DB')) {
-        console.log('Existen usuario en el localStorage, en ese caso los identificamos')
         let localStorageREDUX_DB = localStorage.getItem('REDUX_DB')
 
         if (localStorageREDUX_DB === null) {
@@ -262,77 +243,11 @@ function readUserDB() {
         console.log('Si no existen usuario, vuelve al INITIAL_STATE del Store []')
         localStorage.setItem('REDUX_DB', JSON.stringify(INITIAL_STATE))
     }
-    console.log('Muestra el valor de savedUsers', savedUsers)
     savedUsers.forEach((/** @type {User} */newUser) => {
         store.user.create(newUser, () => { console.log('Usuario creado') })
     })
 
 }
-
-function getDataFromSessionStorage() {
-  const defaultValue = JSON.stringify(INITIAL_STATE)
-  return JSON.parse(sessionStorage.getItem('REDUX_DB') || defaultValue)
-}
-
-/**
- * Get data from API
- * @param {string} apiURL
- * @param {string} method
- * @param {any} [data]
- * @returns {Promise<Array<User>>}
- */
-export async function getAPIData(apiURL, method = 'GET', data) {
-    let apiData
-  
-    try {
-      let headers = new Headers()
-      headers.append('Content-Type', 'application/json')
-      headers.append('Access-Control-Allow-Origin', '*')
-      if (data) {
-        headers.append('Content-Length', String(JSON.stringify(data).length))
-      }
-      // Añadimos la cabecera Authorization si el usuario esta logueado
-      if (isUserLoggedIn()) {
-        const userData = getDataFromSessionStorage()
-        headers.append('Authorization', `Bearer ${userData?.user?.token}`)
-      }
-      apiData = await simpleFetch(apiURL, {
-        // Si la petición tarda demasiado, la abortamos
-        signal: AbortSignal.timeout(TIMEOUT),
-        method: method,
-        body: data ?? undefined,
-        headers: headers
-      });
-    } catch (/** @type {any | HttpError} */err) {
-      // En caso de error, controlamos según el tipo de error
-      if (err.name === 'AbortError') {
-        console.error('Fetch abortado');
-      }
-      if (err instanceof HttpError) {
-        if (err.response.status === 404) {
-          console.error('Not found');
-        }
-        if (err.response.status === 500) {
-          console.error('Internal server error');
-        }
-      }
-    }
-  
-    return apiData
-  }
-
-  /**
- * Checks if there is a user logged in by verifying the presence of a token
- * in the local storage.
- *
- * @returns {boolean} True if the user is logged in, false otherwise.
- */
-function isUserLoggedIn() {
-    const userData = getDataFromSessionStorage()
-    return userData?.user?.token
-  }
-
-
 
 
 
