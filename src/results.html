@@ -1,19 +1,22 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles.desktop.css">
-    <link rel="stylesheet" href="css/styles.mobile.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
-    <title>My Perfil</title>
-    <script type="importmap">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.desktop.css">
+  <link rel="stylesheet" href="css/styles.mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <title>My Perfil</title>
+  <script type="importmap">
         {
           "imports": {
             "classes/User": "./js/classes/User.js",
             "classes/Admin": "./js/classes/Admin.js",
+            "classes/Metrics": "./js/classes/Metrics.js",
+            "classes/DataProfile": "./js/classes/DataProfile.js",
             "classes/HttpError": "./js/classes/HttpError.js",
             "classes/Results": "./js/classes/Results.js",
             "classes/SingletonDB": "./js/classes/SingletonDB.js",
@@ -22,11 +25,15 @@
           }
         }
       </script>
-    <script type="module" src="./js/logIn.js"></script>
-    <script type="module" src="./js/profile.js"></script>
+  <script type="module" src="./js/logIn.js"></script>
+  <script type="module" src="./js/profile.js"></script>
 </head>
 
 <body>
+
+  <header>
+    <h1>WodTrack</h1>
+</header>
 
     <nav id="navMenu">
         <menu id="menuHorizontal">
@@ -41,18 +48,52 @@
     </nav>
     
     <form id="saveResults" >
-        <h1>Marcas Personales</h1>
+      <h1>Marcas Personales</h1>
+      <section>
+        <p>Press de banca</p>
         <input type="text" id="benchpress" placeholder="Press banca">
+      </section>
+      <section>
+        <p>Deadlift</p>
         <input type="text" id="deadlift" placeholder="Dead Lift">
+      </section>
+      <section>
+        <p>Back Squat</p>
         <input type="text" id="backsquat" placeholder="Back Squat">
+      </section>
+      <section>
+        <p>Front Squat</p>
         <input type="text" id="frontsquat" placeholder="Front Squat">
+      </section>
+      <section>
+        <p>Snatch</p>
         <input type="text" id="snatch" placeholder="Snatch">
+      </section>
+      <section>
+        <p>Power Snatch</p>
         <input type="text" id="cleanjerk" placeholder="Clean and Jerk">
+      </section>
+      <section>
+        <p>Power Clean</p>
         <input type="text" id="powerclean" placeholder="Powerclean">
+      </section>
+      <section>
+        <p>Squat Clean</p>
         <input type="text" id="squatclean" placeholder="Squat Clean">
+      </section>
+      <section>  
+        <p>Shoulder Press</p>
         <input type="text" id="shpress" placeholder="Shoulder Press">
-        <input type="text" id="pushpress" placeholder="Push Press">
+      </section>
+      <section>
+        <p>Push Press</p> 
+        <input type="text" id="pushpress" placeholder="Push Press"> 
+      </section>  
+        <div>
         <button type="submit">Guardar datos</button>
+      </div>
     </form>
+
+    <!-- pendiente de desaroollar una tabla con los historicos de los resultados -->
 
 </body>

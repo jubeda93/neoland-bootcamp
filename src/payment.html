@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles.desktop.css">
-    <link rel="stylesheet" href="css/styles.mobile.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
-    <title>My Perfil</title>
-    <script type="importmap">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.desktop.css">
+  <link rel="stylesheet" href="css/styles.mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <title>My Perfil</title>
+  <script type="importmap">
         {
           "imports": {
             "classes/User": "./js/classes/User.js",
             "classes/Admin": "./js/classes/Admin.js",
+            "classes/Metrics": "./js/classes/Metrics.js",
+            "classes/DataProfile": "./js/classes/DataProfile.js",
             "classes/HttpError": "./js/classes/HttpError.js",
             "classes/Results": "./js/classes/Results.js",
             "classes/SingletonDB": "./js/classes/SingletonDB.js",
@@ -25,12 +25,13 @@
           }
         }
       </script>
-    <script type="module" src="./js/logIn.js"></script>
-    <script type="module" src="./js/profile.js"></script>
+  <script type="module" src="./js/logIn.js"></script>
+  <script type="module" src="./js/profile.js"></script>
 </head>
+
 <body>
     <header>
-        <h1>NOMBRE DEL BOX</h1>
+        <h1>WodTrack</h1>
     </header>
 
     <nav id="navMenu">

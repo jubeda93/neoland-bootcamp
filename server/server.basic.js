@@ -2,39 +2,6 @@
 import * as http from "node:http";
 import * as url from "node:url";
 
-const articlesJSON = [
-  {
-    "id": "leche_1",
-    "name": "Leche",
-    "qty": "12",
-    "price": "24"
-  },
-  {
-    "id": "carne_2",
-    "name": "Carne",
-    "qty": "1",
-    "price": "5"
-  },
-  {
-    "id": "fruta_3",
-    "name": "Fruta",
-    "qty": "1",
-    "price": "2"
-  },
-  {
-    "id": "cereales_4",
-    "name": "Cereales",
-    "qty": "1",
-    "price": "3"
-  },
-  {
-    "id": "yogures_5",
-    "name": "Yogures",
-    "qty": "4",
-    "price": "2"
-  }
-];
-
 const usersDB = []
 
 http.createServer(function server_onRequest(request, response) {

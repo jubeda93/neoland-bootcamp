@@ -5,9 +5,10 @@
   "main": "server/server.basic.js",
   "type": "module",
   "scripts": {
-    "server:basic:start" : "node --env-file=.env --watch server/server.basic.js",
-    "server:statics:start" : "node --env-file=.env --watch server/server.statics.js",
-    "server:api:start" : "node --env-file=.env --watch server/server.api.js",
+    "server:simple": "node --env-file=.env --watch server/server.simple.express.js",
+    "server:basic:start": "node --env-file=.env --watch server/server.basic.js",
+    "server:statics:start": "node --env-file=.env --watch server/server.statics.js",
+    "server:api:start": "node --env-file=.env --watch server/server.api.js",
     "test": "test",
     "docs": "jsdoc ./src -r"
   },
@@ -30,6 +31,8 @@
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@eslint/js": "^9.23.0",
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^5.0.1",
     "commitlint": "^19.8.0",
     "eslint": "^9.23.0",
     "globals": "^16.0.0",
@@ -38,5 +41,9 @@
     "stylelint-config-standard": "^37.0.0",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.29.0"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongodb": "^6.16.0"
   }
 }

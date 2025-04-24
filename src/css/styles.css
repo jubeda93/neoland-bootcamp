@@ -1,14 +1,14 @@
 /** ESTILOS LETRAS, COLORES, FONDOS  */
 
+
+
 html {
-   font-family: montserrat;
+   font-family: Inter,Arial, Helvetica, sans-serif;
    background-color: rgb(22 43 49);
-  
+}
 
-
-   .hidden {
-      display: none;
-   }
+.hidden {
+   display: none;
 }
 
 header {
@@ -21,7 +21,6 @@ header {
    &#topper {
       background-color: rgb(233 234 235);
 
-
    }
 
    p {
@@ -32,43 +31,57 @@ header {
 
 a {
    color: black;
+   text-decoration: none;
 }
 
 button {
-   background-color: rgb(255 172 17);
-   border-radius: 6px;
-   font-weight: bold;
+   background-color: rgb(126 151 189);
+   box-shadow: 5px 5px 10px rgb(43 89 107);
+   border:0;
+   border-radius: 5px;
+   font-weight: 600;
+   
+
+   &:hover {
+      background-color: rgb(43 147 189);
+      color: rgb(253 253 253);
+      
+   }
+
+   &:active{
+      background-color: rgb(233 233 233);
+      border: 2px solid rgb(43 89 107);
+   }
 }
 
 body {
-
    h1 {
       font-size: 40px;
-      color: chocolate;
+      color: rgb(0 0 0);
    }
 
+   .horaClase{
+      background-color: rgb(211 218 224);
+  }
+
+
    #menuHorizontal {
+      border: 2px solid;
+      border-color: rgb(0 0 0);
+      border-radius: 25px;
       background-color: rgb(233 234 235);
    }
 
-   #navMenu{
 
-      #menuHorizontal{
-         border: 2px solid;
-         border-color: chocolate;
-         border-radius: 10px;
-      }
-      
-   }
 
    #userMetricsForm {
       background-color: rgb(246 248 247);
-      
+
    }
 
    #userDataForm {
       background-color: rgb(246 248 247);
-      
+
    }
 
    .userChanges {
@@ -77,6 +90,7 @@ body {
    }
 
    form {
+      background-color: rgb(233 234 235);
 
       input {
          border-style: double;

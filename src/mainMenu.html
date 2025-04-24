@@ -1,49 +1,70 @@
-<!DOCTYPE html>
-<html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles.desktop.css">
-    <link rel="stylesheet" href="css/styles.mobile.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
-    <title>My Perfil</title>
-    <script type="importmap">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.desktop.css">
+  <link rel="stylesheet" href="css/styles.mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <title>My Perfil</title>
+  <script type="importmap">
         {
           "imports": {
             "classes/User": "./js/classes/User.js",
             "classes/Admin": "./js/classes/Admin.js",
+            "classes/Metrics": "./js/classes/Metrics.js",
+            "classes/DataProfile": "./js/classes/DataProfile.js",
             "classes/HttpError": "./js/classes/HttpError.js",
+            "classes/Results": "./js/classes/Results.js",
             "classes/SingletonDB": "./js/classes/SingletonDB.js",
             "store/redux": "./js/store/redux.js",
             "lib/simpleFetch": "./js/lib/simpleFetch.js"
           }
         }
       </script>
-    <script type="module" src="./js/logIn.js"></script>
-    <script type="module" src="./js/profile.js"></script>
+  <script type="module" src="./js/logIn.js"></script>
+  <script type="module" src="./js/profile.js"></script>
 </head>
+
 <body>
-    <header>
-        <h1>NOMBRE DEL BOX</h1>
-    </header>
-    <body>
-        <nav>   
-            <button><a href="profile.html">My Perfil</a> </button>
-            <button><a href="booking.html">Reservar</a></button>
-            <button><a href="metrics.html">My Metrics</a></button>
-            <button><a href="results.html">My Results</a></button>
-            <button><a href="mensajes.html">Mensajes</a></button>
-            <button><a href="payment.html">Pagos</a></button>
-            <button id="logOut">Cerrar session</button>
-    
-        </nav>
+  <header>
+    <h1>WodTrack</h1>
+  </header>
+
+  <body>
+    <nav id="menuInicio">
+      <section class="imgLink">
+        <p>Mi Perfil</p>
+        <a href="profile.html"><img src="./css/img/profile_11963261.png"></a>
+      </section>
+      <section class="imgLink">
+        <p>Reservar</p>
+        <a href="booking.html"><img src="./css/img/schedule_8968615.png"></a>
+      </section>
+      <section class="imgLink">
+        <p>Metricas</p>
+        <a href="metrics.html"><img src="./css/img/weight-scale_8968547.png"></a>
+      </section>
+      <section class="imgLink">
+        <p>Resultados</p>
+        <a href="results.html"><img src="./css/img/application_8968541.png"></a>
+      </section>
+      <section class="imgLink">
+        <p>Mensajes</p>
+        <a href="mensajes.html"><img src="./css/img/phone-message_11963195.png"></a>
+      </section>
+      <section class="imgLink">
+        <p>Pagos</p>
+        <a href="payment.html"><img src="./css/img/smart-card_12313128.png"></a>
+      </section>
+
+    </nav>
+    <button id="logOut">Cerrar sesión</button>
 
 
-    </body>
+  </body>
 
 </body>

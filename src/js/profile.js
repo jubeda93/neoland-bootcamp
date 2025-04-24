@@ -1,6 +1,6 @@
 //@ts-check
-import { User } from "classes/User"
-import { store } from "store/redux"
+// import { User } from "classes/User"
+// import { store } from "store/redux"
 import { DataProfile } from "classes/DataProfile"
 import { Metrics } from "classes/Metrics"
 
@@ -18,7 +18,7 @@ function onDOMContentLoaded() {
     saveData?.addEventListener('submit', saveDataProfile)
     userMetricsForm?.addEventListener('submit', saveMetrics)    
     
-    updateUserDB()
+
 
 }
 
@@ -55,8 +55,8 @@ function saveDataProfile(event) {
     let newDataProfile = new DataProfile(name, surname, adress, postalCode, bornDate, phoneNum, nameEmerg, phoneEmerg)
     userLogged.dataprofile = newDataProfile
     sessionStorage.setItem('user', JSON.stringify(userLogged))
-    store.user.update(userLogged)
-    updateUserDB()
+    
+
 
 }
 
@@ -75,7 +75,7 @@ function changeEmail(event) {
         sessionStorage.setItem('user', JSON.stringify(userLogged))
         store.user.update(userLogged)
         alert('Email modificado correctamente!')
-        updateUserDB()
+    
     } else {
         alert('Este Email no coincide con el del usuario..')
     }
@@ -93,7 +93,7 @@ function changePass(event) {
         userLogged.password = passNew
         sessionStorage.setItem('user', JSON.stringify(userLogged))
         store.user.update(userLogged)
-        updateUserDB()
+    
         alert('Contraseña modificada correctamente!')
     } else {
         alert('La contraseña no coincide con la actual')
@@ -103,8 +103,8 @@ function changePass(event) {
 
 function saveMetrics(event) {
     event.preventDefault()
-    let dateSave = document.getElementById('date')
-    let date = /**@type {HTMLInputElement} */(dateSave)?.value
+    // let dateSave = document.getElementById('date')
+    // let date = /**@type {HTMLInputElement} */(dateSave)?.value
     let pesoUser = document.getElementById('peso')
     let peso = /**@type {HTMLInputElement} */(pesoUser)?.value
     let imcUser = document.getElementById('imc')
@@ -137,17 +137,7 @@ function saveMetrics(event) {
     let newMetrics = new Metrics(peso,imc,grasa,liquido,gastokcal,brazoDer,brazoIzq,torax,cintura,cuadriceps,freqMedia,freqMax,freqBasal)
     userLogged.metrics = newMetrics
     sessionStorage.setItem('user', JSON.stringify(userLogged))
-    store.user.update(userLogged)
-    updateUserDB()
+    
 
-}
-
-
-
-function updateUserDB() {
-    let localStoredString = localStorage.getItem('REDUX_DB')
-    let localStoredData = JSON.parse(localStoredString || '')
-    localStoredData.users = [...store.user.getAll()]
-    localStorage.setItem('REDUX_DB', JSON.stringify(localStoredData))
 }
 
