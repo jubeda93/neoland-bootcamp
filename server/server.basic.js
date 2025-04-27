@@ -9,6 +9,7 @@ http.createServer(function server_onRequest(request, response) {
   let direccion = new URL(`http://${process.env.IP ?? 'localhost'}:${process.env.PORT}${request.url}`)
   let responseJSON = {}
 
+ 
 
 //Routers (lee el pathname y redirige al sitio en cuestion)
   switch (pathname) {
@@ -38,18 +39,13 @@ http.createServer(function server_onRequest(request, response) {
         `)
      
       break;
-    case '/profile':
-    case '/profile.html':
-       console.log('Pagina de Perfil solicitada');
-        response.writeHead(200, { 'Content-Type': 'text/html' });
-        response.write('<h1>My Perfil</h1>');
-        break;
     case '/api':
         console.log('<h1>Api solicitada</h1>');
         response.writeHead(200, { 'Content-Type': 'application/json'});
-        response.write(JSON.stringify(articlesJSON));
+        response.write(JSON.stringify(usersDB));
         break;
     case '/api/get/users':
+      console.log(`Api solicitada : obtener lista usuarios ${(JSON.stringify(usersDB))}`)
       response.writeHead(200, { 'Content-Type': 'application/json'});
       response.write(JSON.stringify(usersDB));
       break;
@@ -59,7 +55,7 @@ http.createServer(function server_onRequest(request, response) {
         usersDB.push({
         name: direccion.searchParams.get('name')
         })
-        responseJSON.user = {
+        responseJSON.usuario = {
           name: direccion.searchParams.get('name')
         }
             response.write(JSON.stringify(responseJSON))
