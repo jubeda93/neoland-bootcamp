@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { db } from "./server.mongodb.js";
+import { mongoDB } from "./server.mongodb.js";
 import { gooogleOauth2 } from './server.oauth.js';
 
 const app = express();
@@ -14,40 +14,29 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/api/check/:nombre', async (req, res) => {
-  const usuarios = await db.users.count()
+  const usuarios = await mongoDB.users.count()
   res.send(`Hola ${req.params.nombre}, hay ${usuarios} usuarios`)
 })
-// CRUD
-app.post('/api/create/articles', requireAuth, async (req, res) => {
-  res.json(await db.articles.create(req.body))
-})
-app.get('/api/read/articles', async (req, res) => {
-  // res.json(await db.articles.get({}, { _id: 0, qty: 1 }))
-  res.json(await db.articles.get())
-})
-app.get('/api/filter/articles/:name', async (req, res) => {
-  res.json(await db.articles.get({ $text: { $search: req.params.name } }))
-})
-app.put('/api/update/articles/:id', requireAuth, async (req, res) => {
-  res.json(await db.articles.update(req.params.id, req.body))
-})
-app.delete('/api/delete/articles/:id', requireAuth, async (req, res) => {
-  res.json(await db.articles.delete(req.params.id))
-})
-app.delete('/api/delete/all/articles/', requireAuth, async (req, res) => {
-  res.json(await db.articles.deleteAll())
-})
+
 app.get('/api/read/users', async (req, res) => {
-  res.json(await db.users.get())
+  res.json(await mongoDB.users.get())
 })
+
+app.get('/api/read/users/:id', async (req, res) => {
+  const users = await mongoDB.users.get({ _id: req.params.id })
+  console.log('users', users)
+  res.json(users)
+})
+
 app.get('/api/filter/users/:name', async (req, res) => {
   // TODO: ver parámetros de búsqueda
   // https://www.mongodb.com/docs/manual/reference/operator/query/
-  res.json(await db.articles.get({ $text: { $search: req.params.name } }))
+  res.json(await mongoDB.articles.get({ $text: { $search: req.params.name } }))
 })
+
 app.post('/api/login', async (req, res) => {
   // TODO: update token on DB
-  const user = await db.users.logIn(req.body)
+  const user = await mongoDB.users.logIn(req.body)
   if (user) {
     // TODO: use OAuth2
     // ...
@@ -62,7 +51,7 @@ app.post('/api/login', async (req, res) => {
   }
 })
 app.get('/api/logout/:id', async (req, res) => {
-  const response = await db.users.logOut(req.params.id)
+  const response = await mongoDB.users.logOut(req.params.id)
   console.log('logOut', response)
   res.status(200).send('Logout')
 })
@@ -73,9 +62,8 @@ app.get('/menus', (req, res) => res.redirect('/'))
 app.get('/stats', (req, res) => res.redirect('/'))
 
 app.listen(port, async () => {
-  const articles = await db.articles.count()
-  const usuarios = await db.users.count()
-  console.log(`Shopping List listening on port ${port}: ${articles} articles, ${usuarios} users`);
+  const usuarios = await mongoDB.users.count()
+  console.log(`Shopping List listening on port ${port}: ${usuarios} users`);
 })
 
 function requireAuth(req, res, next) {

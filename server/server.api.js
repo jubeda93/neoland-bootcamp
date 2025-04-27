@@ -73,13 +73,12 @@ http.createServer(async (request, response) => {
           if (userExist) {
             console.log('Email ya registrado')
             responseData = { message: 'Email ya registrado' }
-            response.write(JSON.stringify(responseData));
+            response.write((responseData));
             response.end();
           } else {
             crud.create(USERS_URL, parsedData, (data) => {
               console.log(`usuario creado ${data.email} agregando identificador ${data._id}`, data)
-              responseData = data
-              response.write(JSON.stringify(responseData.email));
+              response.write(JSON.stringify(data.email));
               response.end();
             });
           }

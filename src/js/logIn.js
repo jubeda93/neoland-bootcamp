@@ -8,7 +8,7 @@ import { store, INITIAL_STATE } from 'store/redux'
 
 
 //para cuando trabajemos con Express
-const API_PORT = location.port ? `:${1999}` : ''
+const API_PORT = location.port ? `:${1993}` : ''
 const TIMEOUT = 10000
 
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
@@ -59,14 +59,18 @@ async function funSignIn(event) {
   let password = /**@type {HTMLInputElement} */(passwordElement)?.value
 
   let newUser = new User(email, password)
-  const payload = new URLSearchParams(/** @type {any} */(newUser))
-  // const payload = JSON.stringify(newUser)
-
-
-  const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/create/users`, 'POST', payload)
-  console.log('Respues del servidor de API', JSON.stringify(apiData))
+  // const payload = new URLSearchParams(/** @type {any} */(newUser))
+  const payload = JSON.stringify(newUser)
   
-  if (typeof apiData === 'object' ) {
+  console.log(typeof payload,payload)
+
+  // @ts-expect-error:TODO arraglarlo
+  const apiData = JSON.parse(await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/create/users`, 'POST', payload))
+  
+  console.log(typeof apiData,apiData)
+  // console.log('Respues del servidor de API',(apiData))
+  
+  if (!apiData) {
     // Informo al usuario del resultado de la operacions
     document.getElementById('signInFail')?.classList.remove('hidden')
     setTimeout(() => {
@@ -81,11 +85,6 @@ async function funSignIn(event) {
     }, 4000)
 
   }
-
-
-
-
-
 
 }
 
@@ -105,18 +104,17 @@ async function funLogIn(event) {
   let passwordElement = document.getElementById('logInPassword')
   let password = /**@type {HTMLInputElement} */(passwordElement)?.value
 
-  const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/read/users`, 'GET')
-  console.log(apiData)
+  const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/login`, 'POST', JSON.stringify({email, password}))
+  console.log(typeof apiData,apiData)
 
-  const userExists = apiData.some(user => user.email === email && user.password === password)
+  const userExists = apiData.find(user => user.email === email && user.password === password)
   console.log(userExists)
 
   if (userExists) {
     // El usuario existe, puedes proceder con la autenticación
-    let userFromApiData = apiData[0]
-    sessionStorage.setItem('User', JSON.stringify(userFromApiData))
+    sessionStorage.setItem('User', JSON.stringify(userExists))
     document.getElementById('logInOk')?.classList.remove('hidden')
-    // location.href = "./mainMenu.html"
+    window.location.href = "./mainMenu.html"
     setTimeout(() => {
       document.getElementById('logInOk')?.classList.add('hidden')
     }, 4000)
@@ -132,44 +130,25 @@ async function funLogIn(event) {
   }
 }
 
-// // const payload = JSON.stringify(logUser)
-// const payload = new URLSearchParams(/** @type {any} */(logUser))
-
-
-//   if (apiData.length >= 0) {
-//     let userFromApiData = apiData[0]
-//     sessionStorage.setItem('user', JSON.stringify(userFromApiData))
-//     console.log('Iniciando sesion, usuario:', userFromApiData)
-//     document.getElementById('logInOk')?.classList.remove('hidden')
-//     location.href = "./mainMenu.html"
-//     setTimeout(() => {
-//       document.getElementById('logInOk')?.classList.add('hidden')
-//     }, 4000)
-//   } else {
-//     console.log(' ID not found, usuario incorrecto')
-//     document.getElementById('logInFail')?.classList.remove('hidden')
-//     setTimeout(() => {
-//       document.getElementById('logInFail')?.classList.add('hidden')
-//     }, 4000)
-//   }
-// }
 
 async function funSignOut(/** @type {any} */event) {
   event.preventDefault()
 
   //comprobamos si hay algun usuario en SessionStorage Loggeado
-  if (sessionStorage.getItem('user') && confirm('¿Estás seguro de borrar tu usuario?')) {
+  if (sessionStorage.getItem('User') && confirm('¿Estás seguro de borrar tu usuario?')) {
 
     // Parseamos el la cadena de texto para convertia objeto y poder tratarlo como Objeto
-    let storedUser = JSON.parse(sessionStorage.getItem('user') || '')
+    let storedUser = JSON.parse(sessionStorage.getItem('User') || '')
     //observamos en console log que me duvuelve este objeto(id del usuario)
-    console.log(storedUser._id)
+    console.log(storedUser,storedUser._id)
     // Borramos de la base de datos(JSON) 
     const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/delete/users/${storedUser._id}`, 'DELETE')
     const apiDataJson = JSON.parse(/** @type {any} */(apiData))
+    console.log(typeof apiData)
+    console.log(typeof apiDataJson)
 
     // Eliminar del sessionStorage
-    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('User')
     location.href = "./index.html"
     console.log(apiDataJson)
   } else {
@@ -186,9 +165,9 @@ async function funSignOut(/** @type {any} */event) {
  */
 function funLogOut(event) {
   event.preventDefault()
-  sessionStorage.removeItem('user')
-  location.href = "./index.html"
-}
+  sessionStorage.removeItem('User')
+  window.location.href = "./index.html"
+} 
 
 function showNewUser(event) {
   event.preventDefault()
@@ -211,7 +190,7 @@ function showLogUser(event) {
 
 // function checkLogIn() {
 
-//     if (sessionStorage.getItem('user')) {
+//     if (sessionStorage.getItem('User')) {
 //         document.getElementById('signIn')?.classList.add('hidden')
 //         document.getElementById('logIn')?.classList.add('hidden')
 //         document.getElementById('saveResults')?.classList.remove('hidden')
@@ -233,7 +212,7 @@ function showLogUser(event) {
  *
  * @param {Event} event - The event object associated with the form submission.
  */
-function saveResults(event) {
+async function saveResults(event) {
   event.preventDefault()
 
   let benchPressElement = document.getElementById('benchpress')
@@ -256,20 +235,12 @@ function saveResults(event) {
   let shpress = /**@type {HTMLInputElement} */(shpressElement)?.value
   let pushpressElement = document.getElementById('pushpress')
   let pushpress = /**@type {HTMLInputElement} */(pushpressElement)?.value
-
-  if (sessionStorage.getItem('user')) {
-    let userRegistred = sessionStorage.getItem('user')
-    if (userRegistred === null) {
-      userRegistred = ''
-    }
-  }
-  let userRegistred = JSON.parse(/**@type {String} */(sessionStorage.getItem('user')))
-  let newResults = new Results(benchPress, deadlift, backsquat, frontsquat, snatch, cleanjerk, powerclean, squatclean, shpress, pushpress)
-  userRegistred.results = newResults
-  sessionStorage.setItem('user', JSON.stringify(userRegistred))
-  store.user.update(userRegistred)
-
-
+ 
+  const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
+  const results = new Results(benchPress, deadlift, backsquat, frontsquat, snatch, cleanjerk, powerclean, squatclean, shpress, pushpress);
+  console.log(results,typeof results)
+  const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/update/results/${userLogged._id}`, 'PUT', JSON.stringify(results));
+  console.log(apiData,typeof apiData)
 }
 
 
@@ -356,3 +327,21 @@ async function getAPIData(apiURL, method = 'GET', data) {
 
 
 
+
+
+// if (sessionStorage.getItem('User')) {
+
+//   let userLogged = sessionStorage.getItem('User') 
+
+//   if (userLogged === null) {
+//       userLogged = ''
+//   }   
+// }
+
+// let newResults = new Results(benchPress, deadlift, backsquat, frontsquat, snatch, cleanjerk, powerclean, squatclean, shpress, pushpress)
+
+// const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/update/results/${userLogged._id}`, 'PUT')
+
+// // userRegistred.results = newResults
+// // sessionStorage.setItem('User', JSON.stringify(userRegistred))
+// // store.user.update(userRegistred)

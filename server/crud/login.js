@@ -14,8 +14,8 @@ export async function login(file, userData, callback) {
   try {
     if (fs.existsSync(file)) {
       await fs.readFile(file, function (err, fileData) {
-        const userList = JSON.parse(fileData.toString());
         // Filter by filterParams
+        const userList = JSON.parse(fileData.toString());
         userFound = userList.filter((user) => {
           return user.email === userData.email && user.password === userData.password
         });

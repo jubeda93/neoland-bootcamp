@@ -1,50 +1,184 @@
 import express from 'express';
+import {crud} from './server.crud.js';
 import bodyParser from 'body-parser';
-import { crud } from "./server.crud.js"
-import { mongoDB } from './server.mongodb.js';
 
 const app = express();
 const port = process.env.PORT;
 const USERSDB = './server/BBDD/users.json'
 
-// Static server
+//  Static server
 app.use(express.static('src'));
 // for parsing application/json
 app.use(bodyParser.json())
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get('/',(req, res) => {
-  res.send('Hola Mundo!');
-});
 
-//recoje y lanza al front todos los usuarios
-app.get('/read/users',(req, res) => {
-  crud.read(USERSDB, (userData) =>{
-    console.log('Usuarios en JSON', userData)
-   res.send(JSON.stringify(userData)); 
+app.get('/read/users', (req, res) => {
+  crud.read(USERSDB, (data) => {
+    res.send(JSON.stringify(data));
+  })
+})
+
+app.post('/create/users', (req, res) => {
+  crud.read(USERSDB, (data) => {
+    const userExist = data.some(user => user.email === req.body.email)
+    console.log('El usuario existe?',userExist)
+    if (userExist == true) {
+      console.log('El usuario ya existe')
+      
+
+    } else {
+      crud.create(USERSDB, req.body, (data) => {
+        res.send(JSON.stringify(data));
+        console.log('Creamos nuevo usuario',data.email,data._id)
+      })
+      
+    }
   })
 });
 
-app.post('/create/users',(req,res) => {
-  crud.create(USERSDB, req.body, (userNew) => {
-    console.log('Creando usuario:', userNew)
-    res.send(JSON.stringify(userNew));
+
+app.post('/login', (req, res) => {
+  crud.login(USERSDB, req.body, (result) => {
+      if(typeof result === 'string'){
+          return res.status(401).send({error: result});
+      }
+      res.send(result);
+      console.log('Iniciando sesion..',result)
   });
 });
 
-app.delete('/delete/users/:id', (req,res) => {
-  crud.delete(USERSDB, req.params.id, (user) => {
-    console.log('borrando usuario', user)
+app.put('/update/users/:id', (req, res) => {
+  crud.update(USERSDB, req.params.id, req.body, (user) => {
+    console.log('actualizando usuario', user)
     res.send(JSON.stringify(user))
   })
 })
 
 
-// OBSERVAMOS EL PUERTO DEL SERVIDOR
-app.listen(port, console.log(`Escuchando PORT: ${port}`))
 
-////////////////////////////////////////////////////////////////////////
+app.delete('/delete/users/:id', (req,res) => {
+  crud.delete(USERSDB, req.params.id, (user) => {
+    console.log('borrando usuario')
+    res.send(JSON.stringify(user))
+  })
+})
+
+
+
+app.listen(port, () => {
+  console.log(`Observando puerto: ${port}`)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import express from 'express';
+// import bodyParser from 'body-parser';
+// import { crud } from "./server.crud.js"
+// import { mongoDB } from './server.mongodb.js';
+
+// const app = express();
+// const port = process.env.PORT;
+// const USERSDB = './server/BBDD/users.json'
+
+// // Static server
+// app.use(express.static('src'));
+// // for parsing application/json
+// app.use(bodyParser.json())
+// // for parsing application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: true }))
+
+// app.get('/',(req, res) => {
+//   res.send('Hola Mundo!');
+// });
+
+// //recoje y lanza al front todos los usuarios
+// app.get('/read/users',(req, res) => {
+//   crud.read(USERSDB, (userData) =>{
+//     console.log('Usuarios en JSON', userData)
+//    res.send(JSON.stringify(userData)); 
+//   })
+// });
+
+// app.post('/create/users',(req,res) => {
+//   crud.create(USERSDB, req.body, (userNew) => {
+//     console.log('Creando usuario:', userNew)
+//     res.send(JSON.stringify(userNew));
+//   });
+// });
+
+// app.delete('/delete/users/:id', (req,res) => {
+//   crud.delete(USERSDB, req.params.id, (user) => {
+//     console.log('borrando usuario', user)
+//     res.send(JSON.stringify(user))
+//   })
+// })
+
+
+// // OBSERVAMOS EL PUERTO DEL SERVIDOR
+// app.listen(port, console.log(`Escuchando PORT: ${port}`))
+
+// ////////////////////////////////////////////////////////////////////////
 
 
 
