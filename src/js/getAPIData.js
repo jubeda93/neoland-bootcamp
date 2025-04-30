@@ -75,4 +75,17 @@ function getDataFromSessionStorage() {
     const defaultValue = JSON.stringify({})
     return JSON.parse(sessionStorage.getItem('User') || defaultValue)
   }
+
+  /**
+ * Retrieves the value from the specified input element.
+ * @param {HTMLElement | null} inputElement - The input element from which to get the value.
+ * @returns {string} The value of the input element, or an empty string if the element is null.
+ */
+export function getInputValue(inputElement) {
+  if (inputElement) {
+    return /** @type {HTMLInputElement} */(inputElement).value
+  } else {
+    return ''
+  }
+}
   

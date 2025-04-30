@@ -30,7 +30,7 @@ body {
     position: relative;
     text-align: center;
     justify-items: center;
-    background-image:linear-gradient(rgba(0, 0, 0, 60%), rgba(0, 0, 0, 40%)),url(img/image-asset.jpeg);
+    background-image:linear-gradient(rgba(0 0 0 60%), rgba(0, 0, 0, 40%)),url(img/image-asset.jpeg);
     background-size:auto;
     background-attachment: scroll;
     

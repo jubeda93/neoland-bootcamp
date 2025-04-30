@@ -3,13 +3,11 @@
 
 
 html {
-   font-family: Inter,Arial, Helvetica, sans-serif;
+   font-family: Inter, Arial, Helvetica, sans-serif;
    background-color: rgb(22 43 49);
 }
 
-.hidden {
-   display: none;
-}
+
 
 header {
    color: rgb(233 157 15);
@@ -27,6 +25,10 @@ header {
       border-bottom: 2px solid;
       width: 100%
    }
+
+   .hidden {
+      display: none;
+   }
 }
 
 a {
@@ -37,18 +39,18 @@ a {
 button {
    background-color: rgb(126 151 189);
    box-shadow: 5px 5px 10px rgb(43 89 107);
-   border:0;
+   border: 0;
    border-radius: 5px;
    font-weight: 600;
-   
+
 
    &:hover {
       background-color: rgb(43 147 189);
       color: rgb(253 253 253);
-      
+
    }
 
-   &:active{
+   &:active {
       background-color: rgb(233 233 233);
       border: 2px solid rgb(43 89 107);
    }
@@ -60,9 +62,9 @@ body {
       color: rgb(0 0 0);
    }
 
-   .horaClase{
+   .horaClase {
       background-color: rgb(211 218 224);
-  }
+   }
 
 
    #menuHorizontal {
