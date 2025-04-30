@@ -23,12 +23,16 @@ function onDOMContentLoaded() {
   let logIn = document.getElementById('logIn')
   let logOut = document.getElementById('logOut')
   let signOut = document.getElementById('signOut')
+  let newUserForm = document.getElementById('newUser')
+  let logUserForm = document.getElementById('userLog')
   
 
   signIn?.addEventListener('submit', funSignIn)
   logIn?.addEventListener('submit', funLogIn)
   logOut?.addEventListener('click', funLogOut)
   signOut?.addEventListener('submit', funSignOut)
+  newUserForm?.addEventListener('click', showNewUserForm)
+  logUserForm?.addEventListener('click', showLogInForm)
 
   
 }
@@ -159,4 +163,15 @@ function funLogOut(event) {
   event.preventDefault()
   sessionStorage.removeItem('User')
   window.location.href = "./index.html"
+}
+
+function showNewUserForm () {
+  document.getElementById('signIn')?.classList.remove('hidden')
+  document.getElementById('logIn')?.classList.add('hidden')
+  console.log('Sacamos registerForm')
+}
+function showLogInForm () {
+  document.getElementById('logIn')?.classList.remove('hidden')
+  document.getElementById('signIn')?.classList.add('hidden')
+  console.log('Sacamos LogInForm')
 }

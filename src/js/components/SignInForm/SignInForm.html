@@ -1,0 +1,13 @@
+<template id="signInTemP">
+    <form id="signIn" class="hidden">
+        <slot></slot>
+        <h1>Registrate</h1>
+        <p>Email del usuario:</p>
+        <input type="email" id="signInEmail" placeholder="Email" required>
+        <p>Contraseña:</p>
+        <input type="password" id="signInPassword" placeholder="Password" required>
+        <button type="submit"> Registrarse</button>
+        <p>Si ya eres usuario:</p>
+        <button type="click" id="userLog"> ¡ Ir al Login !</button>
+    </form>
+</template>

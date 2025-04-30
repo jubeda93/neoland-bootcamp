@@ -21,10 +21,12 @@
             "classes/Results": "./js/classes/Results.js",
             "classes/HttpError": "./js/classes/HttpError.js",
             "store/redux": "./js/store/redux.js",
-            "lib/simpleFetch": "./js/lib/simpleFetch.js"
+            "lib/simpleFetch": "./js/lib/simpleFetch.js",
+            "lib/importTemplate": "./js/lib/importTemplate.js"
           }
         }
       </script>
+  <script type="module" src="./js/components/bundle.js" defer></script>
   <script type="module" src="./js/logIn.js"></script>
   <script type="module" src="./js/profile.js"></script>
 </head>
@@ -37,7 +39,7 @@
     <p id="logInOk" class="hidden">Iniciando sesión...</p>
     <p id="logInFail" class="hidden">Error al iniciar sesión</p>
   </header>
-
+  <log-in-form></log-in-form>
   <form id="logIn">
     <h1>Iniciar sesion</h1>
     <p>Email del usuario:</p>
@@ -48,7 +50,8 @@
     <p>Haz click aqui para darte de alta:</p>
     <button type="click" id="newUser"> ¡ Nuevo usuario !</button>
   </form>
-  
+
+
 
   <form id="signIn" class="hidden">
     <h1>Registrate</h1>
@@ -59,10 +62,10 @@
     <button type="submit"> Registrarse</button>
     <p>Si ya eres usuario:</p>
     <button type="click" id="userLog"> ¡ Ir al Login !</button>
-    
   </form>
   <button><a href="index.html">Volver al Inicio</a></button>
 
+  <!-- <sign-in-form></sign-in-form> -->
 </body>
 
 </html>
