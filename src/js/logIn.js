@@ -1,15 +1,11 @@
 // @ts-check
 import { User } from "classes/User"
-import { simpleFetch } from 'lib/simpleFetch'
-import { HttpError } from 'classes/HttpError'
-import { Results } from "classes/Results"
-import { store, INITIAL_STATE } from 'store/redux'
-// import { Admin } from "./classes/Admin.js"
+import { getAPIData } from "./getAPIData.js"
 
 
 //para cuando trabajemos con Express
 const API_PORT = location.port ? `:${1993}` : ''
-const TIMEOUT = 10000
+// const TIMEOUT = 10000
 
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 
@@ -27,48 +23,40 @@ function onDOMContentLoaded() {
   let logIn = document.getElementById('logIn')
   let logOut = document.getElementById('logOut')
   let signOut = document.getElementById('signOut')
-  let saveMarks = document.getElementById('saveResults')
-  let newUserForm = document.getElementById('newUser')
-  let LogUser = document.getElementById('userLog')
-
+  
 
   signIn?.addEventListener('submit', funSignIn)
   logIn?.addEventListener('submit', funLogIn)
   logOut?.addEventListener('click', funLogOut)
   signOut?.addEventListener('submit', funSignOut)
-  saveMarks?.addEventListener('submit', saveResults)
-  newUserForm?.addEventListener('click', showNewUser)
-  LogUser?.addEventListener('click', showLogUser)
 
-  // readUserDB()
-  // checkLogIn()
-
+  
 }
 
-/**   Funcion que recoge los datos de email y contraseña
- *    Checkear si este usuario ya existe por email (TODO)
- *    Crea un nuevo usuario y lo guarda en la DDBB
+/**
+ * Handles the sign-in form submission, prevents the default form behavior,
+ * retrieves user input values, creates a new User instance, and adds it to
+ * the USER_DB array. Finally, logs the updated USER_DB to the console.
+ *
+ * @param {Event} event - The event object associated with the form submission.
  */
+
+
+//======================== SIGN IN ========================//
 
 async function funSignIn(event) {
   event.preventDefault()
-
   let emailElement = document.getElementById('signInEmail')
   let email = /**@type {HTMLInputElement} */(emailElement)?.value
   let passwordElement = document.getElementById('signInPassword')
   let password = /**@type {HTMLInputElement} */(passwordElement)?.value
 
   let newUser = new User(email, password)
-  // const payload = new URLSearchParams(/** @type {any} */(newUser))
-  const payload = JSON.stringify(newUser)
-  
-  console.log(typeof payload,payload)
 
-  // @ts-expect-error:TODO arraglarlo
-  const apiData = JSON.parse(await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/create/users`, 'POST', payload))
-  
-  console.log(typeof apiData,apiData)
-  // console.log('Respues del servidor de API',(apiData))
+  console.log('newUser',newUser, typeof newUser)
+  const payload = JSON.stringify(newUser)
+  console.log('payload',payload,typeof payload)
+  const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/create/users`,'POST', payload)
   
   if (!apiData) {
     // Informo al usuario del resultado de la operacions
@@ -83,9 +71,8 @@ async function funSignIn(event) {
     setTimeout(() => {
       document.getElementById('signInOk')?.classList.add('hidden')
     }, 4000)
-
+    console.log('Usuario creado', newUser.email,)
   }
-
 }
 
 /**
@@ -97,63 +84,65 @@ async function funSignIn(event) {
  * @param {Event} event - The event object associated with the form submission.
  */
 
+//======================== LOG IN ========================//
+
 async function funLogIn(event) {
   event.preventDefault()
   let emailElement = document.getElementById('logInEmail')
   let email = /**@type {HTMLInputElement} */(emailElement)?.value
   let passwordElement = document.getElementById('logInPassword')
   let password = /**@type {HTMLInputElement} */(passwordElement)?.value
+  let newUser = new User(email, password, 'user')
 
-  const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/login`, 'POST', JSON.stringify({email, password}))
-  console.log(typeof apiData,apiData)
+  const payload = JSON.stringify(newUser)
+  console.log('payload',payload, typeof payload)
 
-  const userExists = apiData.find(user => user.email === email && user.password === password)
-  console.log(userExists)
+  const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/login`, 'POST', payload)
 
-  if (userExists) {
+  console.log(typeof apiData, apiData) 
+
+  if (!apiData) {
+    console.log('El usuario no existe')
+    document.getElementById('logInFail')?.classList.remove('hidden')
+    setTimeout(() => {
+      document.getElementById('logInFail')?.classList.add('hidden')
+    }, 4000)
+    return
+
+  } else {
     // El usuario existe, puedes proceder con la autenticación
-    sessionStorage.setItem('User', JSON.stringify(userExists))
+    sessionStorage.setItem('User', JSON.stringify(apiData))
     document.getElementById('logInOk')?.classList.remove('hidden')
     window.location.href = "./mainMenu.html"
     setTimeout(() => {
       document.getElementById('logInOk')?.classList.add('hidden')
     }, 4000)
     console.log('El usuario existe')
-    // ...
-  } else {
-    // El usuario no existe, puedes mostrar un error
-    console.log('El usuario no existe')
-    document.getElementById('logInFail')?.classList.remove('hidden')
-    setTimeout(() => {
-      document.getElementById('logInFail')?.classList.add('hidden')
-    }, 4000)
   }
 }
 
+//======================== SIGN OUT ========================//
 
 async function funSignOut(/** @type {any} */event) {
   event.preventDefault()
+ 
 
   //comprobamos si hay algun usuario en SessionStorage Loggeado
   if (sessionStorage.getItem('User') && confirm('¿Estás seguro de borrar tu usuario?')) {
 
     // Parseamos el la cadena de texto para convertia objeto y poder tratarlo como Objeto
-    let storedUser = JSON.parse(sessionStorage.getItem('User') || '')
+    let userLogged = JSON.parse(sessionStorage.getItem('User') || '')
     //observamos en console log que me duvuelve este objeto(id del usuario)
-    console.log(storedUser,storedUser._id)
+  
     // Borramos de la base de datos(JSON) 
-    const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/delete/users/${storedUser._id}`, 'DELETE')
-    const apiDataJson = JSON.parse(/** @type {any} */(apiData))
-    console.log(typeof apiData)
-    console.log(typeof apiDataJson)
-
+    const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/delete/users/${userLogged._id}`, 'DELETE')
+    console.log(typeof apiData,apiData)
     // Eliminar del sessionStorage
     sessionStorage.removeItem('User')
-    location.href = "./index.html"
-    console.log(apiDataJson)
+    // location.href = "./index.html"
   } else {
     alert('(Usuario no identificado) redirigiendo al Inicio');
-    location.href = "./index.html"
+    // location.href = "./index.html"
   }
 }
 
@@ -163,185 +152,11 @@ async function funSignOut(/** @type {any} */event) {
 
  * @param {Event} event - The event object associated with the form submission.
  */
+
+//======================== LOG OUT ========================//
+
 function funLogOut(event) {
   event.preventDefault()
   sessionStorage.removeItem('User')
   window.location.href = "./index.html"
-} 
-
-function showNewUser(event) {
-  event.preventDefault()
-  document.getElementById('signIn')?.classList.remove('hidden')
-  document.getElementById('logIn')?.classList.add('hidden')
 }
-function showLogUser(event) {
-  event.preventDefault()
-  document.getElementById('signIn')?.classList.add('hidden')
-  document.getElementById('logIn')?.classList.remove('hidden')
-}
-
-/**
- * 
- * Evento llamado cuando el usuario quiere borrar el usuario
- * Borra tanto el local como el session Storage.
- * @param {Event} event - The event object associated with the form submission.
- */
-
-
-// function checkLogIn() {
-
-//     if (sessionStorage.getItem('User')) {
-//         document.getElementById('signIn')?.classList.add('hidden')
-//         document.getElementById('logIn')?.classList.add('hidden')
-//         document.getElementById('saveResults')?.classList.remove('hidden')
-//         document.getElementById('signInUserForm')?.classList.add('hidden')
-//     } else if (location.pathname !== '/mainMenu.html') {
-//         // Redirigimos a la home si el usuario no está identificado
-
-//     }
-
-// }
-
-
-
-
-/**
- * Handles the save results form submission, prevents the default form behavior,
- * retrieves user input values, creates a new Results instance, and adds it to
- * the store.
- *
- * @param {Event} event - The event object associated with the form submission.
- */
-async function saveResults(event) {
-  event.preventDefault()
-
-  let benchPressElement = document.getElementById('benchpress')
-  let benchPress = /**@type {HTMLInputElement} */(benchPressElement)?.value
-  let deadliftElement = document.getElementById('deadlift')
-  let deadlift = /**@type {HTMLInputElement} */(deadliftElement)?.value
-  let backSquatElement = document.getElementById('backsquat')
-  let backsquat = /**@type {HTMLInputElement} */(backSquatElement)?.value
-  let frontsquatElement = document.getElementById('frontsquat')
-  let frontsquat = /**@type {HTMLInputElement} */(frontsquatElement)?.value
-  let snatchElement = document.getElementById('snatch')
-  let snatch = /**@type {HTMLInputElement} */(snatchElement)?.value
-  let cleanjerkElement = document.getElementById('cleanjerk')
-  let cleanjerk = /**@type {HTMLInputElement} */(cleanjerkElement)?.value
-  let powercleanElement = document.getElementById('powerclean')
-  let powerclean = /**@type {HTMLInputElement} */(powercleanElement)?.value
-  let squatcleanElement = document.getElementById('squatclean')
-  let squatclean = /**@type {HTMLInputElement} */(squatcleanElement)?.value
-  let shpressElement = document.getElementById('shpress')
-  let shpress = /**@type {HTMLInputElement} */(shpressElement)?.value
-  let pushpressElement = document.getElementById('pushpress')
-  let pushpress = /**@type {HTMLInputElement} */(pushpressElement)?.value
- 
-  const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
-  const results = new Results(benchPress, deadlift, backsquat, frontsquat, snatch, cleanjerk, powerclean, squatclean, shpress, pushpress);
-  console.log(results,typeof results)
-  const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/update/results/${userLogged._id}`, 'PUT', JSON.stringify(results));
-  console.log(apiData,typeof apiData)
-}
-
-
-// /**
-//  * Checks if there is a user logged in by verifying the presence of a token
-//  * in the local storage.
-//  *
-//  * @returns {boolean} True if the user is logged in, false otherwise.
-//  */
-// export function getDataFromLocalStorage() {
-//   const defaultValue = JSON.stringify(INITIAL_STATE)
-//   return JSON.parse(localStorage.getItem('REDUX_DB') || defaultValue)
-// }
-
-/**
- * Retrieves the shopping list data from session storage.
- *
- * @returns {State} Saved state.
- * If no data is found, returns an empty State object.
- */
-
-function getDataFromSessionStorage() {
-  const defaultValue = JSON.stringify(INITIAL_STATE)
-  return JSON.parse(sessionStorage.getItem('REDUX_DB') || defaultValue)
-}
-
-/**
- * Get data from API
- * @param {string} apiURL
- * @param {string} method
- * @param {any} [data]
- * @returns {Promise<Array< User >>}
- */
-async function getAPIData(apiURL, method = 'GET', data) {
-  let apiData
-
-  try {
-    let headers = new Headers()
-    headers.append('Content-Type', 'application/json')
-    headers.append('Access-Control-Allow-Origin', '*')
-    if (data) {
-      headers.append('Content-Length', String(JSON.stringify(data).length))
-    }
-    // Añadimos la cabecera Authorization si el usuario esta logueado
-    // if (isUserLoggedIn()) {
-    //   const userData = getDataFromSessionStorage()
-    //   headers.append('Authorization', `Bearer ${userData?.user?.token}`)
-    // }
-    apiData = await simpleFetch(apiURL, {
-      // Si la petición tarda demasiado, la abortamos
-      signal: AbortSignal.timeout(TIMEOUT),
-      method: method,
-      body: data ?? undefined,
-      headers: headers
-    });
-  } catch (/** @type {any | HttpError} */err) {
-    // En caso de error, controlamos según el tipo de error
-    if (err.name === 'AbortError') {
-      console.error('Fetch abortado');
-    }
-    if (err instanceof HttpError) {
-      if (err.response.status === 404) {
-        console.error('Not found');
-      }
-      if (err.response.status === 500) {
-        console.error('Internal server error');
-      }
-    }
-  }
-
-  return apiData
-}
-
-/**
- * Checks if there is a user logged in by verifying the presence of a token
- * in the local storage.
- *
- * @returns {boolean} True if the user is logged in, false otherwise.
- */
-// function isUserLoggedIn() {
-//   const userData = getDataFromSessionStorage()
-//   return userData?.user?.token
-// }
-
-
-
-
-
-// if (sessionStorage.getItem('User')) {
-
-//   let userLogged = sessionStorage.getItem('User') 
-
-//   if (userLogged === null) {
-//       userLogged = ''
-//   }   
-// }
-
-// let newResults = new Results(benchPress, deadlift, backsquat, frontsquat, snatch, cleanjerk, powerclean, squatclean, shpress, pushpress)
-
-// const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/update/results/${userLogged._id}`, 'PUT')
-
-// // userRegistred.results = newResults
-// // sessionStorage.setItem('User', JSON.stringify(userRegistred))
-// // store.user.update(userRegistred)

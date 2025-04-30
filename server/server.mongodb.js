@@ -5,9 +5,14 @@ const URI = process.env.MONGO_URI;
 export const mongoDB = {
   users: {
     get: getUsers,
+    getClient:getClients,
     count: countUsers,
     logIn: logInUser,
-    logOut: logoutUser
+    logOut: logoutUser,
+    create: createUser,
+    delete: deleteUser,
+    update: updateUser,
+
   }
 }
 
@@ -19,6 +24,24 @@ async function countUsers() {
   return await usersCollection.countDocuments()
 }
 
+/**
+ * Gets an array of users from the 'users' collection in the 'shoppingList' database.
+ *
+ * @returns {Promise<Array<object>>} - The array of users.
+ */
+async function getUsers(filter){
+  const client = new MongoClient(URI);
+  const wodTrackDB = client.db('WodTrack-DDBB');
+  const usersCollection = wodTrackDB.collection('users');
+  return await usersCollection.find(filter).project({_id: 1, email: 1}).toArray()
+}
+
+async function createUser(user) {
+  const client = new MongoClient(URI);
+  const wodTrackDB = client.db('WodTrack-DDBB');
+  const usersCollection = wodTrackDB.collection('users');
+  return await usersCollection.insertOne(user)
+}
 
 
 /**
@@ -30,15 +53,15 @@ async function countUsers() {
  * with selected fields (name and email).
  */
 
-async function getUsers({_id}){
+async function getClients({ _id }){
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
-
-  const adminUser = await usersCollection.find({ _id: new ObjectId(_id) }).project({rol: 1}).toArray()
+  // 1. Comprobar si el id del usuario proporcionado es administrador
+  const adminUser = await usersCollection.find({ _id: new ObjectId(_id) }).project({role: 1}).toArray()
   // 2. Si lo es, devolver los clientes
-  if (adminUser[0].rol === 'admin') {
-    return await usersCollection.find({rol:'user'}).project({email: 1}).toArray()
+  if (adminUser.length && adminUser[0]?.role === 'admin') {
+    return await usersCollection.find({ role: 'user' }).project({name: 1, email: 1}).toArray()
   } else {
     return {
       error: 'Unauthorized'
@@ -70,8 +93,32 @@ async function logInUser({email, password}) {
  */
 async function logoutUser({id}) {
   const client = new MongoClient(URI);
+  const wodTrackDB = client.db('WodTrack-DDBB');
+  const usersCollection = wodTrackDB.collection('users');
+  return await usersCollection.updateOne({ _id: new ObjectId(id) }, { $set: { token: null } })
+}
+
+/**
+ * Deletes an article from the 'articles' collection in the 'shoppingList' database.
+ *
+ * @param {string} id - The ID of the article to be deleted.
+ * @returns {Promise<string>} The ID of the deleted article.
+ */
+async function deleteUser(id) {
+  const client = new MongoClient(URI);
+  const wodTrackDB = client.db('WodTrack-DDBB');
+  const usersCollection = wodTrackDB.collection('users');
+  const returnValue = await usersCollection.deleteOne({ _id: new ObjectId(id) });
+  console.log('DB deleteUser', returnValue, id,)
+  return id
+}
+
+async function updateUser(id, updates) {
+  const client = new MongoClient(URI);
   const shoppinglistDB = client.db('WodTrack-DDBB');
   const usersCollection = shoppinglistDB.collection('users');
-  return await usersCollection.updateOne({ _id: new ObjectId(id) }, { $set: { token: null } })
+  const returnValue = await usersCollection.updateOne({ _id: new ObjectId(id) }, { $set: updates });
+  console.log('DB updateUsers', returnValue, updates)
+  return returnValue
 }
 

@@ -26,8 +26,8 @@ app.post('/create/users', (req, res) => {
     console.log('El usuario existe?',userExist)
     if (userExist == true) {
       console.log('El usuario ya existe')
+      res.send({message: 'El usuario ya existe'})
       
-
     } else {
       crud.create(USERSDB, req.body, (data) => {
         res.send(JSON.stringify(data));

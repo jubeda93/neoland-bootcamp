@@ -16,9 +16,9 @@ export class Metrics {
      * @param {string} cuadriceps - Medida del cuádriceps del usuario
      * @param {string} freqMedia - Frecuencia cardiaca media del usuario
      * @param {string} freqMax - Frecuencia cardiaca máxima del usuario
-     * @param {string} freqBasal - Frecuencia cardiaca basal del usuario
+     
      */
-    constructor(peso,imc,grasa,liquido,gastokcal,brazoDer,brazoIzq,torax,cintura,cuadriceps,freqMedia,freqMax,freqBasal) {
+    constructor(peso,imc,grasa,liquido,gastokcal,brazoDer,brazoIzq,torax,cintura,cuadriceps,freqMedia,freqMax) {
         this.peso = peso
         this.imc = imc
         this.grasa = grasa
@@ -31,6 +31,6 @@ export class Metrics {
         this.cuadriceps = cuadriceps
         this.freqMedia = freqMedia
         this.freqMax = freqMax
-        this.freqBasal = freqBasal
+        
     }
 }
