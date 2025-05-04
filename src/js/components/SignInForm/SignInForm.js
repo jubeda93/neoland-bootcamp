@@ -40,7 +40,7 @@ export class SignInForm extends HTMLElement {
         this.shadowRoot.adoptedStyleSheets.push(ResetCSS, AppCSS, SignInCSS);
         this._setUpContent();
         const signInForm = this.shadowRoot.getElementById("signIn")
-        // explicame esta linea
+        // que ocurre en esta linea?!?!
         this.shadowRoot.addEventListener('slotCHANGE', this._handleSlotChanged.bind(this), ({ passive: true }))
         signInForm.addEventListener("submit", this._singInForm.bind(this))
     
@@ -73,7 +73,6 @@ _setUpContent() {
 
     }
   }
-
 /**
      * Handles a slot change event from the shadow root
      * @param {Event} e - The slot change event
@@ -84,7 +83,6 @@ _setUpContent() {
         // Notify the slot change event
         // console.log(['Slot changed', e])
     }
-
     /**
      * Handles a state change event from the store
      * @param {import('../../store/redux').State} state - The new state
@@ -95,7 +93,6 @@ _setUpContent() {
         // Filter by the states needed in this component
         console.log('stateChanged observed from component', state?.detail?.type);
     }
-
     /**
      * Updates the visibility of the sidebar based on the screen size.
      * If the screen width is 460px or less, the sidebar is hidden;
@@ -118,15 +115,9 @@ _setUpContent() {
         let email = /**@type {HTMLInputElement} */(emailElement)?.value
         let passwordElement = this.shadowRoot.getElementById('signInPassword')
         let password = /**@type {HTMLInputElement} */(passwordElement)?.value
-      
         let newUser = new User(email, password)
-      
-        console.log('newUser',newUser, typeof newUser)
 
         const payload = JSON.stringify(newUser)
-
-        console.log('payload',payload,typeof payload)
-
         const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/create/users`,'POST', payload)
         
         if (!apiData) {
@@ -144,13 +135,8 @@ _setUpContent() {
           }, 4000)
           console.log('Usuario creado', newUser.email,)
         }
-
-
     }
- 
 }
-
-
 
 // Definir la etiqueta de la clase: customElemtents
 customElements.define('sign-in-form', SignInForm);

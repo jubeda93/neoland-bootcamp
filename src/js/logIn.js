@@ -1,5 +1,5 @@
 // @ts-check
-import { User } from "classes/User"
+// import { User } from "classes/User"
 import { getAPIData } from "./getAPIData.js"
 
 
@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 /**
  * Evento que se lanza cuando el contenido de la página ha sido cargado en memoria
  * y se puede acceder a él.
- * Añade los listeners a los botones para que cuando se hagan click se ejecuten
+ * Añade los listeners a los botones para que cuando se hagan click/submit se ejecuten
  * las funciones correspondientes.
  * @listens DOMContentLoaded
  */
@@ -21,16 +21,16 @@ function onDOMContentLoaded() {
 
   // let signIn = document.getElementById('signIn')
   // let logIn = document.getElementById('logIn')
+  // let signOut = document.getElementById('signOut')
   let logOut = document.getElementById('logOut')
-  let signOut = document.getElementById('signOut')
   let newUserForm = document.getElementById('newUser')
   let logUserForm = document.getElementById('userLog')
   
 
   // signIn?.addEventListener('submit', funSignIn)
   // logIn?.addEventListener('submit', funLogIn)
+  // signOut?.addEventListener('submit', funSignOut)
   logOut?.addEventListener('click', funLogOut)
-  signOut?.addEventListener('submit', funSignOut)
   newUserForm?.addEventListener('click', showNewUserForm)
   logUserForm?.addEventListener('click', showLogInForm)
 
@@ -127,28 +127,28 @@ function onDOMContentLoaded() {
 
 //======================== SIGN OUT ========================//
 
-async function funSignOut(/** @type {any} */event) {
-  event.preventDefault()
+// async function funSignOut(/** @type {any} */event) {
+//   event.preventDefault()
  
 
-  //comprobamos si hay algun usuario en SessionStorage Loggeado
-  if (sessionStorage.getItem('User') && confirm('¿Estás seguro de borrar tu usuario?')) {
+//   //comprobamos si hay algun usuario en SessionStorage Loggeado
+//   if (sessionStorage.getItem('User') && confirm('¿Estás seguro de borrar tu usuario?')) {
 
-    // Parseamos el la cadena de texto para convertia objeto y poder tratarlo como Objeto
-    let userLogged = JSON.parse(sessionStorage.getItem('User') || '')
-    //observamos en console log que me duvuelve este objeto(id del usuario)
+//     // Parseamos el la cadena de texto para convertia objeto y poder tratarlo como Objeto
+//     let userLogged = JSON.parse(sessionStorage.getItem('User') || '')
+//     //observamos en console log que me duvuelve este objeto(id del usuario)
   
-    // Borramos de la base de datos(JSON) 
-    const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/delete/users/${userLogged._id}`, 'DELETE')
-    console.log(typeof apiData,apiData)
-    // Eliminar del sessionStorage
-    sessionStorage.removeItem('User')
-    location.href = "./index.html"
-  } else {
-    alert('(Usuario no identificado) redirigiendo al Inicio');
-    location.href = "./index.html"
-  }
-}
+//     // Borramos de la base de datos(JSON) 
+//     const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/delete/users/${userLogged._id}`, 'DELETE')
+//     console.log(typeof apiData,apiData)
+//     // Eliminar del sessionStorage
+//     sessionStorage.removeItem('User')
+//     location.href = "./index.html"
+//   } else {
+//     alert('(Usuario no identificado) redirigiendo al Inicio');
+//     location.href = "./index.html"
+//   }
+// }
 
 /**
  * LLama al evento cuando el usuario quiere salir de la sesion

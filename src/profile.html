@@ -19,13 +19,13 @@
               "classes/DataProfile": "./js/classes/DataProfile.js",
               "classes/HttpError": "./js/classes/HttpError.js",
               "classes/Results": "./js/classes/Results.js",
-              "classes/SingletonDB": "./js/classes/SingletonDB.js",
-              "store/redux": "./js/store/redux.js",
-              "lib/simpleFetch": "./js/lib/simpleFetch.js"
+              "lib/simpleFetch": "./js/lib/simpleFetch.js",
+              "lib/importTemplate": "./js/lib/importTemplate.js"
             }
           }
         </script>
     <!-- <script type="module" src="./js/logIn.js"></script> -->
+    <script type="module" src="./js/components/bundle.js" defer></script>
     <script type="module" src="./js/profile.js"></script>
   </head>
 
@@ -100,13 +100,11 @@
             <input type="password" id="passwordNew" placeholder="Nueva contraseña">
             <button type="submit" id="changePass">Cambiar contraseña</button>
         </form>
-
-        <form id="signOut">
+        <sign-out></sign-out>
+        <!-- <form id="signOut">
             <button type="submit">Borrar usuario</button>
-        </form>
+        </form> -->
     </div>
-
-
-
+    
 
 </body>

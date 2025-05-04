@@ -34,6 +34,8 @@ export class LogInForm extends HTMLElement {
         console.log('Instanciamos LogInForm')
     }
     //=================== Ciclo de Vida | Lifecycle Methods ====================//
+    //=================== "DOM del Componente Web" ====================//
+
 
     /**  Definimos el cliclo de vida de la clase 
         * 
@@ -134,7 +136,7 @@ export class LogInForm extends HTMLElement {
         let newUser = new User(email, password, 'user')
 
         const payload = JSON.stringify(newUser)
-        console.log('payload', payload, typeof payload)
+        console.log( payload)
 
         const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/login`, 'POST', payload)
 
@@ -152,7 +154,7 @@ export class LogInForm extends HTMLElement {
             // El usuario existe, puedes proceder con la autenticación
             sessionStorage.setItem('User', JSON.stringify(apiData))
             document.getElementById('logInOk')?.classList.remove('hidden')
-            // window.location.href = "./mainMenu.html"
+            window.location.href = "./mainMenu.html"
             setTimeout(() => {
                 document.getElementById('logInOk')?.classList.add('hidden')
             }, 4000)

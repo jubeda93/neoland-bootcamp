@@ -91,6 +91,7 @@ app.post('/api/login', async (req, res) => {
     res.status(401).send(user)
   }
 })
+
 app.get('/api/logout/:id', async (req, res) => {
   const response = await mongoDB.users.logOut(req.params.id)
   console.log('logOut', response)
