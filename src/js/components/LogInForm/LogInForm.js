@@ -52,10 +52,9 @@ export class LogInForm extends HTMLElement {
         this._setUpContent();
         const logInForm = this.shadowRoot.getElementById("logIn")
         this.shadowRoot.addEventListener('slotCHANGE', this._handleSlotChanged.bind(this), ({ passive: true }))
-        const showNewUserForm = this.shadowRoot.getElementById("newUser")
         // Aqui llamamos al addevent listener de la funcion JavaScrip(LogIn) "onDomContentLoaded"
         logInForm.addEventListener("submit", this._onLogInForm.bind(this))
-        showNewUserForm.addEventListener("click", this._showNewUserForm.bind(this))
+        // showNewUserForm.addEventListener("click", this._showNewUserForm.bind(this))
 
 
     }
@@ -173,7 +172,7 @@ export class LogInForm extends HTMLElement {
             signInElement.classList.remove('hidden');
             this.shadowRoot.getElementById('logIn')?.classList.remove('hidden')
             console.log('Sacamos registerForm')
-        }
+         }
     }
 
 }

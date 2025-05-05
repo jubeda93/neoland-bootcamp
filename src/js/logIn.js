@@ -25,7 +25,6 @@ function onDOMContentLoaded() {
   // let newUserForm = document.getElementById('newUser')
   let logUserForm = document.getElementById('userLog')
   
-
   // signIn?.addEventListener('submit', funSignIn)
   // logIn?.addEventListener('submit', funLogIn)
   // signOut?.addEventListener('submit', funSignOut)
