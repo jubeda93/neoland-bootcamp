@@ -8,24 +8,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
   <title>My Perfil</title>
   <script type="importmap">
         {
           "imports": {
-            "classes/User": "./js/classes/User.js",
             "classes/Admin": "./js/classes/Admin.js",
             "classes/Metrics": "./js/classes/Metrics.js",
             "classes/DataProfile": "./js/classes/DataProfile.js",
             "classes/HttpError": "./js/classes/HttpError.js",
             "classes/Results": "./js/classes/Results.js",
-            "classes/SingletonDB": "./js/classes/SingletonDB.js",
-            "store/redux": "./js/store/redux.js",
-            "lib/simpleFetch": "./js/lib/simpleFetch.js"
+            "lib/simpleFetch": "./js/lib/simpleFetch.js",
+            "lib/importTemplate": "./js/lib/importTemplate.js"
           }
         }
       </script>
-      
+  <script type="module" src="./js/components/bundle.js" defer></script>
   <script type="module" src="./js/profile.js"></script>
 </head>
 
@@ -33,67 +33,66 @@
 
   <header>
     <h1>WodTrack</h1>
-</header>
+  </header>
 
-    <nav id="navMenu">
-        <menu id="menuHorizontal">
-            <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
-            <ul id="profile"><a href="profile.html">My perfil</a></ul>
-            <ul id="booking"><a href="booking.html">Reservar</a></ul>
-            <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
-            <ul id="results"><a href="results.html">My Results</a></ul>
-            <ul id="mensaje"><a href="mensajes.html">Mensajes</a></ul>
-            <ul id="pagos"><a href="payment.html">Pagos</a></li>
-        </menu>
-    </nav>
-    
-    <form id="saveResults" >
-      <h1>Marcas Personales</h1>
-      <section>
-        <p>Press de banca</p>
-        <input type="text" id="benchpress" placeholder="Press banca">
-      </section>
-      <section>
-        <p>Deadlift</p>
-        <input type="text" id="deadlift" placeholder="Dead Lift">
-      </section>
-      <section>
-        <p>Back Squat</p>
-        <input type="text" id="backsquat" placeholder="Back Squat">
-      </section>
-      <section>
-        <p>Front Squat</p>
-        <input type="text" id="frontsquat" placeholder="Front Squat">
-      </section>
-      <section>
-        <p>Snatch</p>
-        <input type="text" id="snatch" placeholder="Snatch">
-      </section>
-      <section>
-        <p>Power Snatch</p>
-        <input type="text" id="cleanjerk" placeholder="Clean and Jerk">
-      </section>
-      <section>
-        <p>Power Clean</p>
-        <input type="text" id="powerclean" placeholder="Powerclean">
-      </section>
-      <section>
-        <p>Squat Clean</p>
-        <input type="text" id="squatclean" placeholder="Squat Clean">
-      </section>
-      <section>  
-        <p>Shoulder Press</p>
-        <input type="text" id="shpress" placeholder="Shoulder Press">
-      </section>
-      <section>
-        <p>Push Press</p> 
-        <input type="text" id="pushpress" placeholder="Push Press"> 
-      </section>  
-        <div>
-        <button type="submit">Guardar datos</button>
-      </div>
-    </form>
+  <nav id="navMenu">
+    <menu id="menuHorizontal">
+      <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
+      <ul id="profile"><a href="profile.html">My perfil</a></ul>
+      <ul id="booking"><a href="booking.html">Reservar</a></ul>
+      <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
+      <ul id="results"><a href="results.html">My Results</a></ul>
+      <ul id="mensaje"><a href="mensajes.html">Mensajes</a></ul>
+      <ul id="pagos"><a href="payment.html">Pagos</a></li>
+    </menu>
+  </nav>
 
-    <!-- pendiente de desaroollar una tabla con los historicos de los resultados -->
+  <save-results></save-results>
+  <!-- <form id="saveResults">
+    <h1>Marcas Personales</h1>
+    <section>
+      <p>Press de banca</p>
+      <input type="text" id="benchpress" placeholder="Press banca">
+    </section>
+    <section>
+      <p>Deadlift</p>
+      <input type="text" id="deadlift" placeholder="Dead Lift">
+    </section>
+    <section>
+      <p>Back Squat</p>
+      <input type="text" id="backsquat" placeholder="Back Squat">
+    </section>
+    <section>
+      <p>Front Squat</p>
+      <input type="text" id="frontsquat" placeholder="Front Squat">
+    </section>
+    <section>
+      <p>Snatch</p>
+      <input type="text" id="snatch" placeholder="Snatch">
+    </section>
+    <section>
+      <p>Power Snatch</p>
+      <input type="text" id="cleanjerk" placeholder="Clean and Jerk">
+    </section>
+    <section>
+      <p>Power Clean</p>
+      <input type="text" id="powerclean" placeholder="Powerclean">
+    </section>
+    <section>
+      <p>Squat Clean</p>
+      <input type="text" id="squatclean" placeholder="Squat Clean">
+    </section>
+    <section>
+      <p>Shoulder Press</p>
+      <input type="text" id="shpress" placeholder="Shoulder Press">
+    </section>
+    <section>
+      <p>Push Press</p>
+      <input type="text" id="pushpress" placeholder="Push Press">
+    </section>
+    <div>
+      <button type="submit">Guardar datos</button>
+    </div>
+  </form> -->
 
 </body>

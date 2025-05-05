@@ -5,9 +5,10 @@ import { LogInForm } from './LogInForm/LogInForm.js'
 // import { SignOut } from './SignOut/SignOut.js'
 import { SignInLit } from './SignInLit/SignInLit.js'
 import { LogInLit } from './LogInLit/LogInLit.js'
+import {ResultsLit} from './ResultsLit/ResultsLit.js'
 
 
 
 //================= EXPORTS ==================//
 
-export {SignInLit, LogInForm, LogInLit};
+export {SignInLit, LogInForm, LogInLit, ResultsLit};

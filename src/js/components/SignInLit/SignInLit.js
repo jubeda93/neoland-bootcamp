@@ -7,11 +7,11 @@ import ResetCSS from '../../../css/reset.css' with { type: 'css' }
 // @ ts-expect-error TS doesn't like this
 import AppCSS from '../../../css/styles.css' with { type: 'css' }
 // @ ts-expect-error TS doesn't like this
-import SignInFormCSS from './../SignInForm/SignInForm.css' with { type: 'css' }
+import SignInLitCSS from './../SignInLit/SignInLit.css' with { type: 'css' }
 
 
 export class SignInLit extends LitElement {
-    static styles = [ResetCSS, AppCSS, SignInFormCSS]
+    static styles = [ResetCSS, AppCSS, SignInLitCSS]
 
     render() {
         return html`
