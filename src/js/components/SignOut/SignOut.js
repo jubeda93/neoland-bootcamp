@@ -12,7 +12,6 @@ const TEMPLATE = {
 
 await importTemplate(TEMPLATE.url);
 
-
 export class SignOut extends HTMLElement {
 
     // "Cada vez que pregunte por el valor de la propiedad devuelve el Html del template que queremos pintar"
@@ -23,8 +22,6 @@ export class SignOut extends HTMLElement {
         super();
 
     }
-
-
 
     // ============ Lifecycle Methods ===========//
 
@@ -38,8 +35,6 @@ export class SignOut extends HTMLElement {
 
 
     }
-
-
 
     //=================== Private Methods ====================//
     // Definimos los metodos de la clase //  (_setUpContent)
@@ -75,25 +70,7 @@ export class SignOut extends HTMLElement {
           location.href = "./index.html"
         }
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
 
 // Definimos el web Component, con el nombre de la etiqueta html y la clase
 

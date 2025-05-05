@@ -52,9 +52,10 @@ export class LogInForm extends HTMLElement {
         this._setUpContent();
         const logInForm = this.shadowRoot.getElementById("logIn")
         this.shadowRoot.addEventListener('slotCHANGE', this._handleSlotChanged.bind(this), ({ passive: true }))
-
+        const showNewUserForm = this.shadowRoot.getElementById("newUser")
         // Aqui llamamos al addevent listener de la funcion JavaScrip(LogIn) "onDomContentLoaded"
         logInForm.addEventListener("submit", this._onLogInForm.bind(this))
+        showNewUserForm.addEventListener("click", this._showNewUserForm.bind(this))
 
 
     }
@@ -136,7 +137,7 @@ export class LogInForm extends HTMLElement {
         let newUser = new User(email, password, 'user')
 
         const payload = JSON.stringify(newUser)
-        console.log( payload)
+        console.log(payload)
 
         const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/login`, 'POST', payload)
 
@@ -163,8 +164,19 @@ export class LogInForm extends HTMLElement {
     }
 
 
-}
+    // AQUI ACCEDO AL SHADOWROOT DE SignInForm, para poder acceder a ('signIn')y que la funcion pueda agregar el hidden a ('signIn')
+    _showNewUserForm() {
+        const signInComponent = document.querySelector('sign-in-form');
+        const signInShadowRoot = signInComponent.shadowRoot;
+        const signInElement = signInShadowRoot.querySelector('#signIn')
+        if (signInElement) {
+            signInElement.classList.remove('hidden');
+            this.shadowRoot.getElementById('logIn')?.classList.remove('hidden')
+            console.log('Sacamos registerForm')
+        }
+    }
 
+}
 
 // Definir la etiqueta de la clase: customElemtents
 customElements.define('log-in-form', LogInForm);

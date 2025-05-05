@@ -24,8 +24,9 @@ app.get('/api/read/users', async (req, res) => {
 
 app.get('/api/read/users/:id', async (req, res) => {
   const users = await mongoDB.users.get({ _id: req.params.id })
-  console.log('users', users)
+  console.log('users', users,)
   res.json(users)
+  
 })
 
 app.post('/api/create/users', async (req,res) => {
@@ -55,9 +56,9 @@ app.put('/api/update/metrics/:id', requireAuth, async (req, res) => {
   res.json(await mongoDB.users.update(req.params.id, results))
 })
 // UPDATE DATAPROFILE
-app.put('/api/update/dataUser/:id', requireAuth, async (req, res) => {
+app.put('/api/update/dataProfile/:id', requireAuth, async (req, res) => {
   // Como los datos que enviamos solo son resultados, creamos una variable con los resultados:
-  const results = {dataUser: req.body}
+  const results = {dataProfile: req.body}
   res.json(await mongoDB.users.update(req.params.id, results))
 })
 

@@ -12,8 +12,7 @@ function onDOMContentLoaded() {
     let saveData = document.getElementById('userDataForm')
     let saveMetrics = document.getElementById('saveMetrics')
     let userResults = document.getElementById('saveResults')
-    
-    
+
     saveData?.addEventListener('submit', saveDataProfile)
     saveMetrics?.addEventListener('submit', saveBodyMetrics)
     userResults?.addEventListener('submit', saveResults)
@@ -55,9 +54,13 @@ async function saveDataProfile(event) {
 
     const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
     const results = JSON.stringify(new DataProfile(name,surName,bornDate,phone,adress,postalCode,energName,emergPhone));
-    await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/dataUser/${userLogged._id}`, 'PUT', results);
+    await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/dataProfile/${userLogged._id}`, 'PUT', results);
     
+}
 
+async function dataProfile() {
+  const userLogged = JSON.parse(sessionStorage.getItem('User' || ''));
+  const response = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/user/${userLogged._id}`, 'GET');
 }
 
 /**
@@ -142,106 +145,4 @@ async function saveBodyMetrics(event) {
     
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function changeEmail(event) {
-//     event.preventDefault()
-
-//     let userLogged = JSON.parse(/** @type {string} */(sessionStorage.getItem('user')))
-//     let emailOldDoc = document.getElementById('emailUserOld')
-//     let emailOld = /**@type {HTMLInputElement} */ (emailOldDoc)?.value
-//     if (userLogged.email === emailOld) {
-//         let emailNewDoc = document.getElementById('emailUserNew')
-//         let emailNew = /**@type {HTMLInputElement} */ (emailNewDoc)?.value
-//         userLogged.email = emailNew
-//         sessionStorage.setItem('user', JSON.stringify(userLogged))
-//         store.user.update(userLogged)
-//         alert('Email modificado correctamente!')
-    
-//     } else {
-//         alert('Este Email no coincide con el del usuario..')
-//     }
-
-// }
-// function changePass(event) {
-//     event.preventDefault()
-
-//     let userLogged = JSON.parse(/** @type {string} */(sessionStorage.getItem('user')))
-//     let passOldDoc = document.getElementById('passwordOld')
-//     let passOld = /**@type {HTMLInputElement} */ (passOldDoc)?.value
-//     if (userLogged.password === passOld) {
-//         let passwordNewDoc = document.getElementById('passwordNew')
-//         let passNew = /**@type {HTMLInputElement} */ (passwordNewDoc)?.value
-//         userLogged.password = passNew
-//         sessionStorage.setItem('user', JSON.stringify(userLogged))
-//         store.user.update(userLogged)
-    
-//         alert('Contraseña modificada correctamente!')
-//     } else {
-//         alert('La contraseña no coincide con la actual')
-//     }
-
-// }
-
-// function saveMetrics(event) {
-//     event.preventDefault()
-//     // let dateSave = document.getElementById('date')
-//     // let date = /**@type {HTMLInputElement} */(dateSave)?.value
-//     let pesoUser = document.getElementById('peso')
-//     let peso = /**@type {HTMLInputElement} */(pesoUser)?.value
-//     let imcUser = document.getElementById('imc')
-//     let imc = /**@type {HTMLInputElement} */(imcUser)?.value
-//     let grasaUser = document.getElementById('grasa')
-//     let grasa = /**@type {HTMLInputElement} */(grasaUser)?.value
-//     let liquidoUser = document.getElementById('liquido')
-//     let liquido = /**@type {HTMLInputElement} */(liquidoUser)?.value
-//     let gastokcalUser = document.getElementById('gastokcal')
-//     let gastokcal = /**@type {HTMLInputElement} */(gastokcalUser)?.value   
-//     let brazoDerUser = document.getElementById('brazoDer')
-//     let brazoDer = /**@type {HTMLInputElement} */(brazoDerUser)?.value
-//     let brazoIzqUser = document.getElementById('brazoIzq')
-//     let brazoIzq = /**@type {HTMLInputElement} */(brazoIzqUser)?.value
-//     let toraxUser = document.getElementById('torax')
-//     let torax = /**@type {HTMLInputElement} */(toraxUser)?.value
-//     let cinturaUser = document.getElementById('cintura')    
-//     let cintura = /**@type {HTMLInputElement} */(cinturaUser)?.value
-//     let cuadricepsUser = document.getElementById('cuadriceps')
-//     let cuadriceps = /**@type {HTMLInputElement} */(cuadricepsUser)?.value
-//     let freqMediaUser = document.getElementById('freqMedia')
-//     let freqMedia = /**@type {HTMLInputElement} */(freqMediaUser)?.value    
-//     let freqMaxUser = document.getElementById('freqMax')
-//     let freqMax = /**@type {HTMLInputElement} */(freqMaxUser)?.value
-    
-
-
-//     let userLogged = JSON.parse(/** @type {string} */(sessionStorage.getItem('user')))
-//     let newMetrics = new Metrics(peso,imc,grasa,liquido,gastokcal,brazoDer,brazoIzq,torax,cintura,cuadriceps,freqMedia,freqMax)
-//     userLogged.metrics = newMetrics
-//     sessionStorage.setItem('user', JSON.stringify(userLogged))
-    
-
-// }
 

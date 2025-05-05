@@ -1,7 +1,6 @@
 // @ts-check
 // import { User } from "classes/User"
-import { getAPIData } from "./getAPIData.js"
-
+// import { getAPIData } from "./getAPIData.js"
 
 //para cuando trabajemos con Express
 export const API_PORT = location.port ? `:${1993}` : ''
@@ -23,7 +22,7 @@ function onDOMContentLoaded() {
   // let logIn = document.getElementById('logIn')
   // let signOut = document.getElementById('signOut')
   let logOut = document.getElementById('logOut')
-  let newUserForm = document.getElementById('newUser')
+  // let newUserForm = document.getElementById('newUser')
   let logUserForm = document.getElementById('userLog')
   
 
@@ -31,11 +30,47 @@ function onDOMContentLoaded() {
   // logIn?.addEventListener('submit', funLogIn)
   // signOut?.addEventListener('submit', funSignOut)
   logOut?.addEventListener('click', funLogOut)
-  newUserForm?.addEventListener('click', showNewUserForm)
+  // newUserForm?.addEventListener('click', showNewUserForm)
   logUserForm?.addEventListener('click', showLogInForm)
 
   
 }
+
+/**
+ * LLama al evento cuando el usuario quiere salir de la sesion
+ * Borra solamente el sessionStorage y devuelve al inicio
+
+ * @param {Event} event - The event object associated with the form submission.
+ */
+function funLogOut(event) {
+  event.preventDefault()
+  sessionStorage.removeItem('User')
+  window.location.href = "./index.html"
+}
+
+// function showNewUserForm () {
+//   document.getElementById('signIn')?.classList.remove('hidden')
+//   document.getElementById('logIn')?.classList.add('hidden')
+//   console.log('Sacamos registerForm')
+// }
+function showLogInForm () {
+  document.getElementById('logIn')?.classList.remove('hidden')
+  document.getElementById('signIn')?.classList.add('hidden')
+  console.log('Sacamos LogInForm')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Handles the sign-in form submission, prevents the default form behavior,
@@ -158,20 +193,3 @@ function onDOMContentLoaded() {
  */
 
 //======================== LOG OUT ========================//
-
-function funLogOut(event) {
-  event.preventDefault()
-  sessionStorage.removeItem('User')
-  window.location.href = "./index.html"
-}
-
-function showNewUserForm () {
-  document.getElementById('signIn')?.classList.remove('hidden')
-  document.getElementById('logIn')?.classList.add('hidden')
-  console.log('Sacamos registerForm')
-}
-function showLogInForm () {
-  document.getElementById('logIn')?.classList.remove('hidden')
-  document.getElementById('signIn')?.classList.add('hidden')
-  console.log('Sacamos LogInForm')
-}

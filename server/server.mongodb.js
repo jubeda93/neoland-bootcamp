@@ -33,7 +33,8 @@ async function getUsers(filter){
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
-  return await usersCollection.find(filter).project({_id: 1, email: 1}).toArray()
+  
+  return await usersCollection.find(filter).project({_id: 1, email: 1, results: 1, metrics: 1, dataProfile: 1 }).toArray()
 }
 
 async function createUser(user) {
