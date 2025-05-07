@@ -1,6 +1,6 @@
 //@ts-check
 import { DataProfile } from "classes/DataProfile"
-import { Results } from "classes/Results"
+// import { Results } from "classes/Results"
 import { Metrics } from "classes/Metrics"
 import { getAPIData } from "./getAPIData.js"
 
@@ -8,14 +8,13 @@ window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 
 function onDOMContentLoaded() {
 
-    
     let saveData = document.getElementById('userDataForm')
     let saveMetrics = document.getElementById('saveMetrics')
-    let userResults = document.getElementById('saveResults')
+    // let userResults = document.getElementById('saveResults')
 
     saveData?.addEventListener('submit', saveDataProfile)
     saveMetrics?.addEventListener('submit', saveBodyMetrics)
-    userResults?.addEventListener('submit', saveResults)
+    // userResults?.addEventListener('submit', saveResults)
     
 
 }
@@ -56,49 +55,6 @@ async function saveDataProfile(event) {
     const results = JSON.stringify(new DataProfile(name,surName,bornDate,phone,adress,postalCode,energName,emergPhone));
     await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/dataProfile/${userLogged._id}`, 'PUT', results);
     
-}
-
-async function dataProfile() {
-  const userLogged = JSON.parse(sessionStorage.getItem('User' || ''));
-  const response = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/user/${userLogged._id}`, 'GET');
-}
-
-/**
- * Handles the save results form submission, prevents the default form behavior,
- * retrieves user input values, creates a new Results instance, and adds it to
- * the store.
- *
- * @param {Event} event - The event object associated with the form submission.
- */
-async function saveResults(event) {
-  event.preventDefault()
-
-  let benchPressElement = document.getElementById('benchpress')
-  let benchPress = /**@type {HTMLInputElement} */(benchPressElement)?.value
-  let deadliftElement = document.getElementById('deadlift')
-  let deadlift = /**@type {HTMLInputElement} */(deadliftElement)?.value
-  let backSquatElement = document.getElementById('backsquat')
-  let backsquat = /**@type {HTMLInputElement} */(backSquatElement)?.value
-  let frontsquatElement = document.getElementById('frontsquat')
-  let frontsquat = /**@type {HTMLInputElement} */(frontsquatElement)?.value
-  let snatchElement = document.getElementById('snatch')
-  let snatch = /**@type {HTMLInputElement} */(snatchElement)?.value
-  let cleanjerkElement = document.getElementById('cleanjerk')
-  let cleanjerk = /**@type {HTMLInputElement} */(cleanjerkElement)?.value
-  let powercleanElement = document.getElementById('powerclean')
-  let powerclean = /**@type {HTMLInputElement} */(powercleanElement)?.value
-  let squatcleanElement = document.getElementById('squatclean')
-  let squatclean = /**@type {HTMLInputElement} */(squatcleanElement)?.value
-  let shpressElement = document.getElementById('shpress')
-  let shpress = /**@type {HTMLInputElement} */(shpressElement)?.value
-  let pushpressElement = document.getElementById('pushpress')
-  let pushpress = /**@type {HTMLInputElement} */(pushpressElement)?.value
-
-  const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
-  const results = JSON.stringify(new Results(benchPress, deadlift, backsquat, frontsquat, snatch, cleanjerk, powerclean, squatclean, shpress, pushpress));
-  await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/results/${userLogged._id}`, 'PUT', results);
-  
-
 }
 
 

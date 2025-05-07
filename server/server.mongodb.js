@@ -5,7 +5,7 @@ const URI = process.env.MONGO_URI;
 export const mongoDB = {
   users: {
     get: getUsers,
-    getClient:getClients,
+    getById: getUserById,
     count: countUsers,
     logIn: logInUser,
     logOut: logoutUser,
@@ -17,24 +17,18 @@ export const mongoDB = {
 }
 
 async function countUsers() {
-  //
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
   return await usersCollection.countDocuments()
 }
 
-/**
- * Gets an array of users from the 'users' collection in the 'shoppingList' database.
- *
- * @returns {Promise<Array<object>>} - The array of users.
- */
+
 async function getUsers(filter){
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
-  
-  return await usersCollection.find(filter).project({_id: 1, email: 1, results: 1, metrics: 1, dataProfile: 1 }).toArray()
+  return await usersCollection.find(filter).project({password: 0}).toArray()
 }
 
 async function createUser(user) {
@@ -44,31 +38,14 @@ async function createUser(user) {
   return await usersCollection.insertOne(user)
 }
 
-
-/**
- * Retrieves user(s) from the 'users' collection in the 'WodTrack-DDBB' database
- * based on the provided user ID.
- *
- * @param {{_id: string}} param - An object containing the user's ID.
- * @returns {Promise<Array<{name: string, email: string}>>} - A promise that resolves to an array of users
- * with selected fields (name and email).
- */
-
-async function getClients({ _id }){
+async function getUserById(id) {
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
-  // 1. Comprobar si el id del usuario proporcionado es administrador
-  const adminUser = await usersCollection.find({ _id: new ObjectId(_id) }).project({role: 1}).toArray()
-  // 2. Si lo es, devolver los clientes
-  if (adminUser.length && adminUser[0]?.role === 'admin') {
-    return await usersCollection.find({ role: 'user' }).project({name: 1, email: 1}).toArray()
-  } else {
-    return {
-      error: 'Unauthorized'
-    }
-  }
+  return await usersCollection.findOne({ _id: new ObjectId(id) }, { projection: { password: 0 } })
 }
+
+
 
 /**
  * Finds a user in the 'users' collection in the 'shoppingList' database given

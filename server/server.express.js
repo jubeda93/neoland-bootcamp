@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import { mongoDB } from "./server.mongodb.js";
 import { gooogleOauth2 } from './server.oauth.js';
 
+// Express 
 const app = express();
 const port = process.env.PORT;
 
@@ -13,22 +14,18 @@ app.use(bodyParser.json())
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get('/api/check/:nombre', async (req, res) => {
-  const usuarios = await mongoDB.users.count()
-  res.send(`Hola ${req.params.nombre}, hay ${usuarios} usuarios`)
-})
-
+// Get all users (TODO:Unnabled)
 app.get('/api/read/users', async (req, res) => {
   res.json(await mongoDB.users.get())
 })
 
-app.get('/api/read/users/:id', async (req, res) => {
-  const users = await mongoDB.users.get({ _id: req.params.id })
-  console.log('users', users,)
-  res.json(users)
-  
+// Get one user by id
+app.get('/api/read/user/:id', async (req, res) => {
+  res.json(await mongoDB.users.getById(req.params.id))
+  console.log('Buscando usuario', req.params.id)
 })
 
+// Create User
 app.post('/api/create/users', async (req,res) => {
     // 1- Comprabar si ya existe el usuario, usando getUsers
   const userExist = await mongoDB.users.get({email: req.body.email})    
@@ -43,26 +40,26 @@ app.post('/api/create/users', async (req,res) => {
       res.status(400).send('USUARIO EXISTENTE')
     }
 })
-// UPDATE RESULTS
+// Upadate results
 app.put('/api/update/results/:id', requireAuth, async (req, res) => {
   // Como los datos que enviamos solo son resultados, creamos una variable con los resultados:
   const results = {results: req.body}
   res.json(await mongoDB.users.update(req.params.id, results))
 })
-// UPDATE METRICS
+// Upadate metrics
 app.put('/api/update/metrics/:id', requireAuth, async (req, res) => {
   // Como los datos que enviamos solo son resultados, creamos una variable con los resultados:
   const results = {metrics: req.body}
   res.json(await mongoDB.users.update(req.params.id, results))
 })
-// UPDATE DATAPROFILE
+// Upadate dataProfile
 app.put('/api/update/dataProfile/:id', requireAuth, async (req, res) => {
   // Como los datos que enviamos solo son resultados, creamos una variable con los resultados:
   const results = {dataProfile: req.body}
   res.json(await mongoDB.users.update(req.params.id, results))
 })
 
-
+// Delete User
 app.delete('/api/delete/users/:id', requireAuth, async (req, res) => {
   const deleteResult = await mongoDB.users.delete(req.params.id)
   res.json( deleteResult )
@@ -74,6 +71,7 @@ app.get('/api/filter/users/:name', async (req, res) => {
   res.json(await mongoDB.articles.get({ $text: { $search: req.params.name } }))
 })
 
+//Login
 app.post('/api/login', async (req, res) => {
   // TODO: update token on DB
   const user = await mongoDB.users.logIn(req.body)
@@ -93,6 +91,8 @@ app.post('/api/login', async (req, res) => {
   }
 })
 
+//Logout
+
 app.get('/api/logout/:id', async (req, res) => {
   const response = await mongoDB.users.logOut(req.params.id)
   console.log('logOut', response)
@@ -104,11 +104,14 @@ app.get('/diary', (req, res) => res.redirect('/'))
 app.get('/menus', (req, res) => res.redirect('/'))
 app.get('/stats', (req, res) => res.redirect('/'))
 
+
+// Start server
 app.listen(port, async () => {
-  const usuarios = await mongoDB.users.count()
-  console.log(`Servidor express escuchando en el puerto ${port}: ${usuarios} users`);
+  console.log(`Running server.express on port: ${port}`);
 })
 
+
+// Authentication emulation"
 function requireAuth(req, res, next) {
   // Simulation of authentication (OAuth2)
   if (req.headers.authorization === 'Bearer 123456') {

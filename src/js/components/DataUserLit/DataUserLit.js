@@ -1,0 +1,175 @@
+import { getAPIData } from "../../../js/getAPIData.js"
+// import { User } from "../../classes/User.js"
+import { DataProfile } from "classes/DataProfile"
+import { API_PORT } from "../../logIn.js"
+import { html, LitElement } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
+// @ ts-expect-error TS doesn't like this
+import ResetCSS from '../../../css/reset.css' with { type: 'css' }
+// @ ts-expect-error TS doesn't like this
+import AppCSS from '../../../css/styles.css' with { type: 'css' }
+// @ ts-expect-error TS doesn't like this
+import DataUserLitCSS from './../DataUserLit/DataUserLit.css' with { type: 'css' }
+
+
+
+export class DataUserLit extends LitElement {
+    static styles = [ResetCSS, AppCSS, DataUserLitCSS]
+
+    static properties = {
+        name: { type: String },
+        surName: { type: String },
+        bornDate: { type: String },
+        phoneNum: { type: String },
+        adress: { type: String },
+        postalCode: { type: String },
+        nameEmerg: { type: String },
+        phoneEmerg: { type: String }
+    }
+
+    constructor() {
+        super();
+        this.name = '';
+        this.surName = '';
+        this.bornDate = '';
+        this.phoneNum = '';
+        this.adress = '';
+        this.postalCode = '';
+        this.nameEmerg = '';
+        this.phoneEmerg = '';
+    }
+
+
+
+
+    render() {
+        return html`
+        <form id="userDataForm" @submit="${this._saveUserData}">
+        <h1>Datos personales:</h1>
+        <section>
+            <p>Nombre</p>
+            <input type="text" 
+            id="name" 
+            placeholder="Nombre"
+            .value="${this.name}"
+            @input="${this._userNameChanged}"
+            >
+        </section>
+        <section>
+            <p>Apellidos</p>
+            <input type="text" 
+            id="surName" 
+            placeholder="Apellidos"
+            .value="${this.surName}"
+            @input="${this._userSurNameChanged}"
+            >
+        </section>
+        <section>
+            <p>Fecha de nacimiento</p>
+            <input type="date" 
+            id="bornDate" 
+            placeholder=""
+            .value="${this.bornDate}"
+            @input="${this._userBornDateChanged}"
+            >
+        </section>
+        <section>
+            <p>Telefono</p>
+            <input type="text" 
+            id="phoneNum" 
+            placeholder="Numero de telefono"
+            .value="${this.phoneNum}"
+            @input="${this._userPhoneNumChanged}"
+            >
+        </section>
+        <section>
+            <p>Direccion</p>
+            <input type="text" 
+            id="adress" 
+            placeholder="Direccion"
+            .value="${this.adress}"
+            @input="${this._userAdressChanged}"
+            >
+        </section>
+        <section>
+            <p>Codigo Postal</p>
+            <input type="text" 
+            id="postalCode" 
+            placeholder="Codigo Postal"
+            .value="${this.postalCode}"
+            @input="${this._userPostalCodeChanged}">
+        </section>
+        <section>
+            <p>Contacto Emergencia</p>
+            <input type="text" 
+            id="nameEmerg" 
+            placeholder="Contacto de Emergencia"
+            .value="${this.nameEmerg}"
+            @input="${this._userNameEmergChanged}">
+        </section>
+        <section>
+            <p>Telefono Emergencia</p>
+            <input type="text" 
+            id="phoneEmerg" 
+            placeholder="Numero de Emergencia"
+            .value="${this.phoneEmerg}"
+            @input="${this._userPhoneEmergChanged}"
+            ><br>
+        </section>
+        <button type="submit">Guardar</button>
+    </form>
+    `
+    }
+
+    async _saveUserData(e) {
+        e.preventDefault();
+
+        const userData = {
+            name: this.name,
+            surName: this.surName,
+            bornDate: this.bornDate,
+            phone: this.phone,
+            adress: this.adress,
+            postalCode: this.postalCode,
+            nameEmerg: this.nameEmerg,
+            phoneEmerg: this.phoneEmerg
+        }
+
+        const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
+            const data = JSON.stringify(new DataProfile(userData.name,userData.surName,userData.bornDate,userData.phone,userData.adress,userData.postalCode,userData.nameEmerg,userData.phoneEmerg));
+            await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/dataProfile/${userLogged._id}`, 'PUT', data);
+
+    }
+
+    _userNameChanged(e) {
+        this.name = e.target.value;
+    }
+
+    _userSurNameChanged(e) {
+        this.surName = e.target.value;
+    }
+
+    _userBornDateChanged(e) {
+        this.bornDate = e.target.value;
+    }       
+
+    _userPhoneNumChanged(e) {
+        this.phoneNum = e.target.value;
+    }
+
+    _userAdressChanged(e) {
+        this.adress = e.target.value;
+    }
+
+    _userPostalCodeChanged(e) {
+        this.postalCode = e.target.value;
+    }
+    _userNameEmergChanged(e) {
+        this.nameEmerg = e.target.value;
+    }
+    _userPhoneEmergChanged(e) {
+        this.phoneEmerg = e.target.value;
+    }
+
+}
+
+customElements.define('data-user-lit', DataUserLit)
