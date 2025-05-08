@@ -25,7 +25,7 @@
             }
           }
         </script>
-
+    <script type="module" src="./js/components/bundle.js" defer></script>
     <script type="module" src="./js/profile.js"></script>
   </head>
 
@@ -47,7 +47,9 @@
     </nav>
 </body>
 
-<form id="saveMetrics">
+<metrics-lit></metrics-lit>
+
+<!-- <form id="saveMetrics">
     <h1>Mis mediciones:</h1>
     <section class="metrics">
         <h3>Peso</h3>
@@ -98,7 +100,7 @@
         <input type="text" id="freqMax" placeholder="Freq. cardiaca maxima">
     </section>
     <button type="submit">Guardar</button> 
-</form>
+</form> -->
 
 
 <!-- Aquí desarrollar la tabla donde se podran consultar el historial de mediciones

@@ -1,13 +1,13 @@
-import { getAPIData } from "../../../js/getAPIData.js"
-import { User } from "../../classes/User.js"
-import { API_PORT } from "../../logIn.js"
+import { getAPIData } from "../../../getAPIData.js"
+import { User } from "../../../classes/User.js"
+import { API_PORT } from "../../../logIn.js"
 import { html, LitElement } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
 // @ ts-expect-error TS doesn't like this
-import ResetCSS from '../../../css/reset.css' with { type: 'css' }
+import ResetCSS from '../../../../css/reset.css' with { type: 'css' }
 // @ ts-expect-error TS doesn't like this
-import AppCSS from '../../../css/styles.css' with { type: 'css' }
+import AppCSS from '../../../../css/styles.css' with { type: 'css' }
 // @ ts-expect-error TS doesn't like this
-import SignInLitCSS from './../SignInLit/SignInLit.css' with { type: 'css' }
+import SignInLitCSS from './SignInLit.css' with { type: 'css' }
 
 
 export class SignInLit extends LitElement {

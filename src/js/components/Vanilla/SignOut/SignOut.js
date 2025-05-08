@@ -1,6 +1,6 @@
-import { getAPIData } from "../../../js/getAPIData.js"
-import { API_PORT } from "../../logIn.js"
-import { importTemplate } from "../../lib/importTemplate.js"
+import { getAPIData } from "../../../getAPIData.js"
+import { API_PORT } from "../../../logIn.js"
+import { importTemplate } from "../../../lib/importTemplate.js"
 import ResetCSS from '../../../css/reset.css' with {type: 'css'}
 import AppCSS from '../../../css/styles.css' with {type: 'css'}
 import SignOutCSS from './SignOut.css' with {type: 'css'}

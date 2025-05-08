@@ -22,7 +22,7 @@ app.get('/api/read/users', async (req, res) => {
 // Get one user by id
 app.get('/api/read/user/:id', async (req, res) => {
   res.json(await mongoDB.users.getById(req.params.id))
-  console.log('Buscando usuario', req.params.id)
+  console.log('Buscando usuario con id:', req.params.id)
 })
 
 // Create User

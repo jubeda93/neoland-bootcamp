@@ -1,6 +1,6 @@
-import { getAPIData } from "../../../js/getAPIData.js"
-import { User } from "../../classes/User.js"
-import { API_PORT } from "../../logIn.js"
+import { getAPIData } from "../../../getAPIData.js"
+import { User } from "../../../classes/User.js"
+import { API_PORT } from "../../../logIn.js"
 import { importTemplate } from "lib/importTemplate";
 import ResetCSS from '../../../css/reset.css' with {type: 'css'}
 import AppCSS from '../../../css/styles.css' with {type: 'css'}
@@ -85,7 +85,7 @@ _setUpContent() {
     }
     /**
      * Handles a state change event from the store
-     * @param {import('../../store/redux').State} state - The new state
+     * @param {import('../../../store/redux.js').State} state - The new state
      * @private
      */
     _handleStateChanged(state) {
