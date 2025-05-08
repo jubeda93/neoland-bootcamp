@@ -8,17 +8,17 @@ export class DataProfile {
      * @param {string} [phone]
      * @param {string} [adress]
      * @param {string} [postalCode]
-     * @param {string} [energName]
+     * @param {string} [emergName]
      * @param {string} [emergPhone]
      */
-constructor(name,surName,bornDate,phone,adress,postalCode,energName,emergPhone){
+constructor(name,surName,bornDate,phone,adress,postalCode,emergName,emergPhone){
     this.name = name
     this.surName = surName
     this.bornDate = bornDate
     this.phone = phone
     this.adress = adress
     this.postalCode = postalCode
-    this.energName = energName
+    this.emergName = emergName
     this.emergPhone = emergPhone
     
 }

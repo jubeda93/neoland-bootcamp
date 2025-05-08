@@ -50,7 +50,8 @@ export class ResultsLit extends LitElement {
       <h1>Marcas Personales</h1>
       <section>
         <p>Press de banca</p>
-        <input type="text" 
+        <input 
+        type="text" 
         id="benchpress" 
         placeholder="Press banca"
         .value="${this.benchPress}"
@@ -59,7 +60,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>
         <p>Deadlift</p>
-        <input type="text"
+        <input 
+        type="text"
          id="deadlift"
         placeholder="Dead Lift"
         .value="${this.deadlift}"
@@ -67,7 +69,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>
         <p>Back Squat</p>
-        <input type="text"
+        <input 
+        type="text"
         id="backsquat"
         placeholder="Back Squat"
         .value="${this.backsquat}"
@@ -75,7 +78,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>
         <p>Front Squat</p>
-        <input type="text" 
+        <input 
+        type="text" 
         id="frontsquat" 
         placeholder="Front Squat"
         .value="${this.frontsquat}"
@@ -83,7 +87,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>
         <p>Snatch</p>
-        <input type="text" 
+        <input 
+        type="text" 
         id="snatch" 
         placeholder="Snatch"
         .value="${this.snatch}"
@@ -91,7 +96,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>
         <p>Power Snatch</p>
-        <input type="text" 
+        <input 
+        type="text" 
         id="cleanjerk" 
         placeholder="Clean and Jerk"
         .value="${this.cleanjerk}"
@@ -99,7 +105,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>
         <p>Power Clean</p>
-        <input type="text" 
+        <input 
+        type="text" 
         id="powerclean" 
         placeholder="Powerclean"
         .value="${this.powerclean}"
@@ -107,7 +114,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>
         <p>Squat Clean</p>
-        <input type="text" 
+        <input 
+        type="text" 
         id="squatclean" 
         placeholder="Squat Clean"
         .value="${this.squatclean}"
@@ -115,7 +123,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>  
         <p>Shoulder Press</p>
-        <input type="text" 
+        <input 
+        type="text" 
         id="shpress" 
         placeholder="Shoulder Press"
         .value="${this.shpress}"
@@ -123,7 +132,8 @@ export class ResultsLit extends LitElement {
       </section>
       <section>
         <p>Push Press</p> 
-        <input type="text" 
+        <input 
+        type="text" 
         id="pushpress" 
         placeholder="Push Press"
         .value="${this.pushpress}"
@@ -139,19 +149,17 @@ export class ResultsLit extends LitElement {
 
   async _readResults() {
     const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}' )
-    console.log(userLogged)
-    let usuario = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',);
-    console.log(usuario)
-    this.benchPress = usuario.results.benchpress || '0';
-    this.deadlift = usuario.results.deadlift|| '0';
-    this.backsquat = usuario.results.backsquat|| '0';
-    this.frontsquat = usuario.results.frontsquat|| '0';
-    this.snatch = usuario.results.snatch|| '0';
-    this.cleanjerk = usuario.results.cleanjerk|| '0';
-    this.powerclean = usuario.results.powerclean|| '0';
-    this.squatclean = usuario.results.squatclean|| '0';
-    this.shpress = usuario.results.shpress|| '0';
-    this.pushpress = usuario.results.pushpress|| '0' ;
+    let user = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',);
+    this.benchPress = user.results.benchpress || '0';
+    this.deadlift = user.results.deadlift|| '0';
+    this.backsquat = user.results.backsquat|| '0';
+    this.frontsquat = user.results.frontsquat|| '0';
+    this.snatch = user.results.snatch|| '0';
+    this.cleanjerk = user.results.cleanjerk|| '0';
+    this.powerclean = user.results.powerclean|| '0';
+    this.squatclean = user.results.squatclean|| '0';
+    this.shpress = user.results.shpress|| '0';
+    this.pushpress = user.results.pushpress|| '0' ;
   }
 
 

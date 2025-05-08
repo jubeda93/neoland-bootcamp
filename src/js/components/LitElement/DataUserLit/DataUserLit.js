@@ -19,7 +19,7 @@ export class DataUserLit extends LitElement {
         name: { type: String },
         surName: { type: String },
         bornDate: { type: String },
-        phoneNum: { type: String },
+        phone: { type: String },
         adress: { type: String },
         postalCode: { type: String },
         nameEmerg: { type: String },
@@ -28,14 +28,16 @@ export class DataUserLit extends LitElement {
 
     constructor() {
         super();
-        this.name = '';
-        this.surName = '';
-        this.bornDate = '';
-        this.phoneNum = '';
-        this.adress = '';
-        this.postalCode = '';
-        this.nameEmerg = '';
-        this.phoneEmerg = '';
+        this.name = '0';
+        this.surName = '0';
+        this.bornDate = '0';
+        this.phone = '0';
+        this.adress = '0';
+        this.postalCode = '0';
+        this.nameEmerg = '0';
+        this.phoneEmerg = '0';
+
+        this._readUserData();
     }
 
 
@@ -75,9 +77,9 @@ export class DataUserLit extends LitElement {
         <section>
             <p>Telefono</p>
             <input type="text" 
-            id="phoneNum" 
+            id="phone" 
             placeholder="Numero de telefono"
-            .value="${this.phoneNum}"
+            .value="${this.phone}"
             @input="${this._userPhoneNumChanged}"
             >
         </section>
@@ -120,6 +122,19 @@ export class DataUserLit extends LitElement {
     `
     }
 
+    async _readUserData() {
+        const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}' )
+        let user = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',);
+        this.name = user.dataProfile.name || '';
+        this.surName = user.dataProfile.surName || '';
+        this.bornDate = user.dataProfile.bornDate || '';
+        this.phone = user.dataProfile.phone || '';
+        this.adress = user.dataProfile.adress || '';
+        this.postalCode = user.dataProfile.postalCode || '';
+        this.nameEmerg = user.dataProfile.emergName || '';
+        this.phoneEmerg = user.dataProfile.emergPhone || '';
+    }
+
     async _saveUserData(e) {
         e.preventDefault();
 
@@ -153,7 +168,7 @@ export class DataUserLit extends LitElement {
     }       
 
     _userPhoneNumChanged(e) {
-        this.phoneNum = e.target.value;
+        this.phone = e.target.value;
     }
 
     _userAdressChanged(e) {
