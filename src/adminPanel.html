@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <title>My Perfil</title>
     <script type="importmap">
           {
@@ -24,15 +26,17 @@
             }
           }
         </script>
-    <!-- <script type="module" src="./js/logIn.js"></script> -->
+
     <script type="module" src="./js/components/bundle.js" defer></script>
     <script type="module" src="./js/profile.js"></script>
-  </head>
+</head>
 
 <body>
     <header>
         <h1>WodTrack</h1>
     </header>
+
+
 
     <nav id="navMenu">
         <menu id="menuHorizontal">
@@ -45,26 +49,28 @@
             <ul id="pagos"><a href="payment.html">Pagos</a></li>
         </menu>
     </nav>
-    <data-user-lit></data-user-lit>
-   
-    <!-- <div >
-        <h1>Panel control usuario:</h1>
-        <form id="changeEmail">
-            <p>Estos cambios pueden afectar al inicio de sesion:</p>
-            <p>Cambiar Email:</p>
-            <input type="email" id="emailUserOld" placeholder="Email actual">
-            <input type="email" id="emailUserNew" placeholder="Nuevo email">
-            <button>Cambiar email</button>
-        </form>
-        <form id="">
-            <p>Cambio contraseña:</p>
-            <input type="password" id="passwordOld" placeholder="Contraseña actual">
-            <input type="password" id="passwordNew" placeholder="Nueva contraseña">
-            <button type="submit" id="changePass">Cambiar contraseña</button>
-        </form>
-    </div> -->
-    <control-panel-lit></control-panel-lit>
-    <sign-out-lit></sign-out-lit>
-    
 
+      <button type="click" id="newUsersBTN">Nuevos Usuarios</button>
+     <button type="click" class="hidden" id="showUsersBTN">Lista Usuarios</button>
+    <button type="click" id="editUsersBTN">Editar Usuarios</button>
+    
+    <form>
+        <table id="tablaUsuarios">
+            <h1 id="tableTittle">Tabla de usuarios</h1>
+            <p id="subTableTittle" class="hidden">Pendiente de confirmacion y asignacion de tarifa:</p>
+            <thead>
+                <tr>
+                    <th class="column">Email</th>
+                    <th class="column">Rol</th>
+                    <th class="column">Tarifa</th>
+                    <th class="column">Borrar usuario</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyUsers"></tbody>
+        </table>
+    </form>
+
+  <button type="submit" id="saveUsersBTN" class="">Guardar</button>  
+  <button type="click" id="DeleteUsers" class="">Borrar Usuarios</button>
+    
 </body>

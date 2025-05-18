@@ -42,7 +42,7 @@ async function getUserById(id) {
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
-  return await usersCollection.findOne({ _id: new ObjectId(id) }, { projection: { password: 0 } })
+  return await usersCollection.findOne({ _id: new ObjectId(id) })
 }
 
 
@@ -96,7 +96,7 @@ async function updateUser(id, updates) {
   const shoppinglistDB = client.db('WodTrack-DDBB');
   const usersCollection = shoppinglistDB.collection('users');
   const returnValue = await usersCollection.updateOne({ _id: new ObjectId(id) }, { $set: updates });
-  console.log('DB updateUsers', returnValue, updates)
+  console.log('DB updateUsers', updates)
   return returnValue
 }
 

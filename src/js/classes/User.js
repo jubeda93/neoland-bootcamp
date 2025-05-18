@@ -19,7 +19,7 @@ export class User {
      
      */
 
-    constructor(email, password, tarifa = '', dataProfile = {}, results = {}, metrics = {}, rol = 'user', _id = '', token = '') {
+    constructor(email, password, tarifa = 'trial', dataProfile = {}, results = {}, metrics = {}, rol = 'trial', _id = '', token = '') {
         this._id = _id
         this.email = email
         this.password = password

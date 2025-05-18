@@ -56,6 +56,8 @@ button {
    }
 }
 
+
+
 body {
    h1 {
       font-size: 40px;
@@ -72,6 +74,11 @@ body {
       border-color: rgb(0 0 0);
       border-radius: 25px;
       background-color: rgb(233 234 235);
+   }
+
+   #tablaUsuarios {
+      background-color: rgb(233 234 235);
+      
    }
 
 
@@ -101,4 +108,8 @@ body {
 
       }
    }
+}
+
+.hidden {
+   display: none;
 }

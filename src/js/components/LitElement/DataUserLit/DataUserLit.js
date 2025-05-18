@@ -40,9 +40,6 @@ export class DataUserLit extends LitElement {
         this._readUserData();
     }
 
-
-
-
     render() {
         return html`
         <form id="userDataForm" @submit="${this._saveUserData}">

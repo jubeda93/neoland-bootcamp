@@ -149,17 +149,17 @@ export class ResultsLit extends LitElement {
 
   async _readResults() {
     const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}' )
-    let user = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',);
-    this.benchPress = user.results.benchpress || '0';
-    this.deadlift = user.results.deadlift|| '0';
-    this.backsquat = user.results.backsquat|| '0';
-    this.frontsquat = user.results.frontsquat|| '0';
-    this.snatch = user.results.snatch|| '0';
-    this.cleanjerk = user.results.cleanjerk|| '0';
-    this.powerclean = user.results.powerclean|| '0';
-    this.squatclean = user.results.squatclean|| '0';
-    this.shpress = user.results.shpress|| '0';
-    this.pushpress = user.results.pushpress|| '0' ;
+    let user = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',)
+    this.benchPress = user.results.benchpress || '0'
+    this.deadlift = user.results.deadlift|| '0'
+    this.backsquat = user.results.backsquat|| '0'
+    this.frontsquat = user.results.frontsquat|| '0'
+    this.snatch = user.results.snatch|| '0'
+    this.cleanjerk = user.results.cleanjerk|| '0'
+    this.powerclean = user.results.powerclean|| '0'
+    this.squatclean = user.results.squatclean|| '0'
+    this.shpress = user.results.shpress|| '0'
+    this.pushpress = user.results.pushpress|| '0' 
   }
 
 
@@ -180,8 +180,8 @@ export class ResultsLit extends LitElement {
     }
 
     const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
-    const results = JSON.stringify(new Results(resultsData.benchPress,resultsData.deadlift,resultsData.backsquat, resultsData.frontsquat, resultsData.snatch, resultsData.cleanjerk, resultsData.powerclean, resultsData.squatclean, resultsData.shpress, resultsData.pushpress));
-    await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/results/${userLogged._id}`, 'PUT', results);
+    const payload = JSON.stringify(new Results(resultsData.benchPress,resultsData.deadlift,resultsData.backsquat, resultsData.frontsquat, resultsData.snatch, resultsData.cleanjerk, resultsData.powerclean, resultsData.squatclean, resultsData.shpress, resultsData.pushpress));
+    await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/results/${userLogged._id}`, 'PUT', payload);
   }
 
   

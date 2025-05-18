@@ -1,4 +1,3 @@
-
 header {
     width: 100%;
 
@@ -24,28 +23,32 @@ header {
     }
 }
 
+.imgLink {
+    background-color: aliceblue;
+    text-align: center;
+}
+
 body {
     height: 100%;
     width: 100%;
     position: relative;
     text-align: center;
     justify-items: center;
-    background-image:linear-gradient(rgba(0 0 0 60%), rgba(0, 0, 0, 40%)),url(img/image-asset.jpeg);
-    background-size:auto;
+    background-size: auto;
     background-attachment: scroll;
-    
+
     button {
         height: 2em;
         width: 12em;
         margin: 10px;
     }
 
-     input {
-            width: 170px;
-            margin: 0.6em;
-            height: 2em;
-            text-align: center;
-        }
+    input {
+        width: 170px;
+        margin: 0.6em;
+        height: 2em;
+        text-align: center;
+    }
 
     #logIn {
         padding: 20px;
@@ -57,9 +60,9 @@ body {
         height: 300px;
 
         &.hidden {
-            display: none ;
+            display: none;
         }
- 
+
     }
 
     #signIn {
@@ -72,9 +75,24 @@ body {
         height: 300px;
 
         &.hidden {
-            display: none ;
+            display: none;
         }
     }
+
+}
+
+
+
+th,
+td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+
+}
+
+.column {
+    background-color: #505050;
+    color: #fff;
 }
 
 #menuInicio {
@@ -84,18 +102,12 @@ body {
     margin: 20px;
 
     .imgLink {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
         margin: 10px;
         position: relative;
     }
 
-    .imgLink img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        box-shadow: 5px 5px 9px black;
-    }
 
     .imgLink p {
         position: absolute;
@@ -108,6 +120,8 @@ body {
 
 }
 
+
+
 .lista-usuarios {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -119,7 +133,7 @@ body {
 
 }
 
-.horaClase{
+.horaClase {
     display: flex;
     border: 3px solid black;
     border-radius: 10px;
@@ -145,90 +159,3 @@ body {
     }
 
 }
-
-.userChanges {
-    padding: 20px;
-    margin: 60px ;
-    width: 800px;
-
-    input {
-        width: 200px;
-    }
-
-    p {
-        padding: 5px;
-    }
-
-}
-
-#saveMetrics {
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-    width: 800px;
-    line-height: 1.5em;
-    text-align: center;
-    justify-items: center;
-
-    h1 {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-}
-
-#userDataForm {
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-    width: 800px;
-    line-height: 1.5em;
-    text-align: center;
-    justify-items: center;
-
-    h1 {
-        width: 90%;
-        margin-bottom: 10px;
-    }
-
-}
-
-
-/* #saveResults {
-    background-color: rgb(233 234 235);
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    width: 500px;
-    margin-top: 40px;
-    line-height: 1.5em;
-    text-align: center;
-    justify-content: center;
-   
-
-    h1{ width: 100%;
-        font-size: 40px;
-        margin-bottom: 20px;
-        text-decoration: underline
-    }
-
-    input {
-        border-style: double;
-        border-color: grey;
-        border-radius: 6px;
-        width: 170px;
-        margin: 0.6em;
-        height: 2em;
-        text-align: center;
-    }
-
-    button {
-        height: 2em;
-        width: 12em;
-        margin: 10px;
-    }
-
-} */

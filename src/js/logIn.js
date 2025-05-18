@@ -23,14 +23,14 @@ function onDOMContentLoaded() {
   // let signOut = document.getElementById('signOut')
   let logOut = document.getElementById('logOut')
   // let newUserForm = document.getElementById('newUser')
-  let logUserForm = document.getElementById('userLog')
+  // let logUserForm = document.getElementById('userLog')
   
   // signIn?.addEventListener('submit', funSignIn)
   // logIn?.addEventListener('submit', funLogIn)
   // signOut?.addEventListener('submit', funSignOut)
   logOut?.addEventListener('click', funLogOut)
   // newUserForm?.addEventListener('click', showNewUserForm)
-  logUserForm?.addEventListener('click', showLogInForm)
+  // logUserForm?.addEventListener('click', showLogInForm)
 
   
 }
@@ -52,11 +52,11 @@ function funLogOut(event) {
 //   document.getElementById('logIn')?.classList.add('hidden')
 //   console.log('Sacamos registerForm')
 // }
-function showLogInForm () {
-  document.getElementById('logIn')?.classList.remove('hidden')
-  document.getElementById('signIn')?.classList.add('hidden')
-  console.log('Sacamos LogInForm')
-}
+// function showLogInForm () {
+//   document.getElementById('logIn')?.classList.remove('hidden')
+//   document.getElementById('signIn')?.classList.add('hidden')
+//   console.log('Sacamos LogInForm')
+// }
 
 
 

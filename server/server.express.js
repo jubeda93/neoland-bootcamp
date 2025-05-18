@@ -14,12 +14,13 @@ app.use(bodyParser.json())
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// Get all users (TODO:Unnabled)
+
+// Get all users
 app.get('/api/read/users', async (req, res) => {
   res.json(await mongoDB.users.get())
+  console.log('Mostrando todos los usuarios')
 })
 
-// Get one user by id
 app.get('/api/read/user/:id', async (req, res) => {
   res.json(await mongoDB.users.getById(req.params.id))
   console.log('Buscando usuario con id:', req.params.id)
@@ -40,6 +41,20 @@ app.post('/api/create/users', async (req,res) => {
       res.status(400).send('USUARIO EXISTENTE')
     }
 })
+//update user
+app.put('/api/update/user/:id' , async (req , res) => {
+  const userUpdate = req.body
+  console.log(userUpdate)
+  res.json(await mongoDB.users.update(req.params.id, userUpdate))
+}) 
+
+app.put('/api/update/rol/:id', async (req, res) => {
+  // Como los datos que enviamos solo son resultados, creamos una variable con los resultados:
+  const results = req.body
+  console.log(results)
+  res.json(await mongoDB.users.update(req.params.id, results))
+})
+
 // Upadate results
 app.put('/api/update/results/:id', requireAuth, async (req, res) => {
   // Como los datos que enviamos solo son resultados, creamos una variable con los resultados:
@@ -107,7 +122,10 @@ app.get('/stats', (req, res) => res.redirect('/'))
 
 // Start server
 app.listen(port, async () => {
-  console.log(`Running server.express on port: ${port}`);
+  console.log(
+    `Running server.express: http://127.0.0.1:${port}`
+
+  );
 })
 
 
