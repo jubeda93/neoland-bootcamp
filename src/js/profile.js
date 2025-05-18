@@ -10,7 +10,7 @@ function onDOMContentLoaded() {
 //=============================================================================//
    showAllUsers()
    checkUserLogged()
-    let editUser = document.getElementById('editUsersBTN')
+    let editUser = document.getElementById('editUserRol')
     editUser?.addEventListener('click', enableEditUsers)
     let showUsers = document.getElementById('showUsersBTN')
     showUsers?.addEventListener('click', showAllUsers)
@@ -75,7 +75,9 @@ async function showAllUsers() {
 
     document.getElementById('tbodyUsers').appendChild(row);
     document.getElementById('newUsersBTN').classList.remove('hidden')
-    document.getElementById('showUsersBTN').classList.add('hidden')
+    document.getElementById('editUserRol').classList.remove('hidden')
+    document.getElementById('saveUsersBTN').classList.add('hidden')
+    // document.getElementById('showUsersBTN').classList.add('hidden')
   }
 
 }
@@ -84,8 +86,6 @@ async function showAllUsers() {
 // Funcion para mostrar solamente los usuarios nuevos (trial)
 async function showNewUsers() {
   const rows = document.getElementsByClassName('userRow')
-  
-
   for (let i=0; i < rows.length; i++){
     const userRol = rows[i].getAttribute('rol')
     if (userRol !== 'trial'){
@@ -97,32 +97,80 @@ async function showNewUsers() {
   document.getElementById('showUsersBTN').classList.remove('hidden')
 }
 
-// Funcion para habilitar los selectores en la tabla (rol y tarifa)
+
+
+function createSelect(currentValue, options, className) {
+  const selector = document.createElement('select');
+  selector.classList.add(className);
+
+  options.forEach(option => {
+    const opt = document.createElement('option');
+    opt.value = option;
+    opt.textContent = option;
+    if (option === currentValue) opt.selected = true;
+    selector.appendChild(opt);
+  });
+
+  return selector;
+}
 
 async function enableEditUsers() {
-  const rows = document.getElementsByClassName('userRow')
+  const rows = document.getElementsByClassName('userRow');
   const rolOptions = ['trial', 'cliente', 'coach', 'admin'];
+  const tarifaOptions = ['trial', 'scaled','pro', 'elite'];
 
-  for (let i=0 ; i< rows.length; i++){
-    const cells = rows[i].getElementsByTagName('td')
-    const currentRol = cells[1].textContent
-    const currentTarifa = cells[2].textContent
-    const rolSelector = document.createElement('select')
-    rolSelector.classList.add('selectRol')
+  for (let i = 0; i < rows.length; i++) {
+    const cells = rows[i].getElementsByTagName('td');
 
-    rolOptions.forEach(option => {
-      const opt = document.createElement('option')
-      opt.value = option
-      opt.textContent = option
-      if (option === currentRol) opt.selected = true
-      rolSelector.appendChild(opt)
-    })
-
-    console.log(currentTarifa)
-    cells[1].innerHTML = ''; 
+    // Editar Rol (columna 1)
+    const currentRol = cells[1].textContent.trim();
+    const rolSelector = createSelect(currentRol, rolOptions, 'selectRol');
+    cells[1].innerHTML = '';
     cells[1].appendChild(rolSelector);
-    }
+
+    // Editar Tarifa (columna 2)
+    const currentTarifa = cells[2].textContent.trim();
+    const tarifaSelector = createSelect(currentTarifa, tarifaOptions, 'selectTarifa');
+    cells[2].innerHTML = '';
+    cells[2].appendChild(tarifaSelector);
   }
+
+  document.getElementById('editUserRol')?.classList.add('hidden');
+  document.getElementById('saveUsersBTN')?.classList.remove('hidden');
+}
+
+
+
+
+
+
+
+// Funcion para habilitar los selectores en la tabla (rol y tarifa)
+
+// async function enableEditUsers() {
+//   const rows = document.getElementsByClassName('userRow')
+//   const rolOptions = ['trial', 'cliente', 'coach', 'admin'];
+
+//   for (let i=0 ; i< rows.length; i++){
+//     const cells = rows[i].getElementsByTagName('td')
+//     const currentRol = cells[1].textContent
+//     const rolSelector = document.createElement('select')
+//     rolSelector.classList.add('selectRol')
+
+//     rolOptions.forEach(option => {
+//       const opt = document.createElement('option')
+//       opt.value = option
+//       opt.textContent = option
+//       if (option === currentRol) opt.selected = true
+//       rolSelector.appendChild(opt)
+//     })
+
+//     cells[1].innerHTML = ''; 
+//     cells[1].appendChild(rolSelector);
+//     }
+//     document.getElementById('editUserRol').classList.add('hidden')
+    
+//   }
 
 // ============ Funcion para actualizar el rol de lo usuarios
 
@@ -130,9 +178,11 @@ async function saveUsersChanges() {
   const rows = document.getElementsByClassName('userRow')
   for (let i = 0; i < rows.length; i++) {
     const rolSelector = rows[i].getElementsByClassName('selectRol')[0]
+    const tarifaSelector = rows[i].getElementsByClassName('selectTarifa')[0]
     const newRol = rolSelector.value
+    const newTarifa = tarifaSelector.value
     const _id = rows[i].id
-    let payload = JSON.stringify({rol: newRol})
+    let payload = JSON.stringify({rol: newRol, tarifa: newTarifa})
   
     await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${_id}`, 'PUT', payload  )
   }

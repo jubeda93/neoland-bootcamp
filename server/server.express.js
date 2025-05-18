@@ -44,14 +44,13 @@ app.post('/api/create/users', async (req,res) => {
 //update user
 app.put('/api/update/user/:id' , async (req , res) => {
   const userUpdate = req.body
-  console.log(userUpdate)
+  
   res.json(await mongoDB.users.update(req.params.id, userUpdate))
 }) 
 
 app.put('/api/update/rol/:id', async (req, res) => {
   // Como los datos que enviamos solo son resultados, creamos una variable con los resultados:
   const results = req.body
-  console.log(results)
   res.json(await mongoDB.users.update(req.params.id, results))
 })
 
