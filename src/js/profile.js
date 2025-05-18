@@ -14,7 +14,7 @@ function onDOMContentLoaded() {
     editUser?.addEventListener('click', enableEditUsers)
     let showUsers = document.getElementById('showUsersBTN')
     showUsers?.addEventListener('click', showAllUsers)
-    
+
     let changeRol = document.getElementById('saveUsersBTN')
     changeRol?.addEventListener('click', saveUsersChanges)
     let mostrarNuevos = document.getElementById('newUsersBTN')
@@ -77,7 +77,7 @@ async function showAllUsers() {
     document.getElementById('newUsersBTN').classList.remove('hidden')
     document.getElementById('editUserRol').classList.remove('hidden')
     document.getElementById('saveUsersBTN').classList.add('hidden')
-    // document.getElementById('showUsersBTN').classList.add('hidden')
+   
   }
 
 }
@@ -85,6 +85,10 @@ async function showAllUsers() {
 
 // Funcion para mostrar solamente los usuarios nuevos (trial)
 async function showNewUsers() {
+
+  document.getElementById('tableTittle').textContent = 'Lista de usuarios nuevos'
+  document.getElementById('subTableTittle').classList.remove('hidden')
+
   const rows = document.getElementsByClassName('userRow')
   for (let i=0; i < rows.length; i++){
     const userRol = rows[i].getAttribute('rol')
@@ -98,79 +102,49 @@ async function showNewUsers() {
 }
 
 
-
-function createSelect(currentValue, options, className) {
-  const selector = document.createElement('select');
-  selector.classList.add(className);
-
-  options.forEach(option => {
-    const opt = document.createElement('option');
-    opt.value = option;
-    opt.textContent = option;
-    if (option === currentValue) opt.selected = true;
-    selector.appendChild(opt);
-  });
-
-  return selector;
-}
-
-async function enableEditUsers() {
-  const rows = document.getElementsByClassName('userRow');
-  const rolOptions = ['trial', 'cliente', 'coach', 'admin'];
-  const tarifaOptions = ['trial', 'scaled','pro', 'elite'];
-
-  for (let i = 0; i < rows.length; i++) {
-    const cells = rows[i].getElementsByTagName('td');
-
-    // Editar Rol (columna 1)
-    const currentRol = cells[1].textContent.trim();
-    const rolSelector = createSelect(currentRol, rolOptions, 'selectRol');
-    cells[1].innerHTML = '';
-    cells[1].appendChild(rolSelector);
-
-    // Editar Tarifa (columna 2)
-    const currentTarifa = cells[2].textContent.trim();
-    const tarifaSelector = createSelect(currentTarifa, tarifaOptions, 'selectTarifa');
-    cells[2].innerHTML = '';
-    cells[2].appendChild(tarifaSelector);
-  }
-
-  document.getElementById('editUserRol')?.classList.add('hidden');
-  document.getElementById('saveUsersBTN')?.classList.remove('hidden');
-}
-
-
-
-
-
-
-
 // Funcion para habilitar los selectores en la tabla (rol y tarifa)
 
-// async function enableEditUsers() {
-//   const rows = document.getElementsByClassName('userRow')
-//   const rolOptions = ['trial', 'cliente', 'coach', 'admin'];
+async function enableEditUsers() {
+  const rows = document.getElementsByClassName('userRow')
+  const rolOptions = ['trial', 'cliente', 'coach', 'admin']
+  const tarifaOptions = ['trial','scaled', 'pro', 'elite']
 
-//   for (let i=0 ; i< rows.length; i++){
-//     const cells = rows[i].getElementsByTagName('td')
-//     const currentRol = cells[1].textContent
-//     const rolSelector = document.createElement('select')
-//     rolSelector.classList.add('selectRol')
+  for (let i=0 ; i< rows.length; i++){
+    const cells = rows[i].getElementsByTagName('td')
+    const currentRol = cells[1].textContent
+    const currentTarifa = cells[2].textContent
 
-//     rolOptions.forEach(option => {
-//       const opt = document.createElement('option')
-//       opt.value = option
-//       opt.textContent = option
-//       if (option === currentRol) opt.selected = true
-//       rolSelector.appendChild(opt)
-//     })
+    const rolSelector = document.createElement('select')
+    const tarifaSelector = document.createElement('select')
+    rolSelector.classList.add('selectRol')
+    tarifaSelector.classList.add('selectTarifa')
 
-//     cells[1].innerHTML = ''; 
-//     cells[1].appendChild(rolSelector);
-//     }
-//     document.getElementById('editUserRol').classList.add('hidden')
+    rolOptions.forEach(option => {
+      const opt = document.createElement('option')
+      opt.value = option
+      opt.textContent = option
+      if (option === currentRol) opt.selected = true
+      rolSelector.appendChild(opt)
+    })
+
+    tarifaOptions.forEach(option => {
+      const opt = document.createElement('option')
+      opt.value = option
+      opt.textContent = option
+      if (option === currentTarifa) opt.selected = true
+      tarifaSelector.appendChild(opt)
+    })
+
+    cells[1].innerHTML = ''; 
+    cells[1].appendChild(rolSelector);
+
+    cells[2].innerHTML = ''; 
+    cells[2].appendChild(tarifaSelector);
+    }
+    document.getElementById('editUserRol').classList.add('hidden')
+    document.getElementById('saveUsersBTN').classList.remove('hidden')
     
-//   }
+  }
 
 // ============ Funcion para actualizar el rol de lo usuarios
 
@@ -182,10 +156,18 @@ async function saveUsersChanges() {
     const newRol = rolSelector.value
     const newTarifa = tarifaSelector.value
     const _id = rows[i].id
-    let payload = JSON.stringify({rol: newRol, tarifa: newTarifa})
+    const currentEmail = rows[i].getAttribute('email')
+    const currentRol = rows[i].getAttribute('rol')
+    const currentTarifa = rows[i].getAttribute('tarifa')
+    
+    if (newRol !== currentRol || newTarifa !== currentTarifa) {
+      let payload = JSON.stringify({rol: newRol, tarifa: newTarifa})
   
-    await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${_id}`, 'PUT', payload  )
-  }
+  await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${_id}`, 'PUT', payload)
+  console.log('Actulizando datos del usuario' + currentEmail)
+     } else console.error('No hay cambios en el rol o la tarifa')
+    showAllUsers()
+  } 
 }
 
 
