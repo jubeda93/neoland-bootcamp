@@ -38,5 +38,3 @@ Los usuarios finales tienen acceso a funcionalidades orientadas a su experiencia
 - Se implementan validaciones tanto en frontend como en backend para prevenir errores y garantizar la seguridad.
 - El backend protege las rutas mediante validación de sesión y tokenización para evitar accesos no autorizados.
 - La gestión de sesiones en frontend usa `sessionStorage` para almacenar información sensible de forma temporal y facilitar una experiencia de usuario fluida.
-
----
