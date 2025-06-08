@@ -2,6 +2,7 @@ import { getAPIData } from "../../../getAPIData.js"
 import { Results } from "classes/Results"
 import { API_PORT } from "../../../logIn.js"
 import { html, LitElement } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
+
 // @ ts-expect-error TS doesn't like this
 import ResetCSS from '../../../../../css/reset.css' with { type: 'css' }
 // @ ts-expect-error TS doesn't like this
@@ -15,6 +16,7 @@ export class ResultsLit extends LitElement {
 
   // PROPIEDADES DEL COMPONENTE
   static properties = {
+    date: { type: Date },
     benchPress: { type: String },
     deadlift: { type: String },
     backsquat: { type: String },
@@ -25,30 +27,42 @@ export class ResultsLit extends LitElement {
     squatclean: { type: String },
     shpress: { type: String },
     pushpress: { type: String },
+    pushjerk: { type: String }
 
   }
 
   constructor() {
     super();
-    this.benchPress = '0';
-    this.deadlift = '0';
-    this.backsquat = '0';
-    this.frontsquat = '0';
-    this.snatch = '0';
-    this.cleanjerk = '0';
-    this.powerclean = '0';
-    this.squatclean = '0';
-    this.shpress = '0';
-    this.pushpress = '0';
-
-    this._readResults();
+    this.date = '';
+    this.benchPress = '';
+    this.deadlift = '';
+    this.backsquat = '';
+    this.frontsquat = '';
+    this.snatch = '';
+    this.cleanjerk = '';
+    this.powerclean = '';
+    this.squatclean = '';
+    this.shpress = '';
+    this.pushpress = '';
+    this.pushjerk = '';
   }
 
   render() {
     return html`
         <form id="saveResults" @submit="${this._saveResults}">
-      <h1>Marcas Personales</h1>
-      <section>
+      <h1>REGISTRAR RESULTADOS</h1>
+      <div class="inputs-grid">
+      <label>
+        <p>Fecha</p>
+        <input type="date" 
+        id="date" 
+        placeholder="Fecha" 
+        .value="${this.date}" 
+        max="${new Date().toISOString().split('T')[0]}"
+        @input="${this._dateChanged}"
+        required>
+      </label>
+      <label>
         <p>Press de banca</p>
         <input 
         type="text" 
@@ -57,8 +71,8 @@ export class ResultsLit extends LitElement {
         .value="${this.benchPress}"
         @input="${this._benchPressChanged}"
         >
-      </section>
-      <section>
+      </label>
+      <label>
         <p>Deadlift</p>
         <input 
         type="text"
@@ -66,8 +80,8 @@ export class ResultsLit extends LitElement {
         placeholder="Dead Lift"
         .value="${this.deadlift}"
         @input="${this._deadliftChanged}">
-      </section>
-      <section>
+      </label>
+      <label>
         <p>Back Squat</p>
         <input 
         type="text"
@@ -75,8 +89,8 @@ export class ResultsLit extends LitElement {
         placeholder="Back Squat"
         .value="${this.backsquat}"
         @input="${this._backsquatChanged}">
-      </section>
-      <section>
+      </label>
+      <label>
         <p>Front Squat</p>
         <input 
         type="text" 
@@ -84,8 +98,8 @@ export class ResultsLit extends LitElement {
         placeholder="Front Squat"
         .value="${this.frontsquat}"
         @input="${this._frontsquatChanged}">
-      </section>
-      <section>
+      </label>
+      <label>
         <p>Snatch</p>
         <input 
         type="text" 
@@ -93,8 +107,8 @@ export class ResultsLit extends LitElement {
         placeholder="Snatch"
         .value="${this.snatch}"
         @input="${this._snatchChanged}">
-      </section>
-      <section>
+      </label>
+      <label>
         <p>Power Snatch</p>
         <input 
         type="text" 
@@ -102,8 +116,8 @@ export class ResultsLit extends LitElement {
         placeholder="Clean and Jerk"
         .value="${this.cleanjerk}"
         @input="${this._cleanjerkChanged}">
-      </section>
-      <section>
+      </label>
+      <label>
         <p>Power Clean</p>
         <input 
         type="text" 
@@ -111,8 +125,8 @@ export class ResultsLit extends LitElement {
         placeholder="Powerclean"
         .value="${this.powerclean}"
         @input="${this._powercleanChanged}">
-      </section>
-      <section>
+      </label>
+      <label>
         <p>Squat Clean</p>
         <input 
         type="text" 
@@ -120,8 +134,8 @@ export class ResultsLit extends LitElement {
         placeholder="Squat Clean"
         .value="${this.squatclean}"
         @input="${this._squatcleanChanged}">
-      </section>
-      <section>  
+      </label>
+      <label>  
         <p>Shoulder Press</p>
         <input 
         type="text" 
@@ -129,8 +143,8 @@ export class ResultsLit extends LitElement {
         placeholder="Shoulder Press"
         .value="${this.shpress}"
         @input="${this._shpressChanged}">
-      </section>
-      <section>
+      </label>
+      <label>
         <p>Push Press</p> 
         <input 
         type="text" 
@@ -139,27 +153,20 @@ export class ResultsLit extends LitElement {
         .value="${this.pushpress}"
         @input="${this._pushpressChanged}"
         > 
-      </section>  
-        <div>
-        <button type="submit">Guardar datos</button>
-      </div>
+      </label> 
+      <label>
+        <p>Push Jerk</p>
+        <input 
+        type="text" 
+        id="pushjerk" 
+        placeholder="Push Jerk"
+        .value="${this.pushjerk}"
+        @input="${this._pushjerkChanged}">
+      </label>
+      </div> 
+        <button type="submit">Guardar</button>
     </form>
         `;
-  }
-
-  async _readResults() {
-    const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}' )
-    let user = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',)
-    this.benchPress = user.results.benchpress || '0'
-    this.deadlift = user.results.deadlift|| '0'
-    this.backsquat = user.results.backsquat|| '0'
-    this.frontsquat = user.results.frontsquat|| '0'
-    this.snatch = user.results.snatch|| '0'
-    this.cleanjerk = user.results.cleanjerk|| '0'
-    this.powerclean = user.results.powerclean|| '0'
-    this.squatclean = user.results.squatclean|| '0'
-    this.shpress = user.results.shpress|| '0'
-    this.pushpress = user.results.pushpress|| '0' 
   }
 
 
@@ -167,6 +174,7 @@ export class ResultsLit extends LitElement {
     e.preventDefault()
 
     const resultsData = {
+      date: this.date,
       benchPress: this.benchPress,
       deadlift: this.deadlift,
       backsquat: this.backsquat,
@@ -176,17 +184,38 @@ export class ResultsLit extends LitElement {
       powerclean: this.powerclean,
       squatclean: this.squatclean,
       shpress: this.shpress,
-      pushpress: this.pushpress
+      pushpress: this.pushpress,
+      pushjerk: this.pushjerk
     }
 
     const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
-    const payload = JSON.stringify(new Results(resultsData.benchPress,resultsData.deadlift,resultsData.backsquat, resultsData.frontsquat, resultsData.snatch, resultsData.cleanjerk, resultsData.powerclean, resultsData.squatclean, resultsData.shpress, resultsData.pushpress));
-    await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/results/${userLogged._id}`, 'PUT', payload);
+    const userLoggedID = userLogged._id
+    const payload = new Results(
+      resultsData.date,
+      resultsData.benchPress,
+      resultsData.deadlift,
+      resultsData.backsquat,
+      resultsData.frontsquat,
+      resultsData.snatch,
+      resultsData.cleanjerk,
+      resultsData.powerclean,
+      resultsData.squatclean,
+      resultsData.shpress,
+      resultsData.pushpress,
+      resultsData.pushjerk,
+      userLoggedID,
+    )
+    alert('Resultados guardados correctamente')
+    location.reload()
+    console.log(payload)
+    await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/create/results/${userLoggedID}`, 'POST', payload);
   }
 
-  
-
   // FUNCIONES QUE OBSERVAN LOS CAMBIOS EN LOS INPUTS
+
+  _dateChanged(e) {
+    this.date = e.target.value
+  }
   _benchPressChanged(e) {
     this.benchPress = e.target.value;
   }
@@ -218,7 +247,9 @@ export class ResultsLit extends LitElement {
   _pushpressChanged(e) {
     this.pushpress = e.target.value;
   }
+  _pushjerkChanged(e) {
+    this.pushjerk = e.target.value;
+  }
 }
-
 
 customElements.define('save-results', ResultsLit)

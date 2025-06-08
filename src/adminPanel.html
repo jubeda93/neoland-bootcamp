@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap"
         rel="stylesheet">
     <title>My Perfil</title>
     <script type="importmap">
@@ -29,14 +29,14 @@
 
     <script type="module" src="./js/components/bundle.js" defer></script>
     <script type="module" src="./js/profile.js"></script>
+
+
 </head>
 
 <body>
     <header>
-        <h1>WodTrack</h1>
+        <h1 class="wodTrackTittle">WodTrack</h1>
     </header>
-
-
 
     <nav id="navMenu">
         <menu id="menuHorizontal">
@@ -45,17 +45,20 @@
             <ul id="booking"><a href="booking.html">Reservar</a></ul>
             <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
             <ul id="results"><a href="results.html">My Results</a></ul>
-            <ul id="mensaje"><a href="mensajes.html">Mensajes</a></ul>
-            <ul id="pagos"><a href="payment.html">Pagos</a></li>
         </menu>
     </nav>
-  
-      <button type="click" id="newUsersBTN">Nuevos Usuarios</button>
-     <button type="click" class="" id="showUsersBTN">Lista Usuarios</button>
-    <button type="click" id="editUserRol">Editar Usuario</button>
-    
-    
-    <form>
+    <div class="adminPanelBTN">
+        <button type="button" id="gestionUsuariosBTN">Tabla de usuarios</button>
+        <button type="button" id="newUserAdminBTN">Registro de usuarios</button>
+    </div>
+    <form id="gestionUsuariosForm" class="hidden">
+
+        <div class="tableUsersBTN">
+            <button type="button" id="newUsersBTN">Nuevos Usuarios</button>
+            <button type="button" class="hidden" id="showUsersBTN">Volver</button>
+            <button type="button" id="editUserAll">Editar Usuario</button>
+        </div>
+
         <table id="tablaUsuarios">
             <h1 id="tableTittle">Tabla de usuarios</h1>
             <p id="subTableTittle" class="hidden">Pendiente de asignacion de rol y tarifa:</p>
@@ -64,15 +67,21 @@
                     <th class="column">Email</th>
                     <th class="column">Rol</th>
                     <th class="column">Tarifa</th>
-                    <th class="column">Borrar usuario</th>
+                    <th class="column">Marcar para eliminar</th>
                 </tr>
             </thead>
             <tbody id="tbodyUsers"></tbody>
         </table>
+        <div class="buttonAdmin">
+        <button type="button" id="saveUsersBTN" class="hidden">Guardar</button>
+        <button type="button" id="DeleteUsers" >Borrar selección</button>
+    </div>
     </form>
 
-  <button type="submit" id="saveUsersBTN" class="hidden">Guardar</button>  
-  <button type="click" id="DeleteUsers" class="">Borrar Usuarios</button>
-  
-    
+    <sign-in-lit></sign-in-lit>
+
+
+
+
+
 </body>

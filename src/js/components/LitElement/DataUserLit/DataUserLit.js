@@ -43,7 +43,7 @@ export class DataUserLit extends LitElement {
     render() {
         return html`
         <form id="userDataForm" @submit="${this._saveUserData}">
-        <h1>Datos personales:</h1>
+        <h1>PERFIL DE USUARIO</h1>
         <section>
             <p>Nombre</p>
             <input type="text" 
@@ -112,7 +112,7 @@ export class DataUserLit extends LitElement {
             placeholder="Numero de Emergencia"
             .value="${this.phoneEmerg}"
             @input="${this._userPhoneEmergChanged}"
-            ><br>
+            >
         </section>
         <button type="submit">Guardar</button>
     </form>
@@ -147,7 +147,7 @@ export class DataUserLit extends LitElement {
         }
 
         const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
-            const data = JSON.stringify(new DataProfile(userData.name,userData.surName,userData.bornDate,userData.phone,userData.adress,userData.postalCode,userData.nameEmerg,userData.phoneEmerg));
+            const data = (new DataProfile(userData.name,userData.surName,userData.bornDate,userData.phone,userData.adress,userData.postalCode,userData.nameEmerg,userData.phoneEmerg));
             await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/dataProfile/${userLogged._id}`, 'PUT', data);
 
     }

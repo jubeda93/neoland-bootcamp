@@ -12,10 +12,10 @@ export class ControlPanelLit extends LitElement {
 
     render() {
         return html`
-    <div >
-        <h1>Panel control usuario:</h1>
+    <div id="controlPanel">
+        <h1>AJUSTES DE CUENTA</h1>
+         <p>* Estos cambios pueden afectar al inicio de sesion *</p>
         <form id="changeEmail" @submit="${this._ChangeEmail}">
-            <p>Estos cambios pueden afectar al inicio de sesion:</p>
             <p>Cambiar Email:</p>
             <input type="email" id="emailUser" placeholder="Email actual">
             <input type="email" id="emailUserNew" placeholder="Nuevo email">
@@ -28,8 +28,24 @@ export class ControlPanelLit extends LitElement {
             <input type="password" id="passwordNew" placeholder="Nueva contraseña">
             <button type="submit">Cambiar contraseña</button>
         </form>
+        <button id="signOut" @click="${this._onSignOut}">Borrar usuario</button>
+        
     </div> `
     }
+
+     async _onSignOut(e) {
+            e.preventDefault()
+            
+            if (sessionStorage.getItem('User') && confirm('¿Estás seguro de borrar tu usuario?')) {
+              let userLogged = JSON.parse(sessionStorage.getItem('User') || '')
+              const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/delete/users/${userLogged._id}`, 'DELETE')
+              console.log(typeof apiData,apiData)
+              // Eliminar del sessionStorage
+              sessionStorage.removeItem('User')
+               location.href = "./index.html"
+            } 
+          }
+
     async _ChangeEmail (e) {
         e.preventDefault()
         let userLogged = JSON.parse(sessionStorage.getItem('User'))
@@ -37,7 +53,7 @@ export class ControlPanelLit extends LitElement {
         let emailNew = this.renderRoot.getElementById('emailUserNew').value
         if (userLogged.email === emailOld) {
             userLogged.email = emailNew
-            const emailToChange = JSON.stringify({email: userLogged.email})
+            const emailToChange = ({email: userLogged.email})
             sessionStorage.setItem('User', JSON.stringify(userLogged))
             await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${userLogged._id}`, 'PUT', emailToChange )
             alert('Email modificado correctamente!')
@@ -55,8 +71,7 @@ export class ControlPanelLit extends LitElement {
         let passNew =this.renderRoot.getElementById('passwordNew').value
         if (user.password === passOld ){
             user.password = passNew
-            const passToChange = JSON.stringify({password: user.password})
-            console.log(passToChange,typeof passToChange)
+            const passToChange = ({password: user.password})
         await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${userLogged._id}`, 'PUT', passToChange )
          alert('Password modificada correctamente!')
         } else {
@@ -67,25 +82,3 @@ export class ControlPanelLit extends LitElement {
 }
     customElements.define('control-panel-lit', ControlPanelLit)
     
-
-
-// }
-// function changePass(event) {
-//     event.preventDefault()
-
-//     let userLogged = JSON.parse(sessionStorage.getItem('user'))
-//     let passOldDoc = document.getElementById('passwordOld')
-//     let passOld = /**@type {HTMLInputElement} */ (passOldDoc)?.value
-//     if (userLogged.password === passOld) {
-//         let passwordNewDoc = document.getElementById('passwordNew')
-//         let passNew = /**@type {HTMLInputElement} */ (passwordNewDoc)?.value
-//         userLogged.password = passNew
-//         sessionStorage.setItem('user', JSON.stringify(userLogged))
-//         store.user.update(userLogged)
-//         updateUserDB()
-//         alert('Contraseña modificada correctamente!')
-//     } else {
-//         alert('La contraseña no coincide con la actual')
-//     }
-
-// }

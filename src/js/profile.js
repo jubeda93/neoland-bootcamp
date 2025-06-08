@@ -1,3 +1,4 @@
+// import { text } from "body-parser"
 import { checkUserLogged } from "./checkUserLogged.js"
 import { getAPIData } from "./getAPIData.js"
 
@@ -5,32 +6,38 @@ window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
 
 function onDOMContentLoaded() {
 
-
-
-//=============================================================================//
+  checkUserLogged()
+ 
    showAllUsers()
-   checkUserLogged()
-    let editUser = document.getElementById('editUserRol')
+    let editUser = document.getElementById('editUserAll')
     editUser?.addEventListener('click', enableEditUsers)
     let showUsers = document.getElementById('showUsersBTN')
     showUsers?.addEventListener('click', showAllUsers)
-
     let changeRol = document.getElementById('saveUsersBTN')
     changeRol?.addEventListener('click', saveUsersChanges)
     let mostrarNuevos = document.getElementById('newUsersBTN')
     mostrarNuevos?.addEventListener('click', showNewUsers)
     let showDeleteCheck = document.getElementById('DeleteUsers')
     showDeleteCheck?.addEventListener('click', deleteSelectUsers)
+    let tablaUsuarios= document.getElementById('gestionUsuariosBTN')
+    tablaUsuarios?.addEventListener('click', showUsersTable)
+    let formNewUser= document.getElementById('newUserAdminBTN')
+    formNewUser?.addEventListener('click', showNewUserForm)
 }
 
 const API_PORT = location.port ? `:${1993}` : ''
 
 //ShowAllUsers muestra una lista de todos los usuarios
-
-
 async function showAllUsers() {
 
   document.getElementById('tbodyUsers').innerHTML = '';
+  document.getElementById('tableTittle').textContent = 'Lista de usuarios:'
+  document.getElementById('showUsersBTN').classList.add('hidden')
+  document.getElementById('subTableTittle').classList.add('hidden')
+  document.getElementById('tablaUsuarios').classList.remove('hidden')
+  document.getElementById('DeleteUsers').classList.remove('hidden')
+  document.getElementById('editUserAll').classList.remove('hidden')
+
 
   let users = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/users`, 'GET',);
 
@@ -75,26 +82,63 @@ async function showAllUsers() {
 
     document.getElementById('tbodyUsers').appendChild(row);
     document.getElementById('newUsersBTN').classList.remove('hidden')
-    document.getElementById('editUserRol').classList.remove('hidden')
+    document.getElementById('editUserAll').classList.remove('hidden')
     document.getElementById('saveUsersBTN').classList.add('hidden')
    
   }
 
 }
 
+async function showUsersTable(){
+  document.getElementById('gestionUsuariosForm').classList.remove('hidden')
+  document.getElementById('gestionUsuariosBTN').classList.add('hidden')
+  document.getElementById('newUserAdminBTN').classList.remove('hidden')
+  const signInForm = document.querySelector('sign-in-lit')
+  signInForm.shadowRoot.getElementById('signIn').classList.add('hidden')
+  
+
+}
+
+
+//En esta funcion hago una serie de modificaciones en el componente WEB para el interfaz del Admin
+async function showNewUserForm() {
+  document.getElementById('gestionUsuariosBTN').classList.remove('hidden')
+  document.getElementById('gestionUsuariosForm').classList.add('hidden')
+  console.log('Sacamos registerForm')
+   const signInForm = document.querySelector('sign-in-lit')
+   signInForm.shadowRoot.getElementById('signIn').classList.remove('hidden')
+   signInForm.shadowRoot.getElementById('userLog').classList.add('hidden')
+   signInForm.shadowRoot.getElementById('userLogText').classList.add('hidden')
+   signInForm.shadowRoot.getElementById('signInTitle').textContent = 'Registrar nuevo usuario'
+   signInForm.shadowRoot.getElementById('signInButton').textContent = 'Dar de alta usuario'
+   document.getElementById('newUserAdminBTN').classList.add('hidden')
+
+}
 
 // Funcion para mostrar solamente los usuarios nuevos (trial)
 async function showNewUsers() {
-
-  document.getElementById('tableTittle').textContent = 'Lista de usuarios nuevos'
+  document.getElementById('tableTittle').textContent = 'Usuarios nuevos:'
   document.getElementById('subTableTittle').classList.remove('hidden')
 
+  let trialCount = 0
   const rows = document.getElementsByClassName('userRow')
   for (let i=0; i < rows.length; i++){
     const userRol = rows[i].getAttribute('rol')
     if (userRol !== 'trial'){
       rows[i].classList.add('hidden')
+    } if (userRol === 'trial'){
+      
+      trialCount++
+      rows[i].classList.remove('hidden')
     }
+  }
+
+  if (trialCount === 0){
+    document.getElementById('tableTittle').textContent = 'No hay usuarios nuevos'
+    document.getElementById('subTableTittle').classList.add('hidden')
+    document.getElementById('tablaUsuarios').classList.add('hidden')
+    document.getElementById('DeleteUsers').classList.add('hidden')
+    document.getElementById('editUserAll').classList.add('hidden')
   }
 
   document.getElementById('newUsersBTN').classList.add('hidden')
@@ -107,7 +151,9 @@ async function showNewUsers() {
 async function enableEditUsers() {
   const rows = document.getElementsByClassName('userRow')
   const rolOptions = ['trial', 'cliente', 'coach', 'admin']
-  const tarifaOptions = ['trial','scaled', 'pro', 'elite']
+  const tarifaOptions = ['trial','scaled', 'pro', 'elite','coach', 'admin']
+  document.getElementById('showUsersBTN').classList.remove('hidden')
+
 
   for (let i=0 ; i< rows.length; i++){
     const cells = rows[i].getElementsByTagName('td')
@@ -116,6 +162,8 @@ async function enableEditUsers() {
 
     const rolSelector = document.createElement('select')
     const tarifaSelector = document.createElement('select')
+    rolSelector.style.textTransform = 'capitalize';
+    tarifaSelector.style.textTransform = 'capitalize';
     rolSelector.classList.add('selectRol')
     tarifaSelector.classList.add('selectTarifa')
 
@@ -141,7 +189,7 @@ async function enableEditUsers() {
     cells[2].innerHTML = ''; 
     cells[2].appendChild(tarifaSelector);
     }
-    document.getElementById('editUserRol').classList.add('hidden')
+    document.getElementById('editUserAll').classList.add('hidden')
     document.getElementById('saveUsersBTN').classList.remove('hidden')
     
   }
@@ -161,13 +209,12 @@ async function saveUsersChanges() {
     const currentTarifa = rows[i].getAttribute('tarifa')
     
     if (newRol !== currentRol || newTarifa !== currentTarifa) {
-      let payload = JSON.stringify({rol: newRol, tarifa: newTarifa})
-  
-  await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${_id}`, 'PUT', payload)
-  console.log('Actulizando datos del usuario' + currentEmail)
-     } else console.error('No hay cambios en el rol o la tarifa')
-    showAllUsers()
+      let payload = {rol: newRol, tarifa: newTarifa} 
+      await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${_id}`, 'PUT', payload)
+      console.log('Actulizando datos del usuario ' + currentEmail)
+     }
   } 
+  showAllUsers()
 }
 
 
@@ -200,6 +247,7 @@ async function saveUsersChanges() {
     }
     } else {
     console.error('No hay usuarios seleccionados')
+    alert('Debes seleccionar al menos un usuario')
     }
   }
 

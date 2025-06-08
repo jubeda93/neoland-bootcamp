@@ -1,34 +1,80 @@
-div {
-    background-color: rgb(233 234 235);
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-    width: 800px;
-    line-height: 1.5em;
+#controlPanel {
+    margin: 10px auto;
+    border-radius: 10px;
+    width: 80%;
+    min-width: 890px;
+    max-width: 1000px;
+    height: auto;
+    background-color: #c4c4c4;
+    display: grid;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 10px;
+}
+
+#controlPanel h1 {
+    font-family: Russo One, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 40px;
+    width: 100%;
+    margin-bottom: 10px;
     text-align: center;
-    justify-items: center;
+    color: #7f47b1
+}
 
-    h1 {
-        font-size: 40px;
-        width: 90%;
-        margin-bottom: 10px;
-    }
+#controlPanel p {
+    font-weight: 500;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+}
 
-    input {
-        border-style: double;
-        border-color: grey;
-        border-radius: 6px;
-        width: 170px;
-        margin: 0.6em;
-        height: 2em;
-        text-align: center;
-    }
+#controlPanel input {
+    border: 2px solid #414141;
+    border-color: #414141;
+    text-align: center;
+    border-radius: 6px;
+    width: 200px;
+    margin: 0.6em;
+    height: 2.2em;
+    outline: none;
+    transition: 0.3s ease;
+}
 
-    button {
-        height: 2em;
-        width: 12em;
-        margin: 10px;
+#controlPanel input:hover {
+    border-color: #7f47b1;
+    box-shadow: 0 0 5px #7f47b1;
+}
+
+#controlPanel input:focus {
+    border-color: #7f47b1;
+    box-shadow: 0 0 15px #c06dd4;
+    background-color: #f8e8ff;
+}
+
+#signOut {
+    display: grid;
+    justify-self: center;
+
+}
+
+
+/* 🔽 Aquí el cambio importante */
+#controlPanel button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 250px;
+    height: 35px;
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #757575;
+    color: aliceblue;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    align-items: center;
+
+    &:hover {
+        transition: 1s ease;
+        background-color: #7f47b1;
+
     }
 }

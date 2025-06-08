@@ -1,35 +1,68 @@
-#saveResults {
-    background-color: rgb(233 234 235);
+form {
+    background-color: #c4c4c4;
+    width: 80%;
+    max-width: 1000px;
+    min-width: fit-content;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 10px auto;
     display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    width: 500px;
-    margin-top: 40px;
-    line-height: 1.5em;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+form h1 {
+    font-family: 'Russo One', sans-serif;
+    color: #7f47b1;
+    font-size: 40px;
     text-align: center;
-    justify-content: center;
-   
+}
 
-    h1{ width: 100%;
-        font-size: 40px;
-        margin-bottom: 20px;
-        text-decoration: underline
-    }
+.inputs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 100%;
+    justify-items: stretch;
+}
 
-    input {
-        border-style: double;
-        border-color: grey;
-        border-radius: 6px;
-        width: 180px;
-        margin: 0.6em;
-        height: 2em;
-        text-align: center;
-    }
+.inputs-grid label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 
-    button {
-        height: 2em;
-        width: 12em;
-        margin: 10px;
-    }
+.inputs-grid p {
+    font-weight: 600;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
 
+.inputs-grid input {
+    border-style: double;
+    border-color: rgb(65 65 65);
+    text-align: center;
+    border-radius: 6px;
+    width: 200px;
+    margin: 0.6em;
+    height: 2.2em;
+}
+
+form button {
+    width: 220px;
+    height: 40px;
+    background-color: #3d3d3d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+form button:hover {
+    background-color: #7f47b1;
 }

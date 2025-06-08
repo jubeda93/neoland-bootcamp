@@ -21,6 +21,7 @@ export class LogInLit extends LitElement {
         <p>Contraseña:</p>
         <input type="password" id="logInPassword" placeholder="Password" required>
         <button type="submit"> Iniciar sesion</button>
+        <h2>¿Todavia no tienes cuenta en WodTrack?</h2>
         <p>Haz click aqui para darte de alta:</p>
         <button type="button" id="newUser" @click="${this._showNewUserForm}"> ¡ Nuevo usuario !</button>
       </form>
@@ -34,10 +35,10 @@ export class LogInLit extends LitElement {
     let password = /**@type {HTMLInputElement} */(passwordElement)?.value
     let newUser = new User(email, password, 'user')
 
-    const payload = JSON.stringify(newUser)
-    console.log(payload)
+    
+    // console.log(payload)
 
-    const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/login`, 'POST', payload)
+    const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/login`, 'POST', newUser)
 
     console.log(typeof apiData, apiData)
 

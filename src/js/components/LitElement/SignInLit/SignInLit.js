@@ -17,15 +17,17 @@ export class SignInLit extends LitElement {
         return html`
         <form id="signIn" class="hidden" @submit="${this._singInForm}">
         <slot></slot>
-        <h1>Registrate</h1>
+        <h1 id="signInTitle">Registrate</h1>
         <p>Email del usuario:</p>
         <input type="email" id="signInEmail" placeholder="Email" required>
         <p>Contraseña:</p>
         <input type="password" id="signInPassword" placeholder="Password" required>
-        <button type="submit"> Registrarse</button>
-        <p>Si ya eres usuario:</p>
+        <button type="submit" id="signInButton"> Registrarse</button>
+        <h2 id="userLogText">¿Ya eres usuario?</h2>
+        <p>Haz click aqui:</p>
         <button type="button" id="userLog" @click="${this._showUserLoginFrom}"> ¡ Ir al Login !</button>
     </form>
+
         `;
     }
     async _singInForm(e) {
@@ -36,8 +38,8 @@ export class SignInLit extends LitElement {
         let password = /**@type {HTMLInputElement} */(passwordElement)?.value
         let newUser = new User(email, password)
 
-        const payload = JSON.stringify(newUser)
-        const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/create/users`, 'POST', payload)
+        // const payload = JSON.stringify(newUser)
+        const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/create/users`, 'POST', newUser)
 
         if (!apiData) {
             // Informo al usuario del resultado de la operacions

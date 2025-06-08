@@ -8,11 +8,10 @@ import { LogInLit } from './LitElement/LogInLit/LogInLit.js'
 import { ResultsLit } from './LitElement/ResultsLit/ResultsLit.js'
 import { DataUserLit } from './LitElement/DataUserLit/DataUserLit.js'
 import { MetricsLit } from './LitElement/MetricsLit/MetricsLit.js'
-import { SignOutLit } from './LitElement/SignOutLit/SignOutLit.js'
 import { ControlPanelLit } from './LitElement/ControlPanelLit/ControlPanelLit.js' 
 
 
 
 //================= EXPORTS ==================//
 
-export { SignInLit, LogInLit, ResultsLit, DataUserLit, MetricsLit,SignOutLit,ControlPanelLit};
+export { SignInLit, LogInLit, ResultsLit, DataUserLit, MetricsLit,ControlPanelLit};

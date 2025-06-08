@@ -1,0 +1,98 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.desktop.css">
+    <link rel="stylesheet" href="css/styles.mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap"
+        rel="stylesheet">
+    <title>My Perfil</title>
+    <script type="importmap">
+          {
+            "imports": {
+              "classes/User": "./js/classes/User.js",
+              "classes/Admin": "./js/classes/Admin.js",
+              "classes/Metrics": "./js/classes/Metrics.js",
+              "classes/DataProfile": "./js/classes/DataProfile.js",
+              "classes/HttpError": "./js/classes/HttpError.js",
+              "classes/Results": "./js/classes/Results.js",
+              "lib/simpleFetch": "./js/lib/simpleFetch.js",
+              "lib/importTemplate": "./js/lib/importTemplate.js"
+            }
+          }
+        </script>
+
+    <script type="module" src="./js/components/bundle.js" defer></script>
+    <script type="module" src="./js/profile.js"></script>
+    <script type="module" src="./js/gestionWorkouts.js"></script>
+
+
+</head>
+
+<body>
+  <header>
+    <h1 class="wodTrackTittle">WodTrack</h1>
+  </header>
+
+  <nav id="navMenu">
+    <menu id="menuHorizontal">
+      <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
+      <ul id="profile"><a href="profile.html">My perfil</a></ul>
+      <ul id="booking"><a href="booking.html">Reservar</a></ul>
+      <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
+      <ul id="results"><a href="results.html">My Results</a></ul>
+    </menu>
+  </nav>
+
+
+
+  <form id="classForm">
+    <h1>Gestión de Clases</h1>
+    <label for="hora">Hora de la clase:</label>
+    <input type="time" id="horaWorkout" name="hora" required>
+
+    <label for="plazas">Plazas disponibles:</label>
+    <input type="number" id="plazasWorkout" name="plazas" required>
+
+    <label for="clase">Clase:</label>
+    <select type="input" id="disciplina" name="clase" required>
+      <option value="------">------</option>
+      <option value="Crossfit">Crossfit</option>
+      <option value="Gimnasticos">Gimnasticos</option>
+      <option value="Halterofilia">Halterofilia</option>
+      <option value="Endurance">Endurance</option>
+      <option value="Mobility">Movilidad</option>
+    </select>
+    
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fechaWorkout" name="fecha" required>
+      <button type="submit">Agregar Clase</button>
+  </form>
+  <form id="searchForm">
+  <label for="searchDate">Buscar clases por fecha:</label>
+  <input type="date" id="searchDate">
+  <button id="searchButton">Buscar</button>
+  </form>
+  <table id="classTable" class="hidden">
+    <thead>
+      <tr>
+        <th>Hora</th>
+        <th>Clase</th>
+        <th>Plazas Disponible</th>
+        <th>Plazas Reservadas</th>
+        <th>Usuarios</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tbodyWorkouts"></tbody>
+  </table>
+
+
+</body>
+
+</html>

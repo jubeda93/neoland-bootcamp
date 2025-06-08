@@ -1,6 +1,7 @@
 // @ts-check
 // import { User } from "classes/User"
 // import { getAPIData } from "./getAPIData.js"
+// import { checkUserLogged } from "./checkUserLogged.js"
 
 //para cuando trabajemos con Express
 export const API_PORT = location.port ? `:${1993}` : ''
@@ -17,6 +18,7 @@ window.addEventListener("DOMContentLoaded", onDOMContentLoaded)
  */
 
 function onDOMContentLoaded() {
+  // checkUserLogged()
 
   // let signIn = document.getElementById('signIn')
   // let logIn = document.getElementById('logIn')
@@ -47,16 +49,6 @@ function funLogOut(event) {
   window.location.href = "./index.html"
 }
 
-// function showNewUserForm () {
-//   document.getElementById('signIn')?.classList.remove('hidden')
-//   document.getElementById('logIn')?.classList.add('hidden')
-//   console.log('Sacamos registerForm')
-// }
-// function showLogInForm () {
-//   document.getElementById('logIn')?.classList.remove('hidden')
-//   document.getElementById('signIn')?.classList.add('hidden')
-//   console.log('Sacamos LogInForm')
-// }
 
 
 

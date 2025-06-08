@@ -2,6 +2,7 @@ import { MongoClient, ObjectId } from "mongodb";
 
 const URI = process.env.MONGO_URI;
 
+
 export const mongoDB = {
   users: {
     get: getUsers,
@@ -12,9 +13,23 @@ export const mongoDB = {
     create: createUser,
     delete: deleteUser,
     update: updateUser,
-
+  },
+  workouts: {
+    create: createWorkout,
+    getByDate: getWorkOutsByDate,
+    addUserWorkout: addUserToWorkout,
+    deleteUserWorkout: deleteUserFromWorkout,
+    delete: deleteWorkout,
+  },
+  userResults: {
+    create: createResult,
+    getById: getResultsByUserID,
+    delete: deleteResult
   }
+
 }
+
+// USERS
 
 async function countUsers() {
   const client = new MongoClient(URI);
@@ -24,11 +39,11 @@ async function countUsers() {
 }
 
 
-async function getUsers(filter){
+async function getUsers(filter) {
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
-  return await usersCollection.find(filter).project({password: 0}).toArray()
+  return await usersCollection.find(filter).project({ password: 0 }).toArray()
 }
 
 async function createUser(user) {
@@ -39,11 +54,35 @@ async function createUser(user) {
 }
 
 async function getUserById(id) {
-  const client = new MongoClient(URI);
-  const wodTrackDB = client.db('WodTrack-DDBB');
-  const usersCollection = wodTrackDB.collection('users');
+  const client = new MongoClient(URI)
+  const wodTrackDB = client.db('WodTrack-DDBB')
+  const usersCollection = wodTrackDB.collection('users')
   return await usersCollection.findOne({ _id: new ObjectId(id) })
 }
+
+async function createResult(result) {
+  const client = new MongoClient(URI)
+  const wodTrackDB = client.db('WodTrack-DDBB')
+  const userCollection = wodTrackDB.collection('results')
+  return await userCollection.insertOne(result)
+}
+
+async function getResultsByUserID(userID) {
+  const client = new MongoClient(URI)
+  const wodTrackDB = client.db('WodTrack-DDBB')
+  const userCollection = wodTrackDB.collection('results')
+  console.log(userID)
+  return await userCollection.find({ userID: userID }).sort({ fecha: -1 }).toArray()
+}
+
+async function deleteResult (id) {
+  const client = new MongoClient(URI)
+  const wodTrackDB = client.db('WodTrack-DDBB')
+  const userCollection = wodTrackDB.collection('results')
+  return await userCollection.deleteOne({ _id: new ObjectId(id) })
+
+}
+
 
 
 
@@ -54,7 +93,7 @@ async function getUserById(id) {
  * @param {{email: string, password: string}} data - The data to query the user.
  * @returns {Promise<object>} The user object if found, null otherwise.
  */
-async function logInUser({email, password}) {
+async function logInUser({ email, password }) {
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
@@ -69,7 +108,7 @@ async function logInUser({email, password}) {
  * @param {{id: string}} data - The data to query the user.
  * @returns {Promise<UpdateResult>} The result of the update operation.
  */
-async function logoutUser({id}) {
+async function logoutUser({ id }) {
   const client = new MongoClient(URI);
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
@@ -87,16 +126,81 @@ async function deleteUser(id) {
   const wodTrackDB = client.db('WodTrack-DDBB');
   const usersCollection = wodTrackDB.collection('users');
   const returnValue = await usersCollection.deleteOne({ _id: new ObjectId(id) });
-  console.log('DB deleteUser', returnValue, id,)
+  console.log('DB deleteUser:', returnValue, id,)
   return id
 }
 
 async function updateUser(id, updates) {
   const client = new MongoClient(URI);
-  const shoppinglistDB = client.db('WodTrack-DDBB');
-  const usersCollection = shoppinglistDB.collection('users');
+  const wodTrackDB = client.db('WodTrack-DDBB');
+  const usersCollection = wodTrackDB.collection('users');
   const returnValue = await usersCollection.updateOne({ _id: new ObjectId(id) }, { $set: updates });
   console.log('DB updateUsers', updates)
   return returnValue
 }
 
+
+// WORKOUTS
+
+async function createWorkout(workout) {
+  const client = new MongoClient(URI);
+  const wodTrackDB = client.db('WodTrack-DDBB');
+  const collection = wodTrackDB.collection('workouts');
+  const results = await collection.insertOne({ ...workout })
+  return results
+
+}
+
+async function getWorkOutsByDate(fecha) {
+  const client = new MongoClient(URI)
+  const wordTrackDB = client.db('WodTrack-DDBB')
+  const collection = wordTrackDB.collection('workouts')
+  return await collection.find({ fecha: fecha }).sort({ hora: 1 }).toArray()
+}
+
+async function addUserToWorkout(workoutId, email) {
+  const client = new MongoClient(URI)
+  try {
+    await client.connect()
+    const wodTrackDB = client.db('WodTrack-DDBB')
+    const collection = wodTrackDB.collection('workouts')
+    const results = await collection.updateOne({ _id: new ObjectId(workoutId) }, { $push: { usuarios: email } })
+
+    return results
+
+
+  } catch (err) {
+    console.log(err)
+  }
+
+}
+
+async function deleteUserFromWorkout(workoutId, email) {
+  const client = new MongoClient(URI)
+  try {
+    const wodTrackDB = client.db('WodTrack-DDBB')
+    const collection = wodTrackDB.collection('workouts')
+    const resutls = await collection.updateOne({ _id: new ObjectId(workoutId) }, { $pull: { usuarios: email } })
+    return resutls
+  } catch (err) {
+    console.log('Error al eliminar usuario del workout:', err);
+    return {
+      error: err
+    }
+
+  }
+
+}
+
+async function deleteWorkout(workoutId) {
+  const client = new MongoClient(URI)
+  try {
+    const wodTrackDB = client.db('WodTrack-DDBB')
+    const collection = wodTrackDB.collection('workouts')
+    const results = await collection.deleteOne({ _id: new ObjectId(workoutId) })
+    return results
+  } catch (err) {
+    console.log(err)
+  }
+
+}

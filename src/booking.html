@@ -1,16 +1,16 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles.desktop.css">
-    <link rel="stylesheet" href="css/styles.mobile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <title>My Perfil</title>
-    <script type="importmap">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.desktop.css">
+  <link rel="stylesheet" href="css/styles.mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap" rel="stylesheet">
+  <title>My Perfil</title>
+  <script type="importmap">
           {
             "imports": {
               "classes/User": "./js/classes/User.js",
@@ -25,66 +25,46 @@
             }
           }
         </script>
-    <script type="module" src="./js/logIn.js"></script>
-    <script type="module" src="./js/profile.js"></script>
-  </head>
+  <script type="module" src="./js/logIn.js"></script>
+  <script type="module" src="./js/booking.js"></script>
+</head>
 
 <body>
-    <header>
-        <h1>WodTrack</h1>
-    </header>
 
+  <header>
+    <h1 class="wodTrackTittle">WodTrack</h1>
+  </header>
+  <main>
     <nav id="navMenu">
-        <menu id="menuHorizontal">
-            <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
-            <ul id="profile"><a href="profile.html">My perfil</a></ul>
-            <ul id="booking"><a href="booking.html">Reservar</a></ul>
-            <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
-            <ul id="results"><a href="results.html">My Results</a></ul>
-            <ul id="mensaje"><a href="mensajes.html">Mensajes</a></ul>
-            <ul id="pagos"><a href="payment.html">Pagos</a></li>
-        </menu>
+      <menu id="menuHorizontal">
+        <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
+        <ul id="profile"><a href="profile.html">My perfil</a></ul>
+        <ul id="booking"><a href="booking.html">Reservar</a></ul>
+        <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
+        <ul id="results"><a href="results.html">My Results</a></ul>
+      </menu>
     </nav>
 
-    <main>
-        <h1 class="horaClase">WOD 7:00</h1>
-        <ol class="lista-usuarios">
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-        </ol>
-        <section>
-        <button>Ver Wod</button>
-        <button>Apuntarse</button>
-        </section>
+  <div class="bookingBTN">
+  <h1>Clases disponibles</h1>
+  <label for="fecha">Selecciona una fecha:</label>
+  <input type="date" id="fecha" name="fecha" />
+  </div>
 
-        <h1 class="horaClase">WOD 8:00</h1>
-        <ol class="lista-usuarios">
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-            <ul><img src="./css/img/120x120.svg"></img></ul>
-        </ol>
-        <button>Ver Wod</button>
-        <button>Apuntarse</button>
+  <table>
+  <thead class="thBooking">
+    <tr>
+      <th>Hora</th>
+      <th>Disciplina</th>
+      <th>Plazas totales</th>
+      <th>Plazas libres</th>
+      <th></th>
+      <th>Apuntados</th>
+    </tr>
+  </thead>
+  <tbody id="tbodyBooking"></tbody>
+</table>
 
-    </main>
-
+  
 </body>
+</html> 

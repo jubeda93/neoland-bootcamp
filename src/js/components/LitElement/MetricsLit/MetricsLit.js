@@ -50,7 +50,8 @@ export class MetricsLit extends LitElement {
     render() {
         return html`
         <form id="saveMetrics" @submit="${this._saveMetrics}">
-    <h1>Mis mediciones:</h1>
+    <h1>MEDICIONES</h1>
+    <p>*Registro de ultimas mediciones corporales*</p>
     <section class="metrics">
         <h3>Peso</h3>
         <input type="text" 
@@ -197,7 +198,7 @@ export class MetricsLit extends LitElement {
         }
 
         const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}')
-        const results = JSON.stringify(new Metrics(metricas.peso, metricas.imc, metricas.grasa, metricas.liquido, metricas.gastoKcal, metricas.brazoder, metricas.brazoIzq, metricas.torax, metricas.cintura, metricas.cuadriceps, metricas.freqMedia, metricas.freqMax));
+        const results = (new Metrics(metricas.peso, metricas.imc, metricas.grasa, metricas.liquido, metricas.gastoKcal, metricas.brazoder, metricas.brazoIzq, metricas.torax, metricas.cintura, metricas.cuadriceps, metricas.freqMedia, metricas.freqMax));
         await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/metrics/${userLogged._id}`, 'PUT', results);
 
     }

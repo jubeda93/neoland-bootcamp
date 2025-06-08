@@ -30,7 +30,7 @@ export async function getAPIData(apiURL, method = 'GET', data) {
       // Si la petición tarda demasiado, la abortamos
       signal: AbortSignal.timeout(TIMEOUT),
       method: method,
-      body: data ?? undefined,
+      body: data ? JSON.stringify(data) : undefined,
       headers: headers
     });
   } catch (/** @type {any | HttpError} */err) {
@@ -71,7 +71,7 @@ function isUserLoggedIn() {
  */
 
 
-function getDataFromSessionStorage() {
+export function getDataFromSessionStorage() {
     const defaultValue = JSON.stringify({})
     return JSON.parse(sessionStorage.getItem('User') || defaultValue)
   }

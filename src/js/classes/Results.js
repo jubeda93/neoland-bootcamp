@@ -3,6 +3,7 @@ export class Results {
 
 /**
  * Constructs a new instance of the Benchmark class.
+ * @param {string} [fecha] - The date of the benchmark.
  * @param {string} [benchpress] - The weight for benchpress.
  * @param {string} [deadlift] - The weight for deadlift.
  * @param {string} [backsquat] - The weight for backsquat.
@@ -13,9 +14,12 @@ export class Results {
  * @param {string} [squatclean] - The weight for squat clean.
  * @param {string} [shpress] - The weight for shoulder press.
  * @param {string} [pushpress] - The weight for push press.
+ * @param {string} [pushjerk] - The weight for push jerk.
+ * @param {string} [userID]
  */
 
-    constructor(benchpress,deadlift,backsquat,frontsquat,snatch,cleanjerk,powerclean,squatclean,shpress,pushpress) {
+    constructor(fecha,benchpress,deadlift,backsquat,frontsquat,snatch,cleanjerk,powerclean,squatclean,shpress,pushpress,pushjerk,userID='') {
+        this.fecha = fecha       
         this.benchpress = benchpress
         this.deadlift = deadlift
         this.backsquat = backsquat
@@ -26,5 +30,7 @@ export class Results {
         this.squatclean = squatclean
         this.shpress = shpress
         this.pushpress = pushpress
+        this.pushjerk = pushjerk
+        this.userID = userID
     }
 }

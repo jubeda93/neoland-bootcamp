@@ -1,36 +1,60 @@
-form {
-    padding: 20px;
-    display: flex;
-    flex-flow: column wrap;
-    width: 100%;
-    margin-top: 40px;
-    height: 300px;
-    background-color: rgb(233 234 235);
+form{
+    display:flex;
+    flex-direction:column;
+    background-color: #F5F5F5;
+    width: 30vw;
+    height: 40vh;
+    min-width: fit-content;
+    min-height: fit-content;
+    border-radius: 30px;
+    justify-content: space-evenly;
+    text-align: center;
     align-items: center;
-    
+    margin: 40px auto;
 
     h1{
-        font-size: 40px;
+        font-size: 35px;
+        font-weight: 600;
+        text-decoration: underline;
     }
 
-    input {
-        border-style: double;
-        border-color: grey;
-        border-radius: 6px;
-        width: 170px;
-        margin: 0.6em;
-        height: 2em;
+    h2{
+        font-size: 20px;
+        font-weight: 600;
+        padding: 10px;
+    }
+
+    p{
+        font-size: 15px;
+    }
+
+    input{
+        border: 2px solid black;
+        border-radius: 20px;
+        width: 50%;
+        height: 8%;
+        min-height: fit-content;
+        min-width: fit-content;
+        font-size: 15px;
         text-align: center;
     }
 
-    button {
-        height: 2em;
-        width: 12em;
-        margin: 10px;
-    }
-
-    &.hidden {
-        display: none;
-    }
-
 }
+
+    button{
+        border: 0;
+        color:#ffffff;
+        width: 30%;
+        height: 30px;
+        border-radius: 10px;
+        background-color: #3d3d3d;
+        font-weight: 600;
+
+        &:hover{
+        transition: 1s ease;
+        background-color: #7f47b1 ;
+        color:#F5F5F5;
+            
+        }
+    }
+
