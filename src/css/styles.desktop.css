@@ -205,7 +205,7 @@ section:last-of-type p {
         a {
             color: #111;
             text-decoration: none;
-
+            font-weight: bold;
         }
     }
 }
