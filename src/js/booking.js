@@ -76,6 +76,7 @@ async function renderWorkout(workouts) {
             reservarBtn.addEventListener('click', async () => {
                 reservarBtn.disabled = true
                 try {
+                    console.log('Reservando workout:',userEmail, workout.fecha, workout.hora)
                     await reservarWorkout(workout._id)
                     await cargarWorkoutsPorFecha()
                 } catch (err) {
@@ -91,6 +92,7 @@ async function renderWorkout(workouts) {
             cancelarBtn.addEventListener('click', async () => {
                 cancelarBtn.disabled = true
                 try {
+                    console.log('Cancelando reserva:',userEmail, workout.fecha, workout.hora)
                     await cancelarReserva(workout._id, userEmail)
                     await cargarWorkoutsPorFecha()
                 } catch (err) {
@@ -99,7 +101,7 @@ async function renderWorkout(workouts) {
                 }
             })
         }
-
+        
         tbody.appendChild(tr)
     })
 }

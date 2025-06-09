@@ -40,8 +40,6 @@ export class LogInLit extends LitElement {
 
     const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/login`, 'POST', newUser)
 
-    console.log(typeof apiData, apiData)
-
     if (!apiData) {
       console.log('El usuario no existe')
       document.getElementById('logInFail')?.classList.remove('hidden')
@@ -54,7 +52,7 @@ export class LogInLit extends LitElement {
       // El usuario existe, puedes proceder con la autenticación
       sessionStorage.setItem('User', JSON.stringify(apiData))
       document.getElementById('logInOk')?.classList.remove('hidden')
-      window.location.href = "./mainMenu.html"
+      window.location.href = "./mainMenu.html" 
       setTimeout(() => {
         document.getElementById('logInOk')?.classList.add('hidden')
       }, 4000)

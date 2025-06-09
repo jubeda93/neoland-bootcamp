@@ -26,9 +26,8 @@ export class SignInLit extends LitElement {
         <h2 id="userLogText">¿Ya eres usuario?</h2>
         <p id="userLogText2">Haz click aqui:</p>
         <button type="button" id="userLog" @click="${this._showUserLoginFrom}"> ¡ Ir al Login !</button>
-    </form>
-
-        `;
+    </form>`;
+        
     }
     async _singInForm(e) {
         e.preventDefault()
@@ -56,8 +55,7 @@ export class SignInLit extends LitElement {
             document.getElementById('signInOkAdmin')?.classList.remove('hidden')
             setTimeout(() => {
                 document.getElementById('signInOk')?.classList.add('hidden')
-                document.getElementById('signInOkAdmin')?.classList.add('hidden')
-                
+                document.getElementById('signInOkAdmin')?.classList.add('hidden') 
             }, 4000)
             console.log('Usuario creado', newUser.email,)
         }

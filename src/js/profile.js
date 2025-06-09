@@ -61,15 +61,11 @@ async function showAllUsers() {
     check.classList.add('check')
     cellCheck.appendChild(check)
     
-    
-
     row.classList.add('userRow')
     row.setAttribute('rol', dataUser[i].rol)
     row.setAttribute('tarifa', dataUser[i].tarifa)
     row.setAttribute('email', dataUser[i].email)
     row.setAttribute('id', dataUser[i]._id)
-
-    
 
     cellRol.textContent = dataUser[i].rol
     cellEmail.textContent = dataUser[i].email
@@ -98,7 +94,6 @@ async function showUsersTable(){
   
 
 }
-
 
 //En esta funcion hago una serie de modificaciones en el componente WEB para el interfaz del Admin
 async function showNewUserForm() {

@@ -120,7 +120,7 @@ export class DataUserLit extends LitElement {
     }
 
     async _readUserData() {
-        const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}' )
+        const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}')
         let user = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',);
         this.name = user.dataProfile.name || '';
         this.surName = user.dataProfile.surName || '';
@@ -152,9 +152,9 @@ export class DataUserLit extends LitElement {
         }, 3000);
 
         const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
-            const data = (new DataProfile(userData.name,userData.surName,userData.bornDate,userData.phone,userData.adress,userData.postalCode,userData.nameEmerg,userData.phoneEmerg));
-            await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/dataProfile/${userLogged._id}`, 'PUT', data);
-
+        const data = (new DataProfile(userData.name, userData.surName, userData.bornDate, userData.phone, userData.adress, userData.postalCode, userData.nameEmerg, userData.phoneEmerg));
+        await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/dataProfile/${userLogged._id}`, 'PUT', data);
+        console.log('Datos actualizados', userData)
     }
 
     _userNameChanged(e) {
@@ -167,7 +167,7 @@ export class DataUserLit extends LitElement {
 
     _userBornDateChanged(e) {
         this.bornDate = e.target.value;
-    }       
+    }
 
     _userPhoneNumChanged(e) {
         this.phone = e.target.value;

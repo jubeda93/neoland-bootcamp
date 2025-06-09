@@ -206,8 +206,7 @@ export class ResultsLit extends LitElement {
       userLoggedID,
     )
     alert('Resultados guardados correctamente')
-    location.reload()
-    console.log(payload)
+    console.log('Guardando resultados',payload)
     await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/create/results/${userLoggedID}`, 'POST', payload);
   }
 

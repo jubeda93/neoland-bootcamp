@@ -79,7 +79,7 @@ app.post('/api/create/users', async (req, res) => {
     console.log('Nuevo usuario', newUser)
     res.json(signOn)
   } else {
-    res.status(400).send('USUARIO EXISTENTE')
+    res.status(400).send('Este usuario ya existe')
   }
 })
 
@@ -97,18 +97,12 @@ app.post('/api/login', async (req, res) => {
   // TODO: update token on DB
   const user = await mongoDB.users.logIn(req.body)
   if (user) {
-    // TODO: use OAuth2
-    // ...
-    // Simulation of authentication (OAuth2)
     user.token = gooogleOauth2()
-    // Remove password
-    // delete user.password
     console.log('Iniciando sesion:', user)
     res.json(user)
   } else {
-    // Unauthorized
     console.log('Error al iniciar sesion')
-    res.status(401).send(user)
+    res.status(401).send('Datos usuario incorrectos')
   }
 })
 

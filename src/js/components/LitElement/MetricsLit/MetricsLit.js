@@ -199,6 +199,7 @@ export class MetricsLit extends LitElement {
         const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}')
         const results = (new Metrics(metricas.peso, metricas.imc, metricas.grasa, metricas.liquido, metricas.gastoKcal, metricas.brazoDer, metricas.brazoIzq, metricas.torax, metricas.cintura, metricas.cuadriceps, metricas.freqMedia, metricas.freqMax));
         await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/metrics/${userLogged._id}`, 'PUT', results);
+        console.log('Actualizando metricas', results)
 
     }
 

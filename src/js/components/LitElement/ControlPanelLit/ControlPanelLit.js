@@ -17,15 +17,15 @@ export class ControlPanelLit extends LitElement {
          <p>* Estos cambios pueden afectar al inicio de sesion *</p>
         <form id="changeEmail" @submit="${this._ChangeEmail}">
             <p>Cambiar Email:</p>
-            <input type="email" id="emailUser" placeholder="Email actual">
-            <input type="email" id="emailUserNew" placeholder="Nuevo email">
+            <input type="email" id="emailUser" placeholder="Email actual" required>
+            <input type="email" id="emailUserNew" placeholder="Nuevo email" required>
             <button type="submit">Cambiar email</button>
         </form>
 
         <form id="changePass" @submit="${this._changePass}">
             <p>Cambio contraseña:</p>
-            <input type="password" id="passwordOld" placeholder="Contraseña actual">
-            <input type="password" id="passwordNew" placeholder="Nueva contraseña">
+            <input type="password" id="passwordOld" placeholder="Contraseña actual" required>
+            <input type="password" id="passwordNew" placeholder="Nueva contraseña" required>
             <button type="submit">Cambiar contraseña</button>
         </form>
         <button id="signOut" @click="${this._onSignOut}">Borrar usuario</button>
@@ -61,15 +61,15 @@ export class ControlPanelLit extends LitElement {
                 document.getElementById('modifyUserDataOk')?.classList.add('hidden')
             }, 4000);
             alert('Email modificado correctamente!')
+            console.log('Email modificado correctamente!')
         } else {
             document.getElementById('modifyUserDataFail')?.classList.remove('hidden')
             setTimeout(() => {
                 document.getElementById('modifyUserDataFail')?.classList.add('hidden')
             }, 4000);
             alert('Este email no coincide con el del usuario..')
+            console.log('Este email no coincide con el del usuario..')
         }
-
-
     }
 
     async _changePass(e) {
@@ -88,11 +88,13 @@ export class ControlPanelLit extends LitElement {
                 document.getElementById('modifyPasswordOk')?.classList.add('hidden')
             }, 4000);
             alert('Password modificada correctamente!')
+            console.log('Password modificada correctamente!')
         } else {
             document.getElementById('modifyPasswordFail')?.classList.remove('hidden')
             setTimeout(() => {
                 document.getElementById('modifyPasswordFail')?.classList.add('hidden')
             }, 4000);
+            console.log('La password no coincide con la del usuario...')
             alert('La password no coincide con la del usuario...')
         }
     }
