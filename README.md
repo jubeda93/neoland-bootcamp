@@ -16,17 +16,16 @@ Los usuarios finales tienen acceso a funcionalidades orientadas a su experiencia
 - Consulta y control de las clases reservadas y asistencia.
 - Registro y visualización de resultados personales y métricas corporales (peso, porcentaje de grasa, medidas, etc.).
 - Seguimiento evolutivo de sus marcas personales y rendimiento en diferentes entrenamientos.
-- Visualización de estadísticas y progreso a lo largo del tiempo para facilitar la mejora continua y la motivación.
+- Visualización de estadísticas y progreso a lo largo del tiempo para facilitar el seguimineto.
 
 ---
 
 ## Tecnologías utilizadas
 
 - **Backend:** Node.js con Express para el desarrollo de la API RESTful.
-- **Base de datos:** MongoDB con conexión nativa, sin ODMs para un control directo y eficiente de las consultas y operaciones.
-- **Frontend:** HTML, CSS y JavaScript (Vanilla JS) para una interfaz ligera y adaptable.
-- **Sesiones:** Gestión de sesión con `sessionStorage` en el navegador para almacenar datos mínimos de autenticación.
-- **Comunicación:** Fetch API para realizar peticiones asíncronas y actualizar la interfaz sin recargar la página.
+- **Base de datos:** MongoDB con conexión nativa.
+- **Frontend:** HTML, CSS , JavaScript y Web Components Lit
+- **Sesiones:** Gestión de sesión de usuario con `sessionStorage` en el navegador para almacenar datos mínimos de autenticación.
 - **Middleware:** Uso de `body-parser` para el procesamiento y validación de datos enviados desde el cliente.
 
 ---
@@ -37,4 +36,5 @@ Los usuarios finales tienen acceso a funcionalidades orientadas a su experiencia
 - Los datos de usuarios, entrenamientos y resultados se almacenan y gestionan en MongoDB, con consultas y modificaciones hechas directamente en el backend para asegurar integridad.
 - Se implementan validaciones tanto en frontend como en backend para prevenir errores y garantizar la seguridad.
 - El backend protege las rutas mediante validación de sesión y tokenización para evitar accesos no autorizados.
-- La gestión de sesiones en frontend usa `sessionStorage` para almacenar información sensible de forma temporal y facilitar una experiencia de usuario fluida.
+
+![Modelos de datos](./src/css/img/Obsidian.PNG)

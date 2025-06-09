@@ -8,8 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap" rel="stylesheet">
-  <title>My Perfil</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Saira:ital,wght@0,100..900;1,100..900&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Mi Perfil</title>
   <script type="importmap">
           {
             "imports": {
@@ -36,12 +38,22 @@
   <nav id="navMenu">
     <menu id="menuHorizontal">
       <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
-      <ul id="profile"><a href="profile.html">My perfil</a></ul>
+      <ul id="profile"><a href="profile.html">Mi perfil</a></ul>
       <ul id="booking"><a href="booking.html">Reservar</a></ul>
-      <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
-      <ul id="results"><a href="results.html">My Results</a></ul>
+      <ul id="metrics"><a href="metrics.html">Mis Metricas</a></ul>
+      <ul id="results"><a href="results.html">Mis Resultados</a></ul>
     </menu>
   </nav>
+
+  <div class="profileText">
+  <p id="saveUserDataOk" class="hidden">Datos del usuario guardados correctamente</p>
+  <p id="modifyUserDataOk" class="hidden">Email del usuario modificado correctamente</p>
+  <p id="modifyUserDataFail" class="hidden">Error al modificar el email</p>
+  <p id="modifyPasswordOk" class="hidden">Password del usuario modificado correctamente</p>
+  <p id="modifyPasswordFail" class="hidden">Error al modificar la password</p>
+  <div>
+
+
 
   <data-user-lit></data-user-lit>
   <control-panel-lit></control-panel-lit>

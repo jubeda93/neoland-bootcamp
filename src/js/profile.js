@@ -108,10 +108,11 @@ async function showNewUserForm() {
    const signInForm = document.querySelector('sign-in-lit')
    signInForm.shadowRoot.getElementById('signIn').classList.remove('hidden')
    signInForm.shadowRoot.getElementById('userLog').classList.add('hidden')
+   signInForm.shadowRoot.getElementById('userLogText2').classList.add('hidden')
    signInForm.shadowRoot.getElementById('userLogText').classList.add('hidden')
    signInForm.shadowRoot.getElementById('signInTitle').textContent = 'Registrar nuevo usuario'
-   signInForm.shadowRoot.getElementById('signInButton').textContent = 'Dar de alta usuario'
-   document.getElementById('newUserAdminBTN').classList.add('hidden')
+   signInForm.shadowRoot.getElementById('signInButton').textContent = 'Dar de alta'
+   
 
 }
 

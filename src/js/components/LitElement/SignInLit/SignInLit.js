@@ -24,7 +24,7 @@ export class SignInLit extends LitElement {
         <input type="password" id="signInPassword" placeholder="Password" required>
         <button type="submit" id="signInButton"> Registrarse</button>
         <h2 id="userLogText">¿Ya eres usuario?</h2>
-        <p>Haz click aqui:</p>
+        <p id="userLogText2">Haz click aqui:</p>
         <button type="button" id="userLog" @click="${this._showUserLoginFrom}"> ¡ Ir al Login !</button>
     </form>
 

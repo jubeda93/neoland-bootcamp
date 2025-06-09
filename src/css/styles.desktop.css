@@ -13,29 +13,61 @@ h1 {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    padding: 10px;
+    height: 80px;
+
+    h1 {
+        position: absolute;
+        left: 50px;
+        padding: 10px;
+
+    }
+
 
     h2 {
         margin: 0 10px;
+
     }
 
     button {
         border: 0;
-        height: 30px;
+        height: 40px;
         border-radius: 10px;
         background-color: #8258a7;
         font-weight: 600;
 
         a {
             color: rgb(255 255 255);
-            text-decoration: underline;
-            letter-spacing: 0.5px;
+            text-decoration: none;
+
         }
     }
 }
 
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+#signInOk,
+#logInOk {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#signInFail,
+#logInFail {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+
 #menuHorizontal {
-    background-color: rgb(236, 223, 247);
+    background-color: rgb(255, 255, 255);
     min-width: 600px;
     height: 5%;
     display: flex;
@@ -58,19 +90,19 @@ h1 {
         transition: background-color 1s ease, font-size 1s ease;
 
         a {
-            font-family: Russo One, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: Saira, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Saira, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-size: 1em;
             text-decoration: none;
             color: #000
         }
 
         &:hover {
-            background-color: #7f47b1;
+            background-color: #753a9c;
             font-size: 1.5em;
             animation-delay: 1s;
 
             a {
-                color: rgb(251, 255, 0);
+                color: #fbff00;
                 transition: color 1s ease;
             }
         }
@@ -107,7 +139,7 @@ button {
 
     &:hover {
         transition: 1s ease;
-        background-color: #7f47b1;
+        background-color: #753a9c;
     }
 }
 
@@ -135,6 +167,7 @@ button {
 
     button {
         margin: 0 20px;
+        min-width: fit-content;
     }
 }
 
@@ -166,12 +199,11 @@ form {
         border-radius: 8px;
         font-size: 14px;
         padding: 3px;
-        font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: Saira, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         width: 100px;
         text-align: center;
     }
 }
-
 
 thead {
     width: 80%;
@@ -196,7 +228,7 @@ table {
     margin: 20px auto;
     border-radius: 10px;
     overflow: hidden;
-    
+
     th {
         border-right: 3px solid #4d4d4d;
         border-bottom: 3px solid #4d4d4d;
@@ -225,8 +257,14 @@ table {
 
 }
 
-
-
+.profileText{
+    margin-top: 10px;
+    p{
+        text-align: center;
+        line-height: 1.2em;
+        
+    }
+}
 
 .check {
     transform: scale(1.8);
@@ -260,11 +298,9 @@ table {
 
     input {
         border-style: double;
-        border-color: grey;
         border-radius: 6px;
-        width: 170px;
-        margin: 0.6em;
-        height: 2em;
+        width: 180px;
+        height: 30px;
         text-align: center;
     }
 }
@@ -279,6 +315,10 @@ table {
     h1 {
         font-size: 40px;
         padding: 10px;
+    }
+
+    select {
+        width: 180px;
     }
 
     input {
@@ -312,7 +352,7 @@ table {
     align-items: center;
 
     button {
-        width: 200px;
+        min-width: fit-content;
     }
 }
 

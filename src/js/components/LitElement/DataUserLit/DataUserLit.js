@@ -146,6 +146,11 @@ export class DataUserLit extends LitElement {
             phoneEmerg: this.phoneEmerg
         }
 
+        document.getElementById('saveUserDataOk')?.classList.remove('hidden')
+        setTimeout(() => {
+            document.getElementById('saveUserDataOk')?.classList.add('hidden')
+        }, 3000);
+
         const userLogged = JSON.parse(sessionStorage.getItem('User') || '')
             const data = (new DataProfile(userData.name,userData.surName,userData.bornDate,userData.phone,userData.adress,userData.postalCode,userData.nameEmerg,userData.phoneEmerg));
             await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/dataProfile/${userLogged._id}`, 'PUT', data);

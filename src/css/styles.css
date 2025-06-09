@@ -1,18 +1,22 @@
 /** ESTILOS LETRAS, COLORES, FONDOS  */
 
 html {
-   font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-family: Saira, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
    font-size: 18px;
 }
 
 body {
    height: 100vh;
-   font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-family: Saira, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
    background-color: #1E1E1E;
+
+   h1{
+      color:white
+   }
 }
 
 button {
-   font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-family: Saira, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
    background-color: #757575;
    color: aliceblue;
 
@@ -28,7 +32,7 @@ button {
 }
 
 label {
-      font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-family: Saira, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       font-weight: 500;
    }
 
@@ -37,11 +41,31 @@ label {
    background-color: #000000;
 }
 
+#signInOk,
+#logInOk,
+#modifyUserDataOk,
+#modifyPasswordOk {
+    color: #9ffd68;
+}
+
+#signInFail,
+#logInFail,
+#modifyUserDataFail,
+#modifyPasswordFail {
+    color: #f50808;
+}
+
 #topper {
    font-weight: 600;
    color: white;
    background-color: #3d3d3d;
 
+   h2{
+      &:hover {
+         transition-duration: 1s;
+         color: #fcff39;
+      }
+   }
 }
 
 table{
@@ -53,7 +77,7 @@ table{
 #topper button {
    text-decoration: none;
    color: white;
-   background-color: #7f47b1;
+   background-color: #753a9c;
 }
 
 #menuInicio a {
@@ -63,20 +87,10 @@ table{
 
    &:hover {
       transition-duration: 2s;
-      opacity: 0.6;
    }
 }
 
-#gestionUsuariosForm {
-   background-color: #969696;
 
-   h1 {
-      font-family: Russo One, Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      color: #7f47b1;
-   }
-
-
-}
 
 #classForm {
    select {
@@ -88,31 +102,25 @@ table{
    }
 }
 
+
 #searchForm {
    input {
       border-color: grey;
    }
 }
 
-#tbodyBooking,
-#tbodyWorkouts,
-form {
-   background-color: #bebebe;
-
-   h1 {
-      font-family: Russo One, Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      color: #7f47b1;
-   }
-
+#gestionUsuariosForm{
+   background-color: #363636;   
 }
+
 
 .bookingBTN {
    background-color: #bebebe;
-   font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-family: Saira, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
    h1 {
-      font-family: Russo One, Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      color: #7f47b1;
+      font-family: Saira, Saira, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: #753a9c;
    }
 
 

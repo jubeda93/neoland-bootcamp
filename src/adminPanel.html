@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Saira:ital,wght@0,100..900;1,100..900&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <title>My Perfil</title>
+    <title>Admin Panel</title>
     <script type="importmap">
           {
             "imports": {
@@ -26,11 +26,9 @@
             }
           }
         </script>
-
+        
     <script type="module" src="./js/components/bundle.js" defer></script>
     <script type="module" src="./js/profile.js"></script>
-
-
 </head>
 
 <body>
@@ -67,15 +65,15 @@
                     <th class="column">Email</th>
                     <th class="column">Rol</th>
                     <th class="column">Tarifa</th>
-                    <th class="column">Marcar para eliminar</th>
+                    <th class="column">Seleccionar</th>
                 </tr>
             </thead>
             <tbody id="tbodyUsers"></tbody>
         </table>
         <div class="buttonAdmin">
-        <button type="button" id="saveUsersBTN" class="hidden">Guardar</button>
-        <button type="button" id="DeleteUsers" >Borrar selección</button>
-    </div>
+            <button type="button" id="saveUsersBTN" class="hidden">Guardar</button>
+            <button type="button" id="DeleteUsers">Borrar selección</button>
+        </div>
     </form>
 
     <sign-in-lit></sign-in-lit>

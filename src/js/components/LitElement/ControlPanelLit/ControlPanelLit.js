@@ -33,52 +33,69 @@ export class ControlPanelLit extends LitElement {
     </div> `
     }
 
-     async _onSignOut(e) {
-            e.preventDefault()
-            
-            if (sessionStorage.getItem('User') && confirm('¿Estás seguro de borrar tu usuario?')) {
-              let userLogged = JSON.parse(sessionStorage.getItem('User') || '')
-              const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/delete/users/${userLogged._id}`, 'DELETE')
-              console.log(typeof apiData,apiData)
-              // Eliminar del sessionStorage
-              sessionStorage.removeItem('User')
-               location.href = "./index.html"
-            } 
-          }
+    async _onSignOut(e) {
+        e.preventDefault()
 
-    async _ChangeEmail (e) {
+        if (sessionStorage.getItem('User') && confirm('¿Estás seguro de borrar tu usuario?')) {
+            let userLogged = JSON.parse(sessionStorage.getItem('User') || '')
+            const apiData = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/delete/users/${userLogged._id}`, 'DELETE')
+            console.log(typeof apiData, apiData)
+            // Eliminar del sessionStorage
+            sessionStorage.removeItem('User')
+            location.href = "./index.html"
+        }
+    }
+
+    async _ChangeEmail(e) {
         e.preventDefault()
         let userLogged = JSON.parse(sessionStorage.getItem('User'))
         let emailOld = this.renderRoot.getElementById('emailUser').value
         let emailNew = this.renderRoot.getElementById('emailUserNew').value
         if (userLogged.email === emailOld) {
             userLogged.email = emailNew
-            const emailToChange = ({email: userLogged.email})
+            const emailToChange = ({ email: userLogged.email })
             sessionStorage.setItem('User', JSON.stringify(userLogged))
-            await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${userLogged._id}`, 'PUT', emailToChange )
+            await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${userLogged._id}`, 'PUT', emailToChange)
+            document.getElementById('modifyUserDataOk')?.classList.remove('hidden')
+            setTimeout(() => {
+                document.getElementById('modifyUserDataOk')?.classList.add('hidden')
+            }, 4000);
             alert('Email modificado correctamente!')
         } else {
-            alert('Este Email no coincide con el del usuario..')
+            document.getElementById('modifyUserDataFail')?.classList.remove('hidden')
+            setTimeout(() => {
+                document.getElementById('modifyUserDataFail')?.classList.add('hidden')
+            }, 4000);
+            alert('Este email no coincide con el del usuario..')
         }
+
+
     }
 
-    async _changePass (e) {
+    async _changePass(e) {
         e.preventDefault()
-        
+
         let userLogged = JSON.parse(sessionStorage.getItem('User'))
-        let user =  await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',)
+        let user = await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/read/user/${userLogged._id}`, 'GET',)
         let passOld = this.renderRoot.getElementById('passwordOld').value
-        let passNew =this.renderRoot.getElementById('passwordNew').value
-        if (user.password === passOld ){
+        let passNew = this.renderRoot.getElementById('passwordNew').value
+        if (user.password === passOld) {
             user.password = passNew
-            const passToChange = ({password: user.password})
-        await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${userLogged._id}`, 'PUT', passToChange )
-         alert('Password modificada correctamente!')
+            const passToChange = ({ password: user.password })
+            await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/user/${userLogged._id}`, 'PUT', passToChange)
+            document.getElementById('modifyPasswordOk')?.classList.remove('hidden')
+            setTimeout(() => {
+                document.getElementById('modifyPasswordOk')?.classList.add('hidden')
+            }, 4000);
+            alert('Password modificada correctamente!')
         } else {
-            alert('La Password no coincide con la del usuario...')
+            document.getElementById('modifyPasswordFail')?.classList.remove('hidden')
+            setTimeout(() => {
+                document.getElementById('modifyPasswordFail')?.classList.add('hidden')
+            }, 4000);
+            alert('La password no coincide con la del usuario...')
         }
     }
 
 }
-    customElements.define('control-panel-lit', ControlPanelLit)
-    
+customElements.define('control-panel-lit', ControlPanelLit)

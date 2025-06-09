@@ -13,8 +13,8 @@ form {
 }
 
 form h1 {
-    font-family: 'Russo One', sans-serif;
-    color: #7f47b1;
+    font-family: 'Saira', sans-serif;
+    color: #753a9c;
     font-size: 40px;
     text-align: center;
 }
@@ -54,7 +54,6 @@ form h1 {
 form button {
     width: 220px;
     height: 40px;
-    background-color: #3d3d3d;
     color: white;
     border: none;
     border-radius: 8px;
@@ -64,5 +63,5 @@ form button {
 }
 
 form button:hover {
-    background-color: #7f47b1;
+    background-color: #753a9c;
 }

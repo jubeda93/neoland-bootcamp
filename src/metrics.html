@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Saira:ital,wght@0,100..900;1,100..900&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <title>My Perfil</title>
+    <title>Mis Metricas</title>
     <script type="importmap">
           {
             "imports": {
@@ -21,8 +21,6 @@
               "classes/DataProfile": "./js/classes/DataProfile.js",
               "classes/HttpError": "./js/classes/HttpError.js",
               "classes/Results": "./js/classes/Results.js",
-              "classes/SingletonDB": "./js/classes/SingletonDB.js",
-              "store/redux": "./js/store/redux.js",
               "lib/simpleFetch": "./js/lib/simpleFetch.js"
             }
           }
@@ -39,71 +37,12 @@
     <nav>
         <menu id="menuHorizontal">
             <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
-            <ul id="profile"><a href="profile.html">My perfil</a></ul>
+            <ul id="profile"><a href="profile.html">Mi perfil</a></ul>
             <ul id="booking"><a href="booking.html">Reservar</a></ul>
-            <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
-            <ul id="results"><a href="results.html">My Results</a></ul>
+            <ul id="metrics"><a href="metrics.html">Mis Metricas</a></ul>
+            <ul id="results"><a href="results.html">Mis Resultados</a></ul>
         </menu>
     </nav>
 </body>
 
 <metrics-lit></metrics-lit>
-
-<!-- <form id="saveMetrics">
-    <h1>Mis mediciones:</h1>
-    <section class="metrics">
-        <h3>Peso</h3>
-        <input type="text" id="peso" placeholder="Peso">
-    </section>
-    <section class="metrics">
-        <h3>IMC</h3>
-        <input type="text" id="imc" placeholder="IMC">
-    </section>
-    <section class="metrics">
-        <h3>% Grasa</h3>
-        <input type="text" id="grasa" placeholder="% Grasa">
-    </section>
-    <section class="metrics">
-        <h3>% Liquido</h3>
-        <input type="text" id="liquido" placeholder="% Liquido">
-    </section>
-    <section class="metrics">
-        <h3>Gasto calórico</h3>
-        <input type="text" id="gastoKcal" placeholder="Gasto kcal">
-    </section>
-    <section class="metrics">
-        <h3>Brazo derecho</h3>
-        <input type="text" id="brazoder" placeholder="Brazo derecho">
-    </section>
-    <section class="metrics">
-        <h3>Brazo izquierdo</h3>
-        <input type="text" id="brazoIzq" placeholder="Brazo izquierdo">
-    </section>
-    <section class="metrics">
-        <h3>Tórax</h3>
-        <input type="text" id="torax" placeholder="Tórax">
-    </section>
-    <section class="metrics">
-        <h3>Cintura</h3>
-        <input type="text" id="cintura" placeholder="Cintura">
-    </section>
-    <section class="metrics">
-        <h3>Cuadriceps</h3>
-        <input type="text" id="cuadriceps" placeholder="Cuadriceps">
-    </section>
-    <section class="metrics">
-        <h3>Freq. cardiaca media</h3>
-        <input type="text" id="freqMedia" placeholder="Freq. cardiaca media">
-    </section>
-    <section class="metrics">
-        <h3>Freq. cardiaca maxima</h3>
-        <input type="text" id="freqMax" placeholder="Freq. cardiaca maxima">
-    </section>
-    <button type="submit">Guardar</button> 
-</form> -->
-
-
-<!-- Aquí desarrollar la tabla donde se podran consultar el historial de mediciones
- <table>
-    <h1>Historial de mediciones (tabla) </h1>
-</table> -->

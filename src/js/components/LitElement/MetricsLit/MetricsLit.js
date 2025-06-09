@@ -35,14 +35,13 @@ export class MetricsLit extends LitElement {
         this.grasa = '0';
         this.liquido = '0';
         this.gastoKcal = '0';
-        this.brazoder = '0';
+        this.brazoDer = '0';
         this.brazoIzq = '0';
         this.torax = '0';
         this.cintura = '0';
         this.cuadriceps = '0';
         this.freqMedia = '0';
         this.freqMax = '0';
-
         this._readMetrics();
     }
 
@@ -58,7 +57,7 @@ export class MetricsLit extends LitElement {
         id="peso" 
         placeholder="Peso"
         .value="${this.peso}"
-        @input="${this._pesoChanded}"
+        @input="${this._pesoChanged}"
         >
     </section>
     <section class="metrics">
@@ -68,7 +67,7 @@ export class MetricsLit extends LitElement {
         id="imc" 
         placeholder="IMC"
         .value="${this.imc}"
-        @input="${this._imcChanded}">
+        @input="${this._imcChanged}">
     </section>
     <section class="metrics">
         <h3>% Grasa</h3>
@@ -103,7 +102,7 @@ export class MetricsLit extends LitElement {
         type="text" 
         id="brazoder" 
         placeholder="Brazo derecho"
-        .value="${this.brazoder}"
+        .value="${this.brazoDer}"
         @input="${this._brazoderChanged}">
     </section>
     <section class="metrics">
@@ -171,7 +170,7 @@ export class MetricsLit extends LitElement {
             this.grasa = user.metrics.grasa || '0';
             this.liquido = user.metrics.liquido || '0';
             this.gastoKcal = user.metrics.gastoKcal || '0';
-            this.brazoder = user.metrics.brazoder || '0';
+            this.brazoDer = user.metrics.brazoDer || '0';
             this.brazoIzq = user.metrics.brazoIzq || '0';
             this.torax = user.metrics.torax || '0';
             this.cintura = user.metrics.cintura || '0';
@@ -188,7 +187,7 @@ export class MetricsLit extends LitElement {
             grasa: this.grasa,
             liquido: this.liquido,
             gastoKcal: this.gastoKcal,
-            brazoder: this.brazoder,
+            brazoDer: this.brazoDer,
             brazoIzq: this.brazoIzq,
             torax: this.torax,
             cintura: this.cintura,
@@ -198,15 +197,15 @@ export class MetricsLit extends LitElement {
         }
 
         const userLogged = JSON.parse(sessionStorage.getItem('User') || '{}')
-        const results = (new Metrics(metricas.peso, metricas.imc, metricas.grasa, metricas.liquido, metricas.gastoKcal, metricas.brazoder, metricas.brazoIzq, metricas.torax, metricas.cintura, metricas.cuadriceps, metricas.freqMedia, metricas.freqMax));
+        const results = (new Metrics(metricas.peso, metricas.imc, metricas.grasa, metricas.liquido, metricas.gastoKcal, metricas.brazoDer, metricas.brazoIzq, metricas.torax, metricas.cintura, metricas.cuadriceps, metricas.freqMedia, metricas.freqMax));
         await getAPIData(`${location.protocol}//${location.hostname}${API_PORT}/api/update/metrics/${userLogged._id}`, 'PUT', results);
 
     }
 
-    _pesoChanded(e) {
+    _pesoChanged(e) {
         this.peso = e.target.value
     }
-    _imcChanded(e) {
+    _imcChanged(e) {
         this.imc = e.target.value
     }
     _grasaChanged(e) {
@@ -219,7 +218,7 @@ export class MetricsLit extends LitElement {
         this.gastoKcal = e.target.value
     }
     _brazoderChanged(e) {
-        this.brazoder = e.target.value
+        this.brazoDer = e.target.value
     }
     _brazoIzqChanged(e) {
         this.brazoIzq = e.target.value

@@ -11,7 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
-  <title>My Perfil</title>
+  <title>Menu principal</title>
   <script type="importmap">
         {
           "imports": {
@@ -36,23 +36,31 @@
 
   <body>
     <nav id="menuInicio">
-      <label>
-        <p><a href="profile.html">Mi Perfil</a></p>
+      <label data-label="Mi Perfil">
+        <a href="profile.html">
+          <img src="./css/img/icon_1.png" alt="Mi Perfil" />
+        </a>
       </label>
-      <label >
-        <p><a href="booking.html">Reservar</a></p>
+      <label data-label="Reservar">
+        <a href="booking.html">
+        <img src="./css/img/icon_2.png" alt="Booking" />
+      </a>
       </label>
-      <label >
-        <p><a href="metrics.html">Metricas</a></p>
+      <label data-label="Mis Metricas">
+        <a href="metrics.html">
+        <img src="./css/img/icon_3.png" alt="Metrics" />
+        </a>
       </label>
-      <label >
-        <p><a href="results.html">Resultados</a></p>
+      <label data-label="Mis Resultados">
+        <a href="results.html">
+        <img src="./css/img/icon_4.png" alt="Results" />
+        </a>
       </label>
       <label id="adminLink" class="hidden">
-        <p><a href="adminPanel.html">Gestion de Usuarios</a></p>
+        <p><a href="adminPanel.html">* Gestion de Usuarios *</a></p>
       </label>
       <label id="panelClases" class="hidden">
-        <p><a href="adminBooking.html">Gestion de clases</a></p>
+        <p><a href="adminBooking.html">* Gestion de clases *</a></p>
       </label>
     </nav>
     <button id="logOut">Cerrar sesión</button>

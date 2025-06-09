@@ -39,7 +39,7 @@ function renderResults(results){
     tbody.innerHTML = ''
     if (!results.length) {
         const row = document.createElement('tr')
-        row.innerHTML = `<td colspan="2">No hay resultados</td>`
+        row.innerHTML = `<td colspan="14">No hay resultados</td>`
         tbody.appendChild(row)
         return
     }

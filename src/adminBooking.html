@@ -1,18 +1,18 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles.desktop.css">
-    <link rel="stylesheet" href="css/styles.mobile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap"
-        rel="stylesheet">
-    <title>My Perfil</title>
-    <script type="importmap">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.desktop.css">
+  <link rel="stylesheet" href="css/styles.mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Saira:ital,wght@0,100..900;1,100..900&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Admin Panel Booking</title>
+  <script type="importmap">
           {
             "imports": {
               "classes/User": "./js/classes/User.js",
@@ -27,9 +27,9 @@
           }
         </script>
 
-    <script type="module" src="./js/components/bundle.js" defer></script>
-    <script type="module" src="./js/profile.js"></script>
-    <script type="module" src="./js/gestionWorkouts.js"></script>
+  <script type="module" src="./js/components/bundle.js" defer></script>
+  <script type="module" src="./js/profile.js"></script>
+  <script type="module" src="./js/gestionWorkouts.js"></script>
 
 
 </head>
@@ -41,11 +41,11 @@
 
   <nav id="navMenu">
     <menu id="menuHorizontal">
-      <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
-      <ul id="profile"><a href="profile.html">My perfil</a></ul>
+            <ul id="mainMenu"><a href="mainMenu.html">Inicio</a></ul>
+      <ul id="profile"><a href="profile.html">Mi perfil</a></ul>
       <ul id="booking"><a href="booking.html">Reservar</a></ul>
-      <ul id="metrics"><a href="metrics.html">My Metrics</a></ul>
-      <ul id="results"><a href="results.html">My Results</a></ul>
+      <ul id="metrics"><a href="metrics.html">Mis Metricas</a></ul>
+      <ul id="results"><a href="results.html">Mis Resultados</a></ul>
     </menu>
   </nav>
 
@@ -68,15 +68,15 @@
       <option value="Endurance">Endurance</option>
       <option value="Mobility">Movilidad</option>
     </select>
-    
-      <label for="fecha">Fecha:</label>
-      <input type="date" id="fechaWorkout" name="fecha" required>
-      <button type="submit">Agregar Clase</button>
+
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fechaWorkout" name="fecha" required>
+    <button type="submit">Agregar Clase</button>
   </form>
   <form id="searchForm">
-  <label for="searchDate">Buscar clases por fecha:</label>
-  <input type="date" id="searchDate">
-  <button id="searchButton">Buscar</button>
+    <label for="searchDate">Buscar clases por fecha:</label>
+    <input type="date" id="searchDate">
+    <button id="searchButton">Buscar</button>
   </form>
   <table id="classTable" class="hidden">
     <thead>
