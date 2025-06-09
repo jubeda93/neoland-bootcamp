@@ -14,7 +14,7 @@ form {
 
 form h1 {
     font-family: 'Saira', sans-serif;
-    color: #753a9c;
+    color: #7f47b1;
     font-size: 40px;
     text-align: center;
 }
@@ -63,5 +63,5 @@ form button {
 }
 
 form button:hover {
-    background-color: #753a9c;
+    background-color: #7f47b1;
 }

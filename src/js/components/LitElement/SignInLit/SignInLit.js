@@ -44,15 +44,20 @@ export class SignInLit extends LitElement {
         if (!apiData) {
             // Informo al usuario del resultado de la operacions
             document.getElementById('signInFail')?.classList.remove('hidden')
+            document.getElementById('signInFailAdmin')?.classList.remove('hidden')
             setTimeout(() => {
                 document.getElementById('signInFail')?.classList.add('hidden')
+                document.getElementById('signInFailAdmin')?.classList.add('hidden')
             }, 4000)
             console.log('ERROR al crear el usuario', newUser.email,)
             return
         } else {
             document.getElementById('signInOk')?.classList.remove('hidden')
+            document.getElementById('signInOkAdmin')?.classList.remove('hidden')
             setTimeout(() => {
                 document.getElementById('signInOk')?.classList.add('hidden')
+                document.getElementById('signInOkAdmin')?.classList.add('hidden')
+                
             }, 4000)
             console.log('Usuario creado', newUser.email,)
         }

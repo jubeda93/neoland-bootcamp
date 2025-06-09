@@ -16,14 +16,14 @@ form{
         font-size: 35px;
         font-weight: 600;
         text-decoration: underline;
-        color:#753a9c
+        color:#7f47b1
     }
 
     h2{
         font-size: 20px;
         font-weight: 600;
         padding: 10px;
-        color:#753a9c
+        color:#7f47b1
     }
 
     p{
@@ -51,7 +51,7 @@ form{
 
     &:hover {
         transition: 1s ease;
-        background-color: #753a9c;
+        background-color: #7f47b1;
     }
 }
     

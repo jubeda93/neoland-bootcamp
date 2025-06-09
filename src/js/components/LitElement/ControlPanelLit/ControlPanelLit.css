@@ -19,7 +19,7 @@
     width: 100%;
     margin-bottom: 10px;
     text-align: center;
-    color: #753a9c
+    color: #7f47b1
 }
 
 #controlPanel p {
@@ -42,12 +42,12 @@
 }
 
 #controlPanel input:hover {
-    border-color: #753a9c;
-    box-shadow: 0 0 5px #753a9c;
+    border-color: #7f47b1;
+    box-shadow: 0 0 5px #7f47b1;
 }
 
 #controlPanel input:focus {
-    border-color: #753a9c;
+    border-color: #7f47b1;
     box-shadow: 0 0 15px #c06dd4;
     background-color: #f8e8ff;
 }
@@ -75,7 +75,7 @@
 
     &:hover {
         transition: 1s ease;
-        background-color: #753a9c;
+        background-color: #7f47b1;
 
     }
 }
