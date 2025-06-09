@@ -8,6 +8,16 @@ h1 {
     padding: 10px;
 }
 
+/* Que los links dentro del header se vean como texto, no como links azules subrayados */
+header h2 a {
+  color: inherit;          
+  text-decoration: none;    
+}
+
+
+
+
+
 #indexInfo {
     color: #fff;
     width: 100%;
