@@ -18,6 +18,14 @@ Los usuarios finales tienen acceso a funcionalidades orientadas a su experiencia
 - Seguimiento evolutivo de sus marcas personales y rendimiento en diferentes entrenamientos.
 - Visualización de estadísticas y progreso a lo largo del tiempo para facilitar el seguimineto.
 
+## Control de accesos y sesiones
+
+- La plataforma implementa un sistema de control de accesos basado en roles, asegurando que cada usuario solo pueda acceder a las funcionalidades correspondientes a su perfil: administrador, coach o usuario.
+- El login exitoso genera una sesión de usuario que se almacena en el navegador mediante `sessionStorage`, guardando únicamente los datos esenciales (como el `_id` y el rol).
+- Cada vista de la aplicación valida si hay una sesión activa y si el usuario tiene permiso para acceder al contenido. Si no se detecta sesión o el rol es incorrecto, se redirige automáticamente a la pantalla de login.
+- Este sistema permite proteger tanto las rutas del frontend como las del backend, evitando accesos no autorizados o manipulaciones manuales desde el cliente.
+
+
 ---
 
 ## Tecnologías utilizadas
@@ -38,3 +46,7 @@ Los usuarios finales tienen acceso a funcionalidades orientadas a su experiencia
 - El backend protege las rutas mediante validación de sesión y tokenización para evitar accesos no autorizados.
 
 ![Modelos de datos](./src/css/img/Obsidian.PNG)
+
+
+- Proyecto Final BootCamp Neoland 2025.
+- Javier Ubeda Hurtado
