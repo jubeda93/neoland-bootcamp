@@ -83,9 +83,6 @@ async function deleteResult (id) {
 
 }
 
-
-
-
 /**
  * Finds a user in the 'users' collection in the 'shoppingList' database given
  * an email and password.

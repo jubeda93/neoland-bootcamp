@@ -513,6 +513,7 @@ table {
     align-items: center;
 
     h1 {
+        color: #7f47b1;
         font-size: 40px;
         padding: 10px;
     }

@@ -91,7 +91,7 @@ function renderTablaWorkouts(workout) {
     tbody.innerHTML = ''
     if (!workout.length) {
         const tr = document.createElement('tr')
-        tr.innerHTML = `<td colspan="3">No hay workouts para esta fecha</td>`
+        tr.innerHTML = `<td colspan="6">No hay workouts para esta fecha</td>`
         tbody.appendChild(tr)
         return
     }

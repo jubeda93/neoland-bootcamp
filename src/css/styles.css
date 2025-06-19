@@ -97,16 +97,20 @@ table{
 }
 
 #classForm {
+   background-color: #bebebe;
+
    select {
       border-color: grey;
    }
 
    input {
       border-color: grey;
+
    }
 }
 
 #searchForm {
+   background-color: #bebebe;
    input {
       border-color: grey;
    }
